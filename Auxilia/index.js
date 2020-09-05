@@ -3,8 +3,27 @@ const session = require("express-session")
 const bodyparser = require("body-parser")
 const cookieparser = require("cookie-parser")
 const hbs = require("hbs")
+const mongoose = require("mongoose")
+const {User} = require("./models/user.js")
 
 const app = express()
+
+mongoose.connect("mongodb://127.0.0.1:27017/userdb",{
+    useNewUrlParser: true
+})
+
+let user = new User({
+    email: "chuabianca1999@gmail.com",
+    password: "boo",
+    firstname: "Bianca",
+    lastname: "Chua"
+})
+
+user.save().then((doc)=>{
+    console.log("Succesfully added: "+ doc)
+}, (err)=>{
+    console.log("Error in adding" + err)
+})
 
 app.set("view engine", "hbs")
 
