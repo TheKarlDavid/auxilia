@@ -6,12 +6,15 @@ const hbs = require("hbs")
 const mongoose = require("mongoose")
 const url = require("url")
 const {User} = require("./models/user.js")
-
+const bcrypt = require("bcryptjs")
+const { body, validationResult } = require('express-validator')
+const { runInNewContext } = require("vm")
 const app = express()
 
 mongoose.connect("mongodb://127.0.0.1:27017/userdb",{
     useNewUrlParser: true,
-    useFindAndModify: false
+    useUnifiedTopology: true,
+    useCreateIndex: true
 })
 
 // let user = new User({
@@ -73,19 +76,74 @@ app.get("/", (req, res)=>{
     // }
 })
 
+// registering a new user
+
 app.post("/register", urlencoder, (req,res)=>{
     // email: em     password: pw
 
+    // reading fields from hbs
     let email = req.body.em
     let password = req.body.pw
-    let first_name = req.body.fname
-    let last_name = req.body.lname
+    let first_name = req.body.firstname
+    let last_name = req.body.lastname
 
-    if(email.trim() == "" || password.trim() == ""){
-        res.render("index.hbs", {
-            error:"Enter an email and password"
-        })
+    //checking if valid
+    body("email").notEmpty();
+    body("email").isEmail();
+    body("password").notEmpty();
+    body("password").isLength({min:6});
+    body("first_name").notEmpty();
+    body("last_name").notEmpty();
+
+    //check errors
+    const errors = validationResult(req);
+    if(!errors.isEmpty()){
+        res.render("index.hbs",{errors:errors});
     }
+    else{
+        var salt = bcrypt.genSaltSync(10);
+        var hash = bcrypt.hashSync(password,salt);
+        password = hash;
+
+        let user = new User({
+             email: email,
+             password: password,
+             firstname: first_name,
+             lastname: last_name
+        })
+
+        user.save().then((doc)=>{
+            console.log("Succesfully added: "+ doc)
+
+            req.session.email = doc.email
+            res.render("index.hbs", {
+            message:"Registration successful"
+            })
+        }, (err)=>{
+            console.log("Error in adding" + err)
+        })
+
+        req.session.email = req.body.em
+        res.render("home.hbs",{
+            email: req.session.email
+        })
+
+        console.log(JSON.stringify(user))
+
+        res.render("index.hbs", {
+            message:"Registration successful"
+        })
+
+        res.redirect("/")
+        
+    }
+
+    //Karl's codeno authentication
+    // if(email.trim() == "" || password.trim() == ""){
+    //     res.render("index.hbs", {
+    //         error:"Enter an email and password"
+    //     })
+    // }
 
     // else if(!isAvailable(email)){
     //     res.render("index.hbs", {
@@ -93,7 +151,7 @@ app.post("/register", urlencoder, (req,res)=>{
     //     })
     // }
     
-    else{
+    // else{
         //save user to db users[]
 
         // users.push({
@@ -104,23 +162,23 @@ app.post("/register", urlencoder, (req,res)=>{
 
         // })
 
-        let user = new User({
-            email: email,
-            password: password,
-            first_name: first_name,
-            last_name: last_name
-        })
+        // let user = new User({
+        //     email: email,
+        //     password: password,
+        //     first_name: first_name,
+        //     last_name: last_name
+        // })
 
-        user.save().then((doc)=>{
-            console.log("Succesfully added: "+ doc)
+        // user.save().then((doc)=>{
+        //     console.log("Succesfully added: "+ doc)
 
-            req.session.email = doc.email
-            res.render("index.hbs", {
-                message:"Registration successful"
-            })
-        }, (err)=>{
-            console.log("Error in adding" + err)
-        })
+        //     req.session.email = doc.email
+        //     res.render("index.hbs", {
+        //         message:"Registration successful"
+        //     })
+        // }, (err)=>{
+        //     console.log("Error in adding" + err)
+        // })
 
 
         // req.session.email = req.body.em
@@ -135,7 +193,7 @@ app.post("/register", urlencoder, (req,res)=>{
         // })
 
         // res.redirect("/")
-    }
+    // }
 
     //SUCCESSFUL REGISTER save user to the db   users[]
     // req.session.email = req.body.em
