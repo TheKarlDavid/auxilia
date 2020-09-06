@@ -12,18 +12,19 @@ mongoose.connect("mongodb://127.0.0.1:27017/userdb",{
     useNewUrlParser: true
 })
 
-let user = new User({
-    email: "chuabianca1999@gmail.com",
-    password: "boo",
-    firstname: "Bianca",
-    lastname: "Chua"
-})
+// let user = new User({
+//     email: "chuabianca1999@gmail.com",
+//     password: "boo",
+//     firstname: "Bianca",
+//     lastname: "Chua"
+// })
 
-user.save().then((doc)=>{
-    console.log("Succesfully added: "+ doc)
-}, (err)=>{
-    console.log("Error in adding" + err)
-})
+
+// user.save().then((doc)=>{
+//     console.log("Succesfully added: "+ doc)
+// }, (err)=>{
+//     console.log("Error in adding" + err)
+// })
 
 app.set("view engine", "hbs")
 
@@ -89,22 +90,38 @@ app.post("/register", urlencoder, (req,res)=>{
     else{
         //save user to db users[]
 
-        users.push({
+        // users.push({
+        //     email: email,
+        //     password: password,
+        //     first_name: first_name,
+        //     last_name: last_name
+
+        // })
+
+        let user = new User({
             email: email,
             password: password,
             first_name: first_name,
             last_name: last_name
-
         })
+
+        user.save().then((doc)=>{
+            console.log("Succesfully added: "+ doc)
+        }, (err)=>{
+            console.log("Error in adding" + err)
+        })
+
 
         req.session.email = req.body.em
         // res.render("home.hbs",{
         //     email: req.session.email
         // })
 
-        console.log(JSON.stringify(users))
-
-        res.redirect("/")
+        // console.log(JSON.stringify(users))
+        res.render("index.hbs", {
+            message:"Registration successful"
+        })
+        // res.redirect("/")
     }
 
     //SUCCESSFUL REGISTER save user to the db   users[]

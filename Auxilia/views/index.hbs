@@ -20,10 +20,10 @@
 
             <!-- LOGIN -->
             <form id="login"class="input-group" method="post" action="login">
+                <div class ="message">{{message}}</div>
                 <input class="input-field" type="email" name="em" placeholder="Email address" required> <br>
                 <input class="input-field" type="password" name="pw" placeholder="Password" required> <br>
                 <input class="check-box" type="checkbox"><span>Remember me</span><br>
-                {{error}}
                 <input class="form-btn" type="submit" value="Login">
             </form>
 
