@@ -13,7 +13,7 @@
                 background: #c6e9d7;
                 border-radius: 5px;
                 border-left: 5px solid #00c2cb;
-                text-align: center;
+                {{!-- text-align: center; --}}
                 padding: 10px;
 
             }
@@ -32,7 +32,13 @@
 
             <!-- LOGIN -->
             <form id="login"class="input-group" method="post" action="login">
-                <div class="message">{{message}}</div>
+                {{#if error}}
+                    <div class="message">{{error}}</div>
+                {{/if}}
+
+                {{#if message}}
+                    <div class="message">{{message}}</div>
+                {{/if}}
                 <input class="input-field" type="email" name="em" placeholder="Email address" required> <br>
                 <input class="input-field" type="password" name="pw" placeholder="Password" required> <br>
                 <input class="check-box" type="checkbox"><span>Remember me</span><br>

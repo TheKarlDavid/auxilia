@@ -4,12 +4,14 @@ const bodyparser = require("body-parser")
 const cookieparser = require("cookie-parser")
 const hbs = require("hbs")
 const mongoose = require("mongoose")
+const url = require("url")
 const {User} = require("./models/user.js")
 
 const app = express()
 
 mongoose.connect("mongodb://127.0.0.1:27017/userdb",{
-    useNewUrlParser: true
+    useNewUrlParser: true,
+    useFindAndModify: false
 })
 
 // let user = new User({
@@ -32,7 +34,7 @@ const urlencoder = bodyparser.urlencoded({
     extended:false
 })
 
-let users = []
+// let users = []
 
 app.use(session({
     secret: "very secret",
@@ -43,28 +45,32 @@ app.use(session({
     }
 }))
 
+app.use(cookieparser())
+
 app.use(express.static(__dirname + "/public"))
 
 app.get("/", (req, res)=>{
 
     if(req.session.email){
         //it means that has already sgned in
-        // go to home.html
-        // res.sendFile(__dirname+"/public/home.html")
 
         res.render("home.hbs",{
             email: req.session.email
         })
     }
 
-    
     else{
-        // the user has not registered or logged
-        //go to index.html
-        // res.sendFile(__dirname+"/public/index.html")
-        res.render("index.hbs")
-    
+        res.sendFile(__dirname + "/public/index.html")
     }
+
+    
+    // else{
+    //     // the user has not registered or logged
+    //     //go to index.html
+    //     // res.sendFile(__dirname+"/public/index.html")
+    //     res.render("index.hbs")
+    
+    // }
 })
 
 app.post("/register", urlencoder, (req,res)=>{
@@ -81,11 +87,11 @@ app.post("/register", urlencoder, (req,res)=>{
         })
     }
 
-    else if(!isAvailable(email)){
-        res.render("index.hbs", {
-            error:"Email address not available"
-        })
-    }
+    // else if(!isAvailable(email)){
+    //     res.render("index.hbs", {
+    //         error:"Email address not available"
+    //     })
+    // }
     
     else{
         //save user to db users[]
@@ -107,20 +113,27 @@ app.post("/register", urlencoder, (req,res)=>{
 
         user.save().then((doc)=>{
             console.log("Succesfully added: "+ doc)
+
+            req.session.email = doc.email
+            res.render("index.hbs", {
+                message:"Registration successful"
+            })
         }, (err)=>{
             console.log("Error in adding" + err)
         })
 
 
-        req.session.email = req.body.em
+        // req.session.email = req.body.em
         // res.render("home.hbs",{
         //     email: req.session.email
         // })
 
         // console.log(JSON.stringify(users))
-        res.render("index.hbs", {
-            message:"Registration successful"
-        })
+
+        // res.render("index.hbs", {
+        //     message:"Registration successful"
+        // })
+
         // res.redirect("/")
     }
 
@@ -143,21 +156,33 @@ function isAvailable(email){
 app.post("/login", urlencoder, (req,res)=>{
     // email: em     password: pw
 
-    //check if user credentials     users[]
-    req.session.email = req.body.em
-    // res.sendFile(__dirname+"/public/home.html")
+    var email = req.body.em
+    var password = req.body.pw
 
-    if(!matches(req.body.em, req.body.pw)){
-        res.render("index.hbs",{
-            error:"Email and password does not match"
+    User.find({email:email, password:password}).then((doc)=>{
+        console.log("user match")
+        console.log(doc)
+        
+        req.session.email = email
+        res.render("home.hbs", {
+            email
         })
+        
+    }, (err)=>{
+        res.send(err)
 
-    }
-    else{
-        res.render("home.hbs",{
-            email:req.session.email
-        })
-    }
+    })
+    // if(!matches(req.body.em, req.body.pw)){
+    //     res.render("index.hbs",{
+    //         error:"Email and password does not match"
+    //     })
+
+    // }
+    // else{
+    //     res.render("home.hbs",{
+    //         email:req.session.email
+    //     })
+    // }
     
 })
 
@@ -180,15 +205,5 @@ app.listen(3000, function(){
 })
 
 
-// app.get("/", (req,res)=>{
-//     res.sendFile(__dirname+"/public/index.html")
-// })
 
-// app.post("/login", (req,res)=>{
-
-// })
-
-// app.listen(3000, function(){
-//     console.log("listening to port 3000")
-// })
 
