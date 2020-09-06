@@ -1,0 +1,253 @@
+main{
+    display: grid;
+    grid-template-rows: 100px 1fr;
+    grid-template-columns: 50% 50%;
+}
+
+.home-banner{
+    grid-row: 1/2;
+    grid-column: 1/3;
+}
+
+.home-plant{
+    grid-row: 2/3;
+    grid-column: 1/2;
+}
+
+
+.home-tasks{
+    grid-row: 2/3;
+    grid-column: 2/3;
+}
+
+
+  
+  .wrapper {
+      position:absolute;
+      bottom:0;
+      width:100%;
+  }
+  
+  .box {
+      position:relative;
+      margin:auto;
+      display:block;
+      margin-top:8%;
+      width:600px;
+      height:600px;
+      background:none;
+  }
+  
+  .pot {
+      position:absolute;
+      width:20%;
+      height:20%;
+      bottom:0;
+      left:40%;
+      background:#FCAA67;
+      -webkit-clip-path: polygon(0 0, 100% 0, 90% 100%, 10% 100%);
+      clip-path: polygon(0 0, 100% 0, 90% 100%, 10% 100%);
+      box-shadow: inset 0 16px 20px rgba(0,0,0,0.3);
+  }
+  
+  .pot-top {
+      position:absolute;
+      width:22%;
+      height:5%;
+      bottom:17%;
+      left:39%;
+      background:#FCAA67;
+      border-radius:3px;
+  }
+  
+  .stem {
+      position:absolute;
+      width:12px;
+      height:12px;
+      left:49%;
+      bottom:20%;
+      background:#70B77E;
+  }
+  
+  .leaf {
+      position:absolute;
+      width:90px;
+      height:30px;
+      border-radius:50%;
+      background:#70B77E;
+  }
+  
+  .leaf .line {
+      position:absolute;
+      width:80%;
+      height:1%;
+      background:rgba(0,0,0,0.1);
+      top:48%;
+  }
+  
+  .leaf00 {
+      width:0%;
+      height:0%;
+      top:0%;
+      left:5px;
+      transform:rotate(-60deg);
+  }
+  
+  
+  
+  
+  /* --- ANIMATION --- */
+  
+  .leaf00.r {
+      animation: g 3s;
+      animation-fill-mode: forwards;
+  }
+  
+  @keyframes g {
+      0% {
+          width:0%;
+          height:0%;
+          top:0%;
+          left:5px;
+          transform:rotate(-60deg);
+      }
+      
+      100% {
+          width:50px;
+          height:30px;
+          top:-250%;
+          left:-10px;
+          transform:rotate(-60deg);
+      }
+  }
+  
+  .leaf00.leaf1_1 {
+      animation: g2 1s;
+      animation-fill-mode: forwards;
+  }
+  
+  @keyframes g2 {
+      0% {
+          width:50px;
+          height:30px;
+          top:-250%;
+          left:-10px;
+          transform:rotate(-60deg);
+      }
+      
+      100% {
+          width:50px;
+          height:30px;
+          top:-100%;
+          left:-10px;
+          transform:rotate(-60deg);
+      }
+  }  
+  
+  .stem.rain {
+      animation: grow 1s linear 1;
+      animation-fill-mode:forwards;
+  }
+  
+  @keyframes grow {
+      0% {
+          width:12px;
+          height:12px;
+          left:49%;
+          bottom:20%;
+      }
+      
+      100% {
+          width:12px;
+          height:30px;
+          left:49%;
+          bottom:20%;
+      }
+  }
+  
+  
+  
+  
+  
+  
+  .drop {
+      position:absolute;
+      top:30px;
+      left:20px;
+      width: 50px;
+      height: 50px;
+      border: none;
+      -webkit-border-radius: 80% 0 55% 50% / 55% 0 80% 50%;
+      border-radius: 80% 0 55% 50% / 55% 0 80% 50%;
+      font: normal 100%/normal Arial, Helvetica, sans-serif;
+      background:#17BEBB;
+      -webkit-transform: rotateZ(-45deg)   ;
+      transform: rotateZ(-45deg)   ;
+      -webkit-transform-origin: 50% 50% 0;
+      transform-origin: 50% 50% 0;
+      animation:rain 2s linear 1;
+      animation-fill-mode:forwards;
+      cursor:pointer;
+      z-index:9999;
+  }
+  
+  .drop2 {
+      position:absolute;
+      top:30px;
+      left:100px;
+      width: 50px;
+      height: 50px;
+      border: none;
+      -webkit-border-radius: 80% 0 55% 50% / 55% 0 80% 50%;
+      border-radius: 80% 0 55% 50% / 55% 0 80% 50%;
+      font: normal 100%/normal Arial, Helvetica, sans-serif;
+      background:#17BEBB;
+      -webkit-transform: rotateZ(-45deg)   ;
+      transform: rotateZ(-45deg)   ;
+      -webkit-transform-origin: 50% 50% 0;
+      transform-origin: 50% 50% 0;
+      animation:rain 2s linear 1;
+      animation-fill-mode:forwards;
+      cursor:pointer;
+      z-index:9999;
+  }
+  
+  .drop3 {
+      position:absolute;
+      top:30px;
+      left:180px;
+      width: 50px;
+      height: 50px;
+      border: none;
+      -webkit-border-radius: 80% 0 55% 50% / 55% 0 80% 50%;
+      border-radius: 80% 0 55% 50% / 55% 0 80% 50%;
+      font: normal 100%/normal Arial, Helvetica, sans-serif;
+      background:#17BEBB;
+      -webkit-transform: rotateZ(-45deg)   ;
+      transform: rotateZ(-45deg)   ;
+      -webkit-transform-origin: 50% 50% 0;
+      transform-origin: 50% 50% 0;
+      animation:rain 2s linear 1;
+      animation-fill-mode:forwards;
+      cursor:pointer;
+      z-index:9999;
+  }
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+

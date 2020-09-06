@@ -69,23 +69,75 @@ p{
 }
 
 .about-us{
-    height: 100vh;
+    height: 100%;
     width: auto;
     margin: 50px 80px 100px;
     border: 4px solid #ECF9F2;
+    display: grid;
+    grid-template-rows: 90px 1fr;
 }
 
 .about-title{
-    height: 40px;
+    grid-row: 1/2;
+    height: 50px;
     background: #ECF9F2;
     color: black;
-    font-size: 35px;
+    font-size: 45px;
     font-weight: 600;
     padding: 20px;
     text-align: left;
     text-transform: uppercase;
 }
 
+.about-content{
+    grid-row: 2/3;
+    height: auto;
+    width: auto;
+    text-align: justify;
+    padding: 0px 30px 50px;
+    font-size: 25px;
+    display: grid;
+    grid-template-rows: 40px 500px 1fr;
+    grid-template-columns: 1fr 150px 500px;
+}
+
+.about-description{
+    height: auto;
+    grid-row: 2/3;
+    grid-column: 1/2;
+    position: relative;
+    top: 70px;
+
+}
+
+#about-logo{
+    height: 500px;
+    width: 500px;
+    grid-row: 1/3;
+    grid-column: 3/4;
+}
+
+.contacts{
+    grid-row: 3/4;
+    grid-column: 1/2;
+    font-size: 23px;
+}
+
+.contacts a{
+    display: inline-block;
+    text-decoration: none;
+    color: black;
+    margin: 7px 0 7px 10px;
+}
+
+.contacts h4{
+    padding-bottom: 10px;
+}
+
+.contacts a:hover{
+    text-decoration: none;
+    color: #009299;
+}
 
 
 
