@@ -4,7 +4,6 @@ const bodyparser = require("body-parser")
 const cookieparser = require("cookie-parser")
 const hbs = require("hbs")
 const mongoose = require("mongoose")
-const url = require("url")
 const {User} = require("./models/user.js")
 const bcrypt = require("bcryptjs")
 const { body, validationResult } = require('express-validator')
@@ -14,22 +13,9 @@ const app = express()
 mongoose.connect("mongodb://127.0.0.1:27017/userdb",{
     useNewUrlParser: true,
     useUnifiedTopology: true,
-    useCreateIndex: true
+    useCreateIndex: true,
+    useNewUrlParser: true
 })
-
-// let user = new User({
-//     email: "chuabianca1999@gmail.com",
-//     password: "boo",
-//     firstname: "Bianca",
-//     lastname: "Chua"
-// })
-
-
-// user.save().then((doc)=>{
-//     console.log("Succesfully added: "+ doc)
-// }, (err)=>{
-//     console.log("Error in adding" + err)
-// })
 
 app.set("view engine", "hbs")
 
@@ -48,32 +34,24 @@ app.use(session({
     }
 }))
 
-app.use(cookieparser())
-
 app.use(express.static(__dirname + "/public"))
 
 app.get("/", (req, res)=>{
 
     if(req.session.email){
-        //it means that has already sgned in
+        //it means that has already signed in
 
         res.render("home.hbs",{
             email: req.session.email
         })
     }
 
+    
     else{
-        res.sendFile(__dirname + "/public/index.html")
+        // the user has not registered or logged
+        res.render("index.hbs")
+    
     }
-
-    
-    // else{
-    //     // the user has not registered or logged
-    //     //go to index.html
-    //     // res.sendFile(__dirname+"/public/index.html")
-    //     res.render("index.hbs")
-    
-    // }
 })
 
 // registering a new user
@@ -84,8 +62,8 @@ app.post("/register", urlencoder, (req,res)=>{
     // reading fields from hbs
     let email = req.body.em
     let password = req.body.pw
-    let first_name = req.body.firstname
-    let last_name = req.body.lastname
+    let first_name = req.body.fname
+    let last_name = req.body.lname
 
     //checking if valid
     body("email").notEmpty();
@@ -120,78 +98,35 @@ app.post("/register", urlencoder, (req,res)=>{
             message:"Registration successful"
             })
         }, (err)=>{
-            console.log("Error in adding" + err)
+            console.log("Error in adding " + err)
+            res.render("index.hbs", {
+                errors:"Error"
+            })
         })
-
-        req.session.email = req.body.em
-        res.render("home.hbs",{
-            email: req.session.email
-        })
-
-        console.log(JSON.stringify(user))
-
-        res.render("index.hbs", {
-            message:"Registration successful"
-        })
-
-        res.redirect("/")
-        
-    }
-
-    //Karl's codeno authentication
-    // if(email.trim() == "" || password.trim() == ""){
-    //     res.render("index.hbs", {
-    //         error:"Enter an email and password"
-    //     })
-    // }
-
-    // else if(!isAvailable(email)){
-    //     res.render("index.hbs", {
-    //         error:"Email address not available"
-    //     })
-    // }
-    
-    // else{
-        //save user to db users[]
-
-        // users.push({
-        //     email: email,
-        //     password: password,
-        //     first_name: first_name,
-        //     last_name: last_name
-
-        // })
-
-        // let user = new User({
-        //     email: email,
-        //     password: password,
-        //     first_name: first_name,
-        //     last_name: last_name
-        // })
-
-        // user.save().then((doc)=>{
-        //     console.log("Succesfully added: "+ doc)
-
-        //     req.session.email = doc.email
-        //     res.render("index.hbs", {
-        //         message:"Registration successful"
-        //     })
-        // }, (err)=>{
-        //     console.log("Error in adding" + err)
-        // })
-
 
         // req.session.email = req.body.em
         // res.render("home.hbs",{
         //     email: req.session.email
         // })
 
-        // console.log(JSON.stringify(users))
+        // console.log(JSON.stringify(user))
 
         // res.render("index.hbs", {
         //     message:"Registration successful"
         // })
 
+        // res.redirect("/")
+        
+    }
+        req.session.email = req.body.em
+        // res.render("home.hbs",{
+        //     email: req.session.email
+        // })
+
+        // res.render("index.hbs", {
+        //     message:"Registration successful"
+        // })
+        
         // res.redirect("/")
     // }
 
@@ -213,14 +148,12 @@ function isAvailable(email){
 
 app.post("/login", urlencoder, (req,res)=>{
     // email: em     password: pw
-
     var email = req.body.em
     var password = req.body.pw
-
-    User.find({email:email, password:password}).then((doc)=>{
+        User.find({email:email, password:password}).then((doc)=>{
         console.log("user match")
         console.log(doc)
-        
+
         req.session.email = email
         res.render("home.hbs", {
             email
@@ -241,17 +174,18 @@ app.post("/login", urlencoder, (req,res)=>{
     //         email:req.session.email
     //     })
     // }
+
     
 })
 
-function matches(email, password){
-    for(let i=0; i<users.length; i++){
-        if(users[i].email == email && users[i].password == password){
-            return true
-        }
-    }
-    return false
-}
+// function matches(email, password){
+//     for(let i=0; i<users.length; i++){
+//         if(users[i].email == email && users[i].password == password){
+//             return true
+//         }
+//     }
+//     return false
+// }
 
 app.get("/signout", (req,res)=>{
     req.session.destroy()
@@ -261,7 +195,5 @@ app.get("/signout", (req,res)=>{
 app.listen(3000, function(){
     console.log("now listening to port 3000")
 })
-
-
 
 
