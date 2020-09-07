@@ -23,8 +23,6 @@ const urlencoder = bodyparser.urlencoded({
     extended:false
 })
 
-// let users = []
-
 app.use(session({
     secret: "very secret",
     resave: false,
@@ -40,13 +38,11 @@ app.get("/", (req, res)=>{
 
     if(req.session.email){
         //it means that has already signed in
-
         res.render("home.hbs",{
             email: req.session.email
         })
     }
 
-    
     else{
         // the user has not registered or logged
         res.render("index.hbs")
@@ -105,38 +101,9 @@ app.post("/register", urlencoder, (req,res)=>{
                 errors:"Error"
             })
         })
-
-        // req.session.email = req.body.em
-        // res.render("home.hbs",{
-        //     email: req.session.email
-        // })
-
-        // console.log(JSON.stringify(user))
-
-        // res.render("index.hbs", {
-        //     message:"Registration successful"
-        // })
-
-        // res.redirect("/")
         
     }
         req.session.email = req.body.em
-        // res.render("home.hbs",{
-        //     email: req.session.email
-        // })
-
-        // res.render("index.hbs", {
-        //     message:"Registration successful"
-        // })
-        
-        // res.redirect("/")
-    // }
-
-    //SUCCESSFUL REGISTER save user to the db   users[]
-    // req.session.email = req.body.em
-
-    // res.sendFile(__dirname+"/public/home.html")
-
 })
 
 function isAvailable(email){
@@ -155,7 +122,9 @@ app.post("/login", urlencoder, (req,res)=>{
 
         User.findOne({email: email}).then(result=>{
             if(result == null){
-                res.render("index.hbs")
+                res.render("index.hbs", {
+                    errors:"Invalid email/password" 
+                })
             }
             else{
                 console.log(result)
@@ -166,29 +135,29 @@ app.post("/login", urlencoder, (req,res)=>{
         res.send(err)
 
     })
-    // if(!matches(req.body.em, req.body.pw)){
-    //     res.render("index.hbs",{
-    //         error:"Email and password does not match"
-    //     })
-
-    // }
-    // else{
-    //     res.render("home.hbs",{
-    //         email:req.session.email
-    //     })
-    // }
 
     
 })
 
-// function matches(email, password){
-//     for(let i=0; i<users.length; i++){
-//         if(users[i].email == email && users[i].password == password){
-//             return true
-//         }
-//     }
-//     return false
-// }
+app.get("/home", (req, res)=>{
+
+    res.render("home.hbs")
+})
+
+app.get("/meditation", (req, res)=>{
+
+    res.render("meditation.hbs")
+})
+
+app.get("/about", (req, res)=>{
+
+    res.render("about.hbs")
+})
+
+app.get("/profile", (req, res)=>{
+
+    res.render("profile.hbs")
+})
 
 app.get("/signout", (req,res)=>{
     req.session.destroy()
