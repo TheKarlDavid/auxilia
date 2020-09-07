@@ -62,8 +62,8 @@ app.post("/register", urlencoder, (req,res)=>{
     // reading fields from hbs
     let email = req.body.em
     let password = req.body.pw
-    let first_name = req.body.fname
-    let last_name = req.body.lname
+    let first_name = req.body.firstname
+    let last_name = req.body.lastname
 
     //checking if valid
     body("email").notEmpty();
@@ -79,9 +79,11 @@ app.post("/register", urlencoder, (req,res)=>{
         res.render("index.hbs",{errors:errors});
     }
     else{
+
         var salt = bcrypt.genSaltSync(10);
         var hash = bcrypt.hashSync(password,salt);
         password = hash;
+
 
         let user = new User({
              email: email,
@@ -148,16 +150,17 @@ function isAvailable(email){
 
 app.post("/login", urlencoder, (req,res)=>{
     // email: em     password: pw
-    var email = req.body.em
-    var password = req.body.pw
-        User.find({email:email, password:password}).then((doc)=>{
-        console.log("user match")
-        console.log(doc)
+    let email = req.body.email
+    let password = req.body.password
 
-        req.session.email = email
-        res.render("home.hbs", {
-            email
-        })
+        User.findOne({email: email}).then(result=>{
+            if(result == null){
+                res.render("index.hbs")
+            }
+            else{
+                console.log(result)
+                res.render("home.hbs")
+            }
         
     }, (err)=>{
         res.send(err)
