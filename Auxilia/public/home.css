@@ -18,10 +18,40 @@ main{
 .home-tasks{
     grid-row: 2/3;
     grid-column: 2/3;
+    margin: 30px 40px 20px;
+}
+
+.tasks{
+    height: 100px;
+    width: 100%;
+    background-color: #ECF9F2;
+    padding: 10px 0 20px ;
+    border-radius: 15px;
+}
+
+.tasks h1{
+    font-size: 30px;
+    padding-left: 20px;
+    text-transform: uppercase;
+    /* text-align: center; */
+}
+  
+.tasks-list{
+    height: 50px;
+    width: 100%;
+    background-color: white;
+    margin: 10px 0;
+}
+
+.task-items{
+    font-size: 20px;
+    padding: 10px 10px;
 }
 
 
-  
+
+
+
   .wrapper {
       position:absolute;
       bottom:0;
