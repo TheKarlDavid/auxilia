@@ -32,12 +32,6 @@
     opacity: 0.5;
 }
 
-/* #x{
-    height: 500px;
-    width: 100%;
-    background: olive;
-} */
-
 .about-description{
     height: 100px;
     width: 100%;
@@ -59,10 +53,10 @@ p{
     border: none;
     outline: none;
     color: white;
-    font-size: 30px;
-    padding: 5px;
-    border-radius: 12px;
-    /* margin-left: 50px; */
+    font-size: 24px;
+    padding: 9px;
+    border-radius: 18px;
+    text-transform: uppercase;
 }
 
 #desc{
