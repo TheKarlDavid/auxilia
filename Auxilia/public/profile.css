@@ -5,6 +5,8 @@
 
 .header-banner h1{
     font-size: 45px;
+    text-transform: uppercase;
+    color: #00c2cb;
 }
 
 .accomplishment-container{
@@ -13,7 +15,6 @@
     background-color: white;
     margin: 30px 20px 45px 20px;
     padding: 0 0 20px 0;
-    /* text-decoration: underline #00c2cb; */
     color: #00c2cb;
     text-transform: uppercase;
     border-radius: 15px;
