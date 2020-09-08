@@ -21,7 +21,7 @@ main{
     margin: 30px 40px 20px;
 }
 
-.tasks{
+/* .tasks{
     height: 100px;
     width: 100%;
     background-color: #ECF9F2;
@@ -33,7 +33,6 @@ main{
     font-size: 30px;
     padding-left: 20px;
     text-transform: uppercase;
-    /* text-align: center; */
 }
   
 .tasks-list{
@@ -46,12 +45,16 @@ main{
 .task-items{
     font-size: 20px;
     padding: 10px 10px;
-}
+} */
 
 
 
 
 
+body{
+    background: #A9DDD6;
+  }
+  
   .wrapper {
       position:absolute;
       bottom:0;
@@ -116,20 +119,52 @@ main{
   }
   
   .leaf00 {
-      width:0%;
-      height:0%;
+      width:0px;
+      height:0px;
       top:0%;
       left:5px;
       transform:rotate(-60deg);
   }
   
+  .leaf01 {
+      width:0px;
+      height:0px;
+      top:40%;
+      right: 5px;
+      transform:rotate(-150deg);
+  }
   
+  .leaf02 {
+      width:0px;
+      height:0px;
+      top:0%;
+      left:5px;
+      transform:rotate(-40deg);
+  }
+  
+  .leaf03 {
+      width:0px;
+      height:0px;
+      top:0%;
+      right: -5px;
+      transform:rotate(-150deg);
+  }
+  
+  .leaf04 {
+      width:50px;
+      height:30px;
+      top:100%;
+      left: 5px;
+      transform:rotate(-40deg);
+  }
   
   
   /* --- ANIMATION --- */
   
+  /* --- 1st ANIMATION --- */
+  
   .leaf00.r {
-      animation: g 3s;
+      animation: g 2s;
       animation-fill-mode: forwards;
   }
   
@@ -151,59 +186,482 @@ main{
       }
   }
   
-  .leaf00.leaf1_1 {
-      animation: g2 1s;
+  /* --- 2nd ANIMATION --- */
+  
+  .leaf00.leaf1_2 {
+      animation: g3 1s;
       animation-fill-mode: forwards;
   }
   
-  @keyframes g2 {
+  @keyframes g3 {
       0% {
-          width:50px;
-          height:30px;
-          top:-250%;
-          left:-10px;
-          transform:rotate(-60deg);
-      }
-      
-      100% {
           width:50px;
           height:30px;
           top:-100%;
           left:-10px;
           transform:rotate(-60deg);
       }
+      
+      100% {
+          width:50px;
+          height:30px;
+          top:-40%;
+          left:-10px;
+          transform:rotate(-60deg);
+      }
   }  
   
-  .stem.rain {
-      animation: grow 1s linear 1;
+  .stem.rain2 {
+      animation: grow2 2s linear 1;
       animation-fill-mode:forwards;
   }
   
-  @keyframes grow {
+  @keyframes grow2 {
       0% {
           width:12px;
-          height:12px;
+          height:20px;
           left:49%;
           bottom:20%;
       }
       
       100% {
           width:12px;
-          height:30px;
+          height:75px;
           left:49%;
           bottom:20%;
       }
   }
   
+  .leaf01.r {
+      animation: h 3s;
+      animation-fill-mode: forwards;
+  }
+  
+  @keyframes h {
+      0% {
+          width:0px;
+          height:0px;
+          top:80%;
+          right: 5px;
+          transform:rotate(-150deg);
+      }
+      
+      100% {
+          width:50px;
+          height:30px;
+          top:40%;
+          right: 5px;
+          transform:rotate(-150deg);
+      }
+  }  
+  
+  /* --- 3rd ANIMATION --- */
+  
+  .leaf00.leaf1_3 {
+      animation: g4 1s;
+      animation-fill-mode: forwards;
+  }
+  
+  @keyframes g4 {
+      0% {
+          width:50px;
+          height:30px;
+          top:-40%;
+          left:-10px;
+          transform:rotate(-60deg);
+      }
+      
+      100% {
+          width:50px;
+          height:30px;
+          top:-10%;
+          left:-10px;
+          transform:rotate(-60deg);
+      }
+  }  
+  
+  .stem.rain3 {
+      animation: grow3 2s;
+      animation-fill-mode:forwards;
+  }
+  
+  @keyframes grow3 {
+      0% {
+          width:12px;
+          height:75px;
+          left:49%;
+          bottom:20%;
+      }
+      
+      100% {
+          width:12px;
+          height:150px;
+          left:49%;
+          bottom:20%;
+      }
+  }
+  
+  .leaf01.r2 {
+      animation: h2 2s;
+      animation-fill-mode: forwards;
+  }
+  
+  @keyframes h2 {
+      0% {
+          width:50px;
+          height:30px;
+          top:40%;
+          right: 5px;
+          transform:rotate(-150deg);
+      }
+      
+      100% {
+          width:50px;
+          height:30px;
+          top:30%;
+          right: 5px;
+          transform:rotate(-150deg);
+      }
+  }  
+  
+  .leaf02.t {
+      animation: j 2s;
+      animation-fill-mode: forwards;
+  }
+  
+  @keyframes j {
+      0% {
+          width:0%;
+          height:0%;
+          top:100%;
+          left:5px;
+          transform:rotate(-40deg);
+      }
+      
+      100% {
+          width:50px;
+          height:30px;
+          top:60%;
+          left:0px;
+          transform:rotate(-40deg);
+      }
+  }  
+  
+  /* --- 4th ANIMATION --- */
+  
+  
+  .leaf00.leaf1_4 {
+      animation: g5 1s;
+      animation-fill-mode: forwards;
+  }
+  
+  @keyframes g5 {
+      0% {
+          width:50px;
+          height:30px;
+          top:-10%;
+          left:-10px;
+          transform:rotate(-60deg);
+      }
+      
+      100% {
+          width:50px;
+          height:30px;
+          top:-10%;
+          left:-10px;
+          transform:rotate(-60deg);
+      }
+  }  
+  
+  .stem.rain4 {
+      animation: grow4 2s;
+      animation-fill-mode:forwards;
+  }
+  
+  @keyframes grow4 {
+      0% {
+          width:12px;
+          height:150px;
+          left:49%;
+          bottom:20%;
+      }
+      
+      100% {
+          width:12px;
+          height:225px;
+          left:49%;
+          bottom:20%;
+      }
+  }
+  
+  .leaf01.r3 {
+      animation: h3 2s;
+      animation-fill-mode: forwards;
+  }
+  
+  @keyframes h3 {
+      0% {
+          width:50px;
+          height:30px;
+          top:30%;
+          right: 5px;
+          transform:rotate(-150deg);
+      }
+      
+      100% {
+          width:50px;
+          height:30px;
+          top:17.5%;
+          right: 5px;
+          transform:rotate(-150deg);
+      }
+  }  
+  
+  .leaf02.t2 {
+      animation: j2 2s;
+      animation-fill-mode: forwards;
+  }
+  
+  @keyframes j2 {
+      0% {
+          width:50px;
+          height:30px;
+          top:60%;
+          left:0px;
+          transform:rotate(-40deg);
+      }
+      
+      100% {
+          width:50px;
+          height:30px;
+          top:40%;
+          left:0px;
+          transform:rotate(-40deg);
+      }
+  }  
+  
+  .leaf03.y {
+      animation: q 2s;
+      animation-fill-mode: forwards;
+  }
+  
+  @keyframes q {
+      0% {
+          width:0px;
+          height:0px;
+          top:100%;
+          right:5px;
+          transform:rotate(-160deg);
+      }
+      
+      100% {
+          width:50px;
+          height:30px;
+          top:65%;
+          right: 5px;
+          transform:rotate(-160deg);
+      }
+  } 
   
   
   
+  /* --- 5th ANIMATION --- */
   
+  
+  .leaf00.leaf1_5 {
+      animation: g6 1s;
+      animation-fill-mode: forwards;
+  }
+  
+  @keyframes g6 {
+      0% {
+          width:50px;
+          height:30px;
+          top:-10%;
+          left:-10px;
+          transform:rotate(-60deg);
+      }
+      
+      100% {
+          width:50px;
+          height:30px;
+          top:-10%;
+          left:-10px;
+          transform:rotate(-60deg);
+      }
+  }  
+  
+  .stem.rain5 {
+      animation: grow5 2s;
+      animation-fill-mode:forwards;
+  }
+  
+  @keyframes grow5 {
+      0% {
+          width:12px;
+          height:225px;
+          left:49%;
+          bottom:20%;
+      }
+      
+      100% {
+          width:12px;
+          height:325px;
+          left:49%;
+          bottom:20%;
+      }
+  }
+  
+  .leaf01.r4 {
+      animation: h4 2s;
+      animation-fill-mode: forwards;
+  }
+  
+  @keyframes h4 {
+      0% {
+          width:50px;
+          height:30px;
+          top:17.5%;
+          right: 5px;
+          transform:rotate(-150deg);
+      }
+      
+      100% {
+          width:50px;
+          height:30px;
+          top:10%;
+          right: 5px;
+          transform:rotate(-150deg);
+      }
+  }  
+  
+  .leaf02.t3 {
+      animation: j3 2s;
+      animation-fill-mode: forwards;
+  }
+  
+  @keyframes j3 {
+      0% {
+          width:50px;
+          height:30px;
+          top:40%;
+          left:0px;
+          transform:rotate(-40deg);
+      }
+      
+      100% {
+          width:50px;
+          height:30px;
+          top:30%;
+          left:0px;
+          transform:rotate(-40deg);
+      }
+  }  
+  
+  .leaf03.y2 {
+      animation: q2 2s;
+      animation-fill-mode: forwards;
+  }
+  
+  @keyframes q2 {
+      0% {
+          width:50px;
+          height:30px;
+          top:65%;
+          right: 5px;
+          transform:rotate(-160deg);
+      }
+      
+      100% {
+          width:50px;
+          height:30px;
+          top:50%;
+          right: 5px;
+          transform:rotate(-160deg);
+      }
+  }
+  
+  .leaf04.u {
+      animation: p 2s;
+      animation-fill-mode: forwards;
+  }
+  
+  @keyframes p {
+      0% {
+          width:0px;
+          height:0px;
+          top:100%;
+          left:0px;
+          transform:rotate(-30deg);
+      }
+      
+      100% {
+          width:50px;
+          height:30px;
+          top:75%;
+          left:0px;
+          transform:rotate(-30deg);
+      }
+  }
+  
+  .notepadbase {
+      background-color:#ECF9F2;
+      border-radius:4px;
+      font-size:16px;
+      padding-bottom: 25px;
+      margin:5px;
+      /* position:absolute;
+      top:120px;
+      left:0px; */
+      width: auto;
+      height: auto;
+      border: none;
+      align-content: center;
+  }
+/*   
+  .notepadsheet {
+      background-color:red;
+      border-radius:4px;
+      font-size:16px;
+      padding:15px;
+      margin:5px;
+      position:absolute;
+      top:10px;
+      left:10px;
+      width: 370px;
+      height: 470px;
+      border: none;
+      align-content: center;
+  } */
+  
+  .textbox {
+      border-radius:4px;
+      font-size:30px;
+      padding:10px;
+      margin:5px;
+      /* position:absolute;
+      top:130px;
+      left:120px; */
+      /* width: 250px;
+      height: 50px; */
+      /* border: none;
+      align-content: center; */
+  }
+
+  .tasks-list{
+      height: 100px;
+      width: auto;
+      background-color: white;
+      padding: 10px;
+  }
   
   .drop {
-      position:absolute;
-      top:30px;
-      left:20px;
+      /* position:absolute;
+      top:220px;
+      left:30px; */
+      position: relative;
+      top: 20px;
+      display: inline-block;
       width: 50px;
       height: 50px;
       border: none;
@@ -215,16 +673,60 @@ main{
       transform: rotateZ(-45deg)   ;
       -webkit-transform-origin: 50% 50% 0;
       transform-origin: 50% 50% 0;
-      animation:rain 2s linear 1;
-      animation-fill-mode:forwards;
       cursor:pointer;
-      z-index:9999;
+      z-index:9999; 
+  }
+  
+  .drop.c {
+      animation: c 1s linear 1;
+      animation-fill-mode: forwards;
+  }
+  
+  @keyframes c {
+      0% {
+          background:#17BEBB;
+      }
+      
+      100% {
+          background:gray;
+      }
+  }
+  
+  .textbox1 {
+      display: inline-block;
+      border-radius:4px;
+      font-size:20px;
+      font-weight: 600;
+      padding:15px;
+      margin:5px;
+      /* position:absolute;
+      top:190px;
+      left:100px; */
+      /* width: 250px;
+      height: 50px; */
+      border: none;
+      align-content: center;
+  }
+  
+  .textbox1.ct {
+      animation: ct 1s linear 1;
+      animation-fill-mode: forwards;
+  }
+  
+  @keyframes ct {
+      0% {
+          background-color:gray;
+      }
+      
+      100% {
+          background: lightgreen;
+      }
   }
   
   .drop2 {
-      position:absolute;
-      top:30px;
-      left:100px;
+      /* position:absolute;
+      top:310px;
+      left:30px; */
       width: 50px;
       height: 50px;
       border: none;
@@ -236,16 +738,60 @@ main{
       transform: rotateZ(-45deg)   ;
       -webkit-transform-origin: 50% 50% 0;
       transform-origin: 50% 50% 0;
-      animation:rain 2s linear 1;
-      animation-fill-mode:forwards;
       cursor:pointer;
       z-index:9999;
+  }
+  
+  
+  .drop2.c2 {
+      animation: c2 1s linear 1;
+      animation-fill-mode: forwards;
+  }
+  
+  @keyframes c2 {
+      0% {
+          background:#17BEBB;
+      }
+      
+      100% {
+          background:gray;
+      }
+  }
+  
+  .textbox2 {
+      background-color:white;
+      border-radius:4px;
+      font-size:16px;
+      padding:15px;
+      margin:5px;
+      /* position:absolute;
+      top: 280px;
+      left:100px; */
+      width: 250px;
+      height: 50px;
+      border: none;
+      align-content: center;
+  }
+  
+  .textbox2.ct2 {
+      animation: ct2 1s linear 1;
+      animation-fill-mode: forwards;
+  }
+  
+  @keyframes ct2 {
+      0% {
+          background-color:gray;
+      }
+      
+      100% {
+          background: lightgreen;
+      }
   }
   
   .drop3 {
-      position:absolute;
-      top:30px;
-      left:180px;
+      /* position:absolute;
+      top:400px;
+      left:30px; */
       width: 50px;
       height: 50px;
       border: none;
@@ -257,27 +803,179 @@ main{
       transform: rotateZ(-45deg)   ;
       -webkit-transform-origin: 50% 50% 0;
       transform-origin: 50% 50% 0;
-      animation:rain 2s linear 1;
-      animation-fill-mode:forwards;
       cursor:pointer;
       z-index:9999;
   }
   
+  .drop3.c3 {
+      animation: c3 1s linear 1;
+      animation-fill-mode: forwards;
+  }
   
+  @keyframes c3 {
+      0% {
+          background:#17BEBB;
+      }
+      
+      100% {
+          background:gray;
+      }
+  }
   
+  .textbox3 {
+      background-color:white;
+      border-radius:4px;
+      font-size:16px;
+      padding:15px;
+      margin:5px;
+      /* position:absolute;
+      top:370px;
+      left:100px; */
+      width: 250px;
+      height: 50px;
+      border: none;
+      align-content: center;
+  }
   
+  .textbox3.ct3 {
+      animation: ct3 1s linear 1;
+      animation-fill-mode: forwards;
+  }
   
+  @keyframes ct3 {
+      0% {
+          background-color:gray;
+      }
+      
+      100% {
+          background: lightgreen;
+      }
+  }
   
+  .drop4 {
+      /* position:absolute;
+      top: 490px;
+      left:30px; */
+      width: 50px;
+      height: 50px;
+      border: none;
+      -webkit-border-radius: 80% 0 55% 50% / 55% 0 80% 50%;
+      border-radius: 80% 0 55% 50% / 55% 0 80% 50%;
+      font: normal 100%/normal Arial, Helvetica, sans-serif;
+      background:#17BEBB;
+      -webkit-transform: rotateZ(-45deg)   ;
+      transform: rotateZ(-45deg)   ;
+      -webkit-transform-origin: 50% 50% 0;
+      transform-origin: 50% 50% 0;
+      cursor:pointer;
+      z-index:9999;
+  }
   
+  .drop4.c4 {
+      animation: c4 1s linear 1;
+      animation-fill-mode: forwards;
+  }
   
+  @keyframes c4 {
+      0% {
+          background:#17BEBB;
+      }
+      
+      100% {
+          background:gray;
+      }
+  }
   
+  .textbox4 {
+      background-color:white;
+      border-radius:4px;
+      font-size:16px;
+      padding:15px;
+      margin:5px;
+      /* position:absolute;
+      top:460px;
+      left:100px; */
+      width: 250px;
+      height: 50px;
+      border: none;
+      align-content: center;
+  }
   
+  .textbox4.ct4 {
+      animation: ct4 1s linear 1;
+      animation-fill-mode: forwards;
+  }
   
+  @keyframes ct4 {
+      0% {
+          background-color:gray;
+      }
+      
+      100% {
+          background: lightgreen;
+      }
+  }
   
+  .drop5 {
+      /* position:absolute;
+      top:580px;
+      left:30px; */
+      width: 50px;
+      height: 50px;
+      border: none;
+      -webkit-border-radius: 80% 0 55% 50% / 55% 0 80% 50%;
+      border-radius: 80% 0 55% 50% / 55% 0 80% 50%;
+      font: normal 100%/normal Arial, Helvetica, sans-serif;
+      background:#17BEBB;
+      -webkit-transform: rotateZ(-45deg)   ;
+      transform: rotateZ(-45deg)   ;
+      -webkit-transform-origin: 50% 50% 0;
+      transform-origin: 50% 50% 0;
+      cursor:pointer;
+      z-index:9999;
+  }
   
+  .drop5.c5 {
+      animation: c5 1s linear 1;
+      animation-fill-mode: forwards;
+  }
   
+  @keyframes c5 {
+      0% {
+          background:#17BEBB;
+      }
+      
+      100% {
+          background:gray;
+      }
+  }
   
+  .textbox5 {
+      background-color:white;
+      border-radius:4px;
+      font-size:16px;
+      padding:15px;
+      margin:5px;
+      /* position:absolute;
+      top:550px;
+      left:100px; */
+      width: 250px;
+      height: 50px;
+      border: none;
+      align-content: center;
+  }
   
+  .textbox5.ct5 {
+      animation: ct5 1s linear 1;
+      animation-fill-mode: forwards;
+  }
   
-
-
+  @keyframes ct5 {
+      0% {
+          background-color:gray;
+      }
+      
+      100% {
+          background: lightgreen;
+      }
+  }
