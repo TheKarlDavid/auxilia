@@ -13,8 +13,7 @@ const app = express()
 mongoose.connect("mongodb://127.0.0.1:27017/userdb",{
     useNewUrlParser: true,
     useUnifiedTopology: true,
-    useCreateIndex: true,
-    useNewUrlParser: true
+    useCreateIndex: true
 })
 
 app.set("view engine", "hbs")
@@ -28,7 +27,7 @@ app.use(session({
     resave: false,
     saveUninitialized: true,
     cookie:{
-        maxAge: 1000 * 60 * 30
+        maxAge: 1000 * 60 * 15
     }
 }))
 
@@ -37,9 +36,10 @@ app.use(express.static(__dirname + "/public"))
 app.get("/", (req, res)=>{
 
     if(req.session.email){
-        //it means that has already signed in
+        //user already signed in
         res.render("home.hbs",{
-            email: req.session.email
+            firstname: req.session.firstname,
+            lastname: req.session.lastname
         })
     }
 
@@ -53,8 +53,6 @@ app.get("/", (req, res)=>{
 // registering a new user
 
 app.post("/register", urlencoder, (req,res)=>{
-    // email: em     password: pw
-
     // reading fields from hbs
     let email = req.body.em
     let password = req.body.pw
@@ -76,9 +74,9 @@ app.post("/register", urlencoder, (req,res)=>{
     }
     else{
 
-        var salt = bcrypt.genSaltSync(10);
-        var hash = bcrypt.hashSync(password,salt);
-        password = hash;
+        // var salt = bcrypt.genSaltSync(10);
+        // var hash = bcrypt.hashSync(password,salt);
+        // password = hash;
 
 
         let user = new User({
@@ -98,12 +96,11 @@ app.post("/register", urlencoder, (req,res)=>{
         }, (err)=>{
             console.log("Error in adding " + err)
             res.render("index.hbs", {
-                errors:"Error"
+                errors:"Error in registering: email already in use"
             })
         })
         
     }
-        // req.session.email = req.body.em
 })
 
 function isAvailable(email){
@@ -116,13 +113,14 @@ function isAvailable(email){
 }
 
 app.post("/login", urlencoder, (req,res)=>{
-    // email: em     password: pw
     let email = req.body.email
     let password = req.body.password
     
 
-        User.findOne({email: email}).then(result=>{
-            if(result == null){
+        User.findOne({email: email, password: password}).then(result=>{
+            if(result == null){     
+                console.log(result)
+
                 res.render("index.hbs", {
                     errors:"Invalid email/password" 
                 })
@@ -131,8 +129,10 @@ app.post("/login", urlencoder, (req,res)=>{
                 req.session.email = req.body.email
                 req.session.password = req.body.password
 
-                console.log(result)
-                res.render("home.hbs")
+                req.session.firstname = result.firstname
+                req.session.lastname = result.lastname
+                // console.log("Name is " +result.firstname)
+
                 res.redirect("/")
             }
         
@@ -145,7 +145,10 @@ app.post("/login", urlencoder, (req,res)=>{
 
 app.get("/home", (req, res)=>{
 
-    res.render("home.hbs")
+    res.render("home.hbs",{
+        firstname: req.session.firstname,
+        lastname: req.session.lastname
+    })
 })
 
 app.get("/meditation", (req, res)=>{
@@ -160,7 +163,10 @@ app.get("/about", (req, res)=>{
 
 app.get("/profile", (req, res)=>{
 
-    res.render("profile.hbs")
+    res.render("profile.hbs",{
+        firstname: req.session.firstname,
+        lastname: req.session.lastname
+    })
 })
 
 app.get("/signout", (req,res)=>{
