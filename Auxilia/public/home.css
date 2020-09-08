@@ -737,7 +737,8 @@ main{
       }
       
       100% {
-          background: lightgreen;
+        background: #17BEBB;
+        color: white;
       }
   }
   
@@ -798,7 +799,8 @@ main{
       }
       
       100% {
-          background: lightgreen;
+        background: #17BEBB;
+        color: white;
       }
   }
   
@@ -859,7 +861,8 @@ main{
       }
       
       100% {
-          background: lightgreen;
+        background: #17BEBB;
+        color: white;
       }
   }
   
@@ -920,6 +923,7 @@ main{
       }
       
       100% {
-          background: lightgreen;
+        background: #17BEBB;
+        color: white;
       }
   }
