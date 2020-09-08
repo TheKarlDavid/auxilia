@@ -28,7 +28,7 @@ app.use(session({
     resave: false,
     saveUninitialized: true,
     cookie:{
-        maxAge: 1000 * 60 * 60
+        maxAge: 1000 * 60 * 30
     }
 }))
 
@@ -103,7 +103,7 @@ app.post("/register", urlencoder, (req,res)=>{
         })
         
     }
-        req.session.email = req.body.em
+        // req.session.email = req.body.em
 })
 
 function isAvailable(email){
@@ -119,6 +119,7 @@ app.post("/login", urlencoder, (req,res)=>{
     // email: em     password: pw
     let email = req.body.email
     let password = req.body.password
+    
 
         User.findOne({email: email}).then(result=>{
             if(result == null){
@@ -127,13 +128,16 @@ app.post("/login", urlencoder, (req,res)=>{
                 })
             }
             else{
+                req.session.email = req.body.email
+                req.session.password = req.body.password
+
                 console.log(result)
                 res.render("home.hbs")
+                res.redirect("/")
             }
         
     }, (err)=>{
         res.send(err)
-
     })
 
     
