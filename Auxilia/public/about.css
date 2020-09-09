@@ -45,7 +45,7 @@ p{
     text-align: center;
 }
 
-#learn-more{
+/* #learn-more{
     display: block;
     position: relative;
     margin: 5px 0 0 88%;
@@ -57,17 +57,21 @@ p{
     padding: 9px;
     border-radius: 18px;
     text-transform: uppercase;
-}
+} */
 
-#desc{
+/* #desc{
     display: none;
+} */
+
+.description{
+    margin: 50px 0 0;
 }
 
 .about-us{
     height: 100%;
     width: auto;
     margin: 50px 80px 100px;
-    border: 4px solid #ECF9F2;
+    /* border: 4px solid #ECF9F2; */
     display: grid;
     grid-template-rows: 90px 1fr;
 }

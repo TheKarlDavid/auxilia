@@ -5,6 +5,7 @@ const cookieparser = require("cookie-parser")
 const hbs = require("hbs")
 const mongoose = require("mongoose")
 const {User} = require("./models/user.js")
+// const {Meditation} = require("./models/meditation.js")
 const bcrypt = require("bcryptjs")
 const { body, validationResult } = require('express-validator')
 const { runInNewContext } = require("vm")
@@ -145,28 +146,52 @@ app.post("/login", urlencoder, (req,res)=>{
 
 app.get("/home", (req, res)=>{
 
-    res.render("home.hbs",{
-        firstname: req.session.firstname,
-        lastname: req.session.lastname
-    })
+    if(req.session.email){
+        res.render("home.hbs",{
+            firstname: req.session.firstname,
+            lastname: req.session.lastname
+        })
+    }
+
+    else{
+        res.render("index.hbs")
+    }
 })
 
 app.get("/meditation", (req, res)=>{
 
-    res.render("meditation.hbs")
+    if(req.session.email){
+        res.render("meditation.hbs")
+    }
+
+    else{
+        res.render("index.hbs") 
+    }
 })
 
 app.get("/about", (req, res)=>{
 
-    res.render("about.hbs")
+    if(req.session.email){
+        res.render("about.hbs")
+    }
+
+    else{
+        res.render("index.hbs") 
+    }
 })
 
 app.get("/profile", (req, res)=>{
 
-    res.render("profile.hbs",{
-        firstname: req.session.firstname,
-        lastname: req.session.lastname
-    })
+    if(req.session.email){
+        res.render("profile.hbs",{
+            firstname: req.session.firstname,
+            lastname: req.session.lastname
+        })
+    }
+
+    else{
+        res.render("index.hbs") 
+    }
 })
 
 app.get("/signout", (req,res)=>{
