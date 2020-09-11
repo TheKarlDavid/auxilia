@@ -10,6 +10,15 @@ body{
     
 }
 
+#clear{
+    position: absolute;
+    right: 30px;
+    top: 15px;
+    height: 55px;
+    width: 55px;
+    cursor: pointer;
+}
+
 /* FOR LOGO */
 #logo{
     grid-column: 1/2;

@@ -71,7 +71,7 @@ app.post("/register", urlencoder, (req,res)=>{
     //check errors
     const errors = validationResult(req);
     if(!errors.isEmpty()){
-        res.render("index.hbs",{errors:errors});
+        res.render("login.hbs",{errors:errors});
     }
     else{
 
@@ -91,12 +91,12 @@ app.post("/register", urlencoder, (req,res)=>{
             console.log("Succesfully added: "+ doc)
 
             req.session.email = doc.email
-            res.render("index.hbs", {
+            res.render("login.hbs", {
             message:"Registration successful"
             })
         }, (err)=>{
             console.log("Error in adding " + err)
-            res.render("index.hbs", {
+            res.render("login.hbs", {
                 errors:"Error in registering: email already in use"
             })
         })
@@ -122,7 +122,7 @@ app.post("/login", urlencoder, (req,res)=>{
             if(result == null){     
                 console.log(result)
 
-                res.render("index.hbs", {
+                res.render("login.hbs", {
                     errors:"Invalid email/password" 
                 })
             }
@@ -144,6 +144,21 @@ app.post("/login", urlencoder, (req,res)=>{
     
 })
 
+app.get("/login-register", (req, res)=>{
+
+    if(req.session.email){
+        res.render("home.hbs",{
+            firstname: req.session.firstname,
+            lastname: req.session.lastname
+        })
+    }
+
+    else{
+        res.render("login.hbs")
+    }
+})
+
+
 app.get("/home", (req, res)=>{
 
     if(req.session.email){
@@ -160,12 +175,13 @@ app.get("/home", (req, res)=>{
 
 app.get("/meditation", (req, res)=>{
 
+    // res.render("meditation.hbs")
     if(req.session.email){
         res.render("meditation.hbs")
     }
 
     else{
-        res.render("index.hbs") 
+        res.render("login.hbs") 
     }
 })
 
@@ -176,7 +192,7 @@ app.get("/about", (req, res)=>{
     }
 
     else{
-        res.render("index.hbs") 
+        res.render("about-not.hbs") 
     }
 })
 
@@ -190,7 +206,7 @@ app.get("/profile", (req, res)=>{
     }
 
     else{
-        res.render("index.hbs") 
+        res.render("login.hbs") 
     }
 })
 
