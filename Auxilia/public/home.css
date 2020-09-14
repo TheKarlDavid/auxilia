@@ -147,900 +147,907 @@ main{
   } */
   
   .box {
-      position:relative;
-      /* margin-top: -50px; */
-      /* margin-left: 18%; */
-      margin: 10% 45%;
-      display:block;
-      width:600px;
-      height:520px;
-      background:none;
-  }
-  
-  .pot {
-      position:relative;
-      height: 104px;
-      width: 120px;
-      /* width:20%;
-      height:20%; */
-      /* bottom:0;
-      left:35%; */
-      background:#FCAA67;
-      -webkit-clip-path: polygon(0 0, 100% 0, 90% 100%, 10% 100%);
-      clip-path: polygon(0 0, 100% 0, 90% 100%, 10% 100%);
-      box-shadow: inset 0 16px 20px rgba(0,0,0,0.3);
-  }
-  
-  .pot-top {
-      /* position:absolute; */
-      /* width:22%;
-      height:5%; */
-      /* bottom:17%;
-      left:34%; */
-      margin: 0 -7px;
-      width:132px;
-      height:26px;
-      background:#FCAA67;
-      border-radius:3px;
-  }
-  
-  .stem {
-      position:absolute;
-      width:12px;
-      height:12px;
-      left:5%;
-      bottom:20%;
-      background:#70B77E;
-  }
-  
-  .leaf {
-      position:absolute;
-      width:90px;
-      height:30px;
-      border-radius:50%;
-      background:#70B77E;
-  }
-  
-  .leaf .line {
-      position:absolute;
-      width:80%;
-      height:1%;
-      background:rgba(0,0,0,0.1);
-      top:48%;
-  }
-  
-  .leaf00 {
-      width:0px;
-      height:0px;
-      top:0%;
-      left:5px;
-      transform:rotate(-60deg);
-  }
-  
-  .leaf01 {
-      width:0px;
-      height:0px;
-      top:40%;
-      right: 5px;
-      transform:rotate(-150deg);
-  }
-  
-  .leaf02 {
-      width:0px;
-      height:0px;
-      top:0%;
-      left:5px;
-      transform:rotate(-40deg);
-  }
-  
-  .leaf03 {
-      width:0px;
-      height:0px;
-      top:0%;
-      right: -5px;
-      transform:rotate(-150deg);
-  }
-  
-  .leaf04 {
-      width:50px;
-      height:30px;
-      top:100%;
-      left: 5px;
-      transform:rotate(-40deg);
-  }
-  
-  
-  /* --- ANIMATION --- */
-  
-  /* --- 1st ANIMATION --- */
-  
-  .leaf00.r {
-      animation: g 2s;
-      animation-fill-mode: forwards;
-  }
-  
-  @keyframes g {
-      0% {
-          width:0%;
-          height:0%;
-          top:0%;
-          left:5px;
-          transform:rotate(-60deg);
-      }
-      
-      100% {
-          width:50px;
-          height:30px;
-          top:-250%;
-          left:-10px;
-          transform:rotate(-60deg);
-      }
-  }
-  
-  /* --- 2nd ANIMATION --- */
-  
-  .leaf00.leaf1_2 {
-      animation: g3 1s;
-      animation-fill-mode: forwards;
-  }
-  
-  @keyframes g3 {
-      0% {
-          width:50px;
-          height:30px;
-          top:-100%;
-          left:-10px;
-          transform:rotate(-60deg);
-      }
-      
-      100% {
-          width:50px;
-          height:30px;
-          top:-40%;
-          left:-10px;
-          transform:rotate(-60deg);
-      }
-  }  
-  
-  .stem.rain2 {
-      animation: grow2 2s linear 1;
-      animation-fill-mode:forwards;
-  }
-  
-  @keyframes grow2 {
-      0% {
-          width:12px;
-          height:20px;
-          left:49%;
-          bottom:20%;
-      }
-      
-      100% {
-          width:12px;
-          height:75px;
-          left:49%;
-          bottom:20%;
-      }
-  }
-  
-  .leaf01.r {
-      animation: h 3s;
-      animation-fill-mode: forwards;
-  }
-  
-  @keyframes h {
-      0% {
-          width:0px;
-          height:0px;
-          top:80%;
-          right: 5px;
-          transform:rotate(-150deg);
-      }
-      
-      100% {
-          width:50px;
-          height:30px;
-          top:40%;
-          right: 5px;
-          transform:rotate(-150deg);
-      }
-  }  
-  
-  /* --- 3rd ANIMATION --- */
-  
-  .leaf00.leaf1_3 {
-      animation: g4 1s;
-      animation-fill-mode: forwards;
-  }
-  
-  @keyframes g4 {
-      0% {
-          width:50px;
-          height:30px;
-          top:-40%;
-          left:-10px;
-          transform:rotate(-60deg);
-      }
-      
-      100% {
-          width:50px;
-          height:30px;
-          top:-10%;
-          left:-10px;
-          transform:rotate(-60deg);
-      }
-  }  
-  
-  .stem.rain3 {
-      animation: grow3 2s;
-      animation-fill-mode:forwards;
-  }
-  
-  @keyframes grow3 {
-      0% {
-          width:12px;
-          height:75px;
-          left:49%;
-          bottom:20%;
-      }
-      
-      100% {
-          width:12px;
-          height:150px;
-          left:49%;
-          bottom:20%;
-      }
-  }
-  
-  .leaf01.r2 {
-      animation: h2 2s;
-      animation-fill-mode: forwards;
-  }
-  
-  @keyframes h2 {
-      0% {
-          width:50px;
-          height:30px;
-          top:40%;
-          right: 5px;
-          transform:rotate(-150deg);
-      }
-      
-      100% {
-          width:50px;
-          height:30px;
-          top:30%;
-          right: 5px;
-          transform:rotate(-150deg);
-      }
-  }  
-  
-  .leaf02.t {
-      animation: j 2s;
-      animation-fill-mode: forwards;
-  }
-  
-  @keyframes j {
-      0% {
-          width:0%;
-          height:0%;
-          top:100%;
-          left:5px;
-          transform:rotate(-40deg);
-      }
-      
-      100% {
-          width:50px;
-          height:30px;
-          top:60%;
-          left:0px;
-          transform:rotate(-40deg);
-      }
-  }  
-  
-  /* --- 4th ANIMATION --- */
-  
-  
-  .leaf00.leaf1_4 {
-      animation: g5 1s;
-      animation-fill-mode: forwards;
-  }
-  
-  @keyframes g5 {
-      0% {
-          width:50px;
-          height:30px;
-          top:-10%;
-          left:-10px;
-          transform:rotate(-60deg);
-      }
-      
-      100% {
-          width:50px;
-          height:30px;
-          top:-10%;
-          left:-10px;
-          transform:rotate(-60deg);
-      }
-  }  
-  
-  .stem.rain4 {
-      animation: grow4 2s;
-      animation-fill-mode:forwards;
-  }
-  
-  @keyframes grow4 {
-      0% {
-          width:12px;
-          height:150px;
-          left:49%;
-          bottom:20%;
-      }
-      
-      100% {
-          width:12px;
-          height:225px;
-          left:49%;
-          bottom:20%;
-      }
-  }
-  
-  .leaf01.r3 {
-      animation: h3 2s;
-      animation-fill-mode: forwards;
-  }
-  
-  @keyframes h3 {
-      0% {
-          width:50px;
-          height:30px;
-          top:30%;
-          right: 5px;
-          transform:rotate(-150deg);
-      }
-      
-      100% {
-          width:50px;
-          height:30px;
-          top:17.5%;
-          right: 5px;
-          transform:rotate(-150deg);
-      }
-  }  
-  
-  .leaf02.t2 {
-      animation: j2 2s;
-      animation-fill-mode: forwards;
-  }
-  
-  @keyframes j2 {
-      0% {
-          width:50px;
-          height:30px;
-          top:60%;
-          left:0px;
-          transform:rotate(-40deg);
-      }
-      
-      100% {
-          width:50px;
-          height:30px;
-          top:40%;
-          left:0px;
-          transform:rotate(-40deg);
-      }
-  }  
-  
-  .leaf03.y {
-      animation: q 2s;
-      animation-fill-mode: forwards;
-  }
-  
-  @keyframes q {
-      0% {
-          width:0px;
-          height:0px;
-          top:100%;
-          right:5px;
-          transform:rotate(-160deg);
-      }
-      
-      100% {
-          width:50px;
-          height:30px;
-          top:65%;
-          right: 5px;
-          transform:rotate(-160deg);
-      }
-  } 
-  
-  
-  
-  /* --- 5th ANIMATION --- */
-  
-  
-  .leaf00.leaf1_5 {
-      animation: g6 1s;
-      animation-fill-mode: forwards;
-  }
-  
-  @keyframes g6 {
-      0% {
-          width:50px;
-          height:30px;
-          top:-10%;
-          left:-10px;
-          transform:rotate(-60deg);
-      }
-      
-      100% {
-          width:50px;
-          height:30px;
-          top:-10%;
-          left:-10px;
-          transform:rotate(-60deg);
-      }
-  }  
-  
-  .stem.rain5 {
-      animation: grow5 2s;
-      animation-fill-mode:forwards;
-  }
-  
-  @keyframes grow5 {
-      0% {
-          width:12px;
-          height:225px;
-          left:49%;
-          bottom:20%;
-      }
-      
-      100% {
-          width:12px;
-          height:325px;
-          left:49%;
-          bottom:20%;
-      }
-  }
-  
-  .leaf01.r4 {
-      animation: h4 2s;
-      animation-fill-mode: forwards;
-  }
-  
-  @keyframes h4 {
-      0% {
-          width:50px;
-          height:30px;
-          top:17.5%;
-          right: 5px;
-          transform:rotate(-150deg);
-      }
-      
-      100% {
-          width:50px;
-          height:30px;
-          top:10%;
-          right: 5px;
-          transform:rotate(-150deg);
-      }
-  }  
-  
-  .leaf02.t3 {
-      animation: j3 2s;
-      animation-fill-mode: forwards;
-  }
-  
-  @keyframes j3 {
-      0% {
-          width:50px;
-          height:30px;
-          top:40%;
-          left:0px;
-          transform:rotate(-40deg);
-      }
-      
-      100% {
-          width:50px;
-          height:30px;
-          top:30%;
-          left:0px;
-          transform:rotate(-40deg);
-      }
-  }  
-  
-  .leaf03.y2 {
-      animation: q2 2s;
-      animation-fill-mode: forwards;
-  }
-  
-  @keyframes q2 {
-      0% {
-          width:50px;
-          height:30px;
-          top:65%;
-          right: 5px;
-          transform:rotate(-160deg);
-      }
-      
-      100% {
-          width:50px;
-          height:30px;
-          top:50%;
-          right: 5px;
-          transform:rotate(-160deg);
-      }
-  }
-  
-  .leaf04.u {
-      animation: p 2s;
-      animation-fill-mode: forwards;
-  }
-  
-  @keyframes p {
-      0% {
-          width:0px;
-          height:0px;
-          top:100%;
-          left:0px;
-          transform:rotate(-30deg);
-      }
-      
-      100% {
-          width:50px;
-          height:30px;
-          top:75%;
-          left:0px;
-          transform:rotate(-30deg);
-      }
-  }
-  
+    /* position:relative; */
+    /* margin: 10% 45%;
+    display:block;
+    width:600px;
+    height:520px;
+    background:none; */
+    position:relative;
+    margin:auto;
+    display:block;
+    margin-top:8%;
+    width:600px;
+    height:415px;
+    background:none;
+}
 
-  /* TASKS AREA */
-  .notepadbase {
-      background-color:#ECF9F2;
-      border-radius: 15px;
-      font-size:16px;
-      padding-bottom: 35px;
-      margin-top:60px;
-      margin-right:60px;
-      width: auto;
-      height: auto;
-      border: none;
-      align-content: center;
-  }
+.pot {
+    position:relative;
+    height: 104px;
+    width: 120px;
+    /* width:20%;
+    height:20%; */
+    top: 75.5%;
+    left:43%;
+    background:#FCAA67;
+    -webkit-clip-path: polygon(0 0, 100% 0, 90% 100%, 10% 100%);
+    clip-path: polygon(0 0, 100% 0, 90% 100%, 10% 100%);
+    box-shadow: inset 0 16px 20px rgba(0,0,0,0.3);
+}
 
-  .textbox {
-      border-radius:4px;
-      font-size:30px;
-      padding: 10px 15px;
-      margin:5px;
-      text-transform: uppercase;
-  }
+.pot-top {
+    position:absolute;
+    /* width:22%;
+    height:5%; */
+    bottom:22%;
+    left:42%;
+    /* margin: 0 -7px; */
+    width:132px;
+    height:26px;
+    background:#FCAA67;
+    border-radius:3px;
+}
 
-  .tasks-list{
-      height: auto;
-      width: auto;
-      background-color: white;
-      padding: 10px 30px;
-  }
+.stem {
+	position:absolute;
+	width:12px;
+	height:12px;
+	left:49%;
+    bottom:20%;
+    /* left:52%;
+	bottom:23%; */
+	background:#70B77E;
+}
 
-  .task-item{
+.leaf {
+	position:absolute;
+	width:90px;
+	height:30px;
+	border-radius:50%;
+	background:#70B77E;
+}
+
+.leaf .line {
+	position:absolute;
+	width:80%;
+	height:1%;
+	background:rgba(0,0,0,0.1);
+	top:48%;
+}
+
+.leaf00 {
+	width:0px;
+	height:0px;
+	top:0%;
+	left:5px;
+	transform:rotate(-60deg);
+}
+
+.leaf01 {
+	width:0px;
+	height:0px;
+	top:40%;
+	right: 5px;
+	transform:rotate(-150deg);
+}
+
+.leaf02 {
+	width:0px;
+	height:0px;
+	top:0%;
+	left:5px;
+	transform:rotate(-40deg);
+}
+
+.leaf03 {
+	width:0px;
+	height:0px;
+	top:0%;
+	right: -5px;
+	transform:rotate(-150deg);
+}
+
+.leaf04 {
+	width:50px;
+	height:30px;
+	top:100%;
+	left: 5px;
+	transform:rotate(-40deg);
+}
+
+
+/* --- ANIMATION --- */
+
+/* --- 1st ANIMATION --- */
+
+.leaf00.r {
+	animation: g 2s;
+	animation-fill-mode: forwards;
+}
+
+@keyframes g {
+	0% {
+		width:0%;
+		height:0%;
+		top:0%;
+		left:5px;
+		transform:rotate(-60deg);
+	}
+	
+	100% {
+		width:50px;
+		height:30px;
+		top:-250%;
+		left:-10px;
+		transform:rotate(-60deg);
+	}
+}
+
+/* --- 2nd ANIMATION --- */
+
+.leaf00.leaf1_2 {
+	animation: g3 1s;
+	animation-fill-mode: forwards;
+}
+
+@keyframes g3 {
+	0% {
+		width:50px;
+		height:30px;
+		top:-100%;
+		left:-10px;
+		transform:rotate(-60deg);
+	}
+	
+	100% {
+		width:50px;
+		height:30px;
+		top:-40%;
+		left:-10px;
+		transform:rotate(-60deg);
+	}
+}  
+
+.stem.rain2 {
+	animation: grow2 2s linear 1;
+	animation-fill-mode:forwards;
+}
+
+@keyframes grow2 {
+	0% {
+		width:12px;
+		height:20px;
+		left:49%;
+		bottom:20%;
+	}
+	
+	100% {
+		width:12px;
+		height:75px;
+		left:49%;
+		bottom:20%;
+	}
+}
+
+.leaf01.r {
+	animation: h 3s;
+	animation-fill-mode: forwards;
+}
+
+@keyframes h {
+	0% {
+		width:0px;
+		height:0px;
+		top:80%;
+		right: 5px;
+		transform:rotate(-150deg);
+	}
+	
+	100% {
+		width:50px;
+		height:30px;
+		top:40%;
+		right: 5px;
+		transform:rotate(-150deg);
+	}
+}  
+
+/* --- 3rd ANIMATION --- */
+
+.leaf00.leaf1_3 {
+	animation: g4 1s;
+	animation-fill-mode: forwards;
+}
+
+@keyframes g4 {
+	0% {
+		width:50px;
+		height:30px;
+		top:-40%;
+		left:-10px;
+		transform:rotate(-60deg);
+	}
+	
+	100% {
+		width:50px;
+		height:30px;
+		top:-10%;
+		left:-10px;
+		transform:rotate(-60deg);
+	}
+}  
+
+.stem.rain3 {
+	animation: grow3 2s;
+	animation-fill-mode:forwards;
+}
+
+@keyframes grow3 {
+	0% {
+		width:12px;
+		height:75px;
+		left:49%;
+		bottom:20%;
+	}
+	
+	100% {
+		width:12px;
+		height:150px;
+		left:49%;
+		bottom:20%;
+	}
+}
+
+.leaf01.r2 {
+	animation: h2 2s;
+	animation-fill-mode: forwards;
+}
+
+@keyframes h2 {
+	0% {
+		width:50px;
+		height:30px;
+		top:40%;
+		right: 5px;
+		transform:rotate(-150deg);
+	}
+	
+	100% {
+		width:50px;
+		height:30px;
+		top:30%;
+		right: 5px;
+		transform:rotate(-150deg);
+	}
+}  
+
+.leaf02.t {
+	animation: j 2s;
+	animation-fill-mode: forwards;
+}
+
+@keyframes j {
+	0% {
+		width:0%;
+		height:0%;
+		top:100%;
+		left:5px;
+		transform:rotate(-40deg);
+	}
+	
+	100% {
+		width:50px;
+		height:30px;
+		top:60%;
+		left:0px;
+		transform:rotate(-40deg);
+	}
+}  
+
+/* --- 4th ANIMATION --- */
+
+
+.leaf00.leaf1_4 {
+	animation: g5 1s;
+	animation-fill-mode: forwards;
+}
+
+@keyframes g5 {
+	0% {
+		width:50px;
+		height:30px;
+		top:-10%;
+		left:-10px;
+		transform:rotate(-60deg);
+	}
+	
+	100% {
+		width:50px;
+		height:30px;
+		top:-10%;
+		left:-10px;
+		transform:rotate(-60deg);
+	}
+}  
+
+.stem.rain4 {
+	animation: grow4 2s;
+	animation-fill-mode:forwards;
+}
+
+@keyframes grow4 {
+	0% {
+		width:12px;
+		height:150px;
+		left:49%;
+		bottom:20%;
+	}
+	
+	100% {
+		width:12px;
+		height:225px;
+		left:49%;
+		bottom:20%;
+	}
+}
+
+.leaf01.r3 {
+	animation: h3 2s;
+	animation-fill-mode: forwards;
+}
+
+@keyframes h3 {
+	0% {
+		width:50px;
+		height:30px;
+		top:30%;
+		right: 5px;
+		transform:rotate(-150deg);
+	}
+	
+	100% {
+		width:50px;
+		height:30px;
+		top:17.5%;
+		right: 5px;
+		transform:rotate(-150deg);
+	}
+}  
+
+.leaf02.t2 {
+	animation: j2 2s;
+	animation-fill-mode: forwards;
+}
+
+@keyframes j2 {
+	0% {
+		width:50px;
+		height:30px;
+		top:60%;
+		left:0px;
+		transform:rotate(-40deg);
+	}
+	
+	100% {
+		width:50px;
+		height:30px;
+		top:40%;
+		left:0px;
+		transform:rotate(-40deg);
+	}
+}  
+
+.leaf03.y {
+	animation: q 2s;
+	animation-fill-mode: forwards;
+}
+
+@keyframes q {
+	0% {
+		width:0px;
+		height:0px;
+		top:100%;
+		right:5px;
+		transform:rotate(-160deg);
+	}
+	
+	100% {
+		width:50px;
+		height:30px;
+		top:65%;
+		right: 5px;
+		transform:rotate(-160deg);
+	}
+} 
+
+
+
+/* --- 5th ANIMATION --- */
+
+
+.leaf00.leaf1_5 {
+	animation: g6 1s;
+	animation-fill-mode: forwards;
+}
+
+@keyframes g6 {
+	0% {
+		width:50px;
+		height:30px;
+		top:-10%;
+		left:-10px;
+		transform:rotate(-60deg);
+	}
+	
+	100% {
+		width:50px;
+		height:30px;
+		top:-10%;
+		left:-10px;
+		transform:rotate(-60deg);
+	}
+}  
+
+.stem.rain5 {
+	animation: grow5 2s;
+	animation-fill-mode:forwards;
+}
+
+@keyframes grow5 {
+	0% {
+		width:12px;
+		height:225px;
+		left:49%;
+		bottom:20%;
+	}
+	
+	100% {
+		width:12px;
+		height:325px;
+		left:49%;
+		bottom:20%;
+	}
+}
+
+.leaf01.r4 {
+	animation: h4 2s;
+	animation-fill-mode: forwards;
+}
+
+@keyframes h4 {
+	0% {
+		width:50px;
+		height:30px;
+		top:17.5%;
+		right: 5px;
+		transform:rotate(-150deg);
+	}
+	
+	100% {
+		width:50px;
+		height:30px;
+		top:10%;
+		right: 5px;
+		transform:rotate(-150deg);
+	}
+}  
+
+.leaf02.t3 {
+	animation: j3 2s;
+	animation-fill-mode: forwards;
+}
+
+@keyframes j3 {
+	0% {
+		width:50px;
+		height:30px;
+		top:40%;
+		left:0px;
+		transform:rotate(-40deg);
+	}
+	
+	100% {
+		width:50px;
+		height:30px;
+		top:30%;
+		left:0px;
+		transform:rotate(-40deg);
+	}
+}  
+
+.leaf03.y2 {
+	animation: q2 2s;
+	animation-fill-mode: forwards;
+}
+
+@keyframes q2 {
+	0% {
+		width:50px;
+		height:30px;
+		top:65%;
+		right: 5px;
+		transform:rotate(-160deg);
+	}
+	
+	100% {
+		width:50px;
+		height:30px;
+		top:50%;
+		right: 5px;
+		transform:rotate(-160deg);
+	}
+}
+
+.leaf04.u {
+	animation: p 2s;
+	animation-fill-mode: forwards;
+}
+
+@keyframes p {
+	0% {
+		width:0px;
+		height:0px;
+		top:100%;
+		left:0px;
+		transform:rotate(-30deg);
+	}
+	
+	100% {
+		width:50px;
+		height:30px;
+		top:75%;
+		left:0px;
+		transform:rotate(-30deg);
+	}
+}
+
+
+/* TASKS AREA */
+.notepadbase {
+    background-color:#ECF9F2;
+    border-radius: 15px;
+    font-size:16px;
+    padding-bottom: 35px;
+    margin-top:60px;
+    margin-right:60px;
+    width: auto;
+    height: auto;
+    border: none;
+    align-content: center;
+}
+
+.textbox {
+    border-radius:4px;
+    font-size:30px;
+    padding: 10px 15px;
+    margin:5px;
+    text-transform: uppercase;
+}
+
+.tasks-list{
     height: auto;
     width: auto;
-  }
-  
-  /* .item{
-    padding: 10px 0;
-  } */
+    background-color: white;
+    padding: 10px 30px;
+}
 
-  .drop {
-      position: relative;
-      top: 20px;
-      display: inline-block;
-      width: 50px;
-      height: 50px;
-      border: none;
-      -webkit-border-radius: 80% 0 55% 50% / 55% 0 80% 50%;
-      border-radius: 80% 0 55% 50% / 55% 0 80% 50%;
-      font: normal 100%/normal Arial, Helvetica, sans-serif;
-      background:#17BEBB;
-      -webkit-transform: rotateZ(-45deg)   ;
-      transform: rotateZ(-45deg)   ;
-      -webkit-transform-origin: 50% 50% 0;
-      transform-origin: 50% 50% 0;
-      cursor:pointer;
-  }
-  
-  .drop.c {
-      animation: c 1s linear 1;
-      animation-fill-mode: forwards;
-  }
-  
-  @keyframes c {
-      0% {
-          background:#17BEBB;
-      }
-      
-      100% {
-          background:gray;
-      }
-  }
-  
-  .textbox1 {
-      display: inline-block;
-      border-radius:4px;
-      font-size:20px;
-      font-weight: 600;
-      padding:15px;
-      margin:5px 10px;
-      width: 80%;
-      height: auto;
-      border: none;
-      align-content: center;
-  }
-  
-  .textbox1.ct {
-      animation: ct 1s linear 1;
-      animation-fill-mode: forwards;
-  }
-  
-  @keyframes ct {
-      0% {
-          background-color:white;
-      }
-      
-      100% {
-          background: #17BEBB;
-          color: white;
-      }
-  }
-  
-  .drop2 {
-      position: relative;
-      top: 20px;
-      display: inline-block;
-      width: 50px;
-      height: 50px;
-      border: none;
-      -webkit-border-radius: 80% 0 55% 50% / 55% 0 80% 50%;
-      border-radius: 80% 0 55% 50% / 55% 0 80% 50%;
-      font: normal 100%/normal Arial, Helvetica, sans-serif;
-      background:#17BEBB;
-      -webkit-transform: rotateZ(-45deg)   ;
-      transform: rotateZ(-45deg)   ;
-      -webkit-transform-origin: 50% 50% 0;
-      transform-origin: 50% 50% 0;
-      cursor:pointer;
-  }
-  
-  
-  .drop2.c2 {
-      animation: c2 1s linear 1;
-      animation-fill-mode: forwards;
-  }
-  
-  @keyframes c2 {
-      0% {
-          background:#17BEBB;
-      }
-      
-      100% {
-          background:gray;
-      }
-  }
-  
-  .textbox2 {
-      display: inline-block;
-      border-radius:4px;
-      font-size:20px;
-      font-weight: 600;
-      padding:15px;
-      margin:5px 10px;
-      width: 80%;
-      height: auto;
-      border: none;
-      align-content: center;
-  }
-  
-  .textbox2.ct2 {
-      animation: ct2 1s linear 1;
-      animation-fill-mode: forwards;
-  }
-  
-  @keyframes ct2 {
-      0% {
-          background-color:white;
-      }
-      
-      100% {
+.task-item{
+  height: auto;
+  width: auto;
+}
+
+/* .item{
+  padding: 10px 0;
+} */
+
+.drop {
+    position: relative;
+    top: 20px;
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    border: none;
+    -webkit-border-radius: 80% 0 55% 50% / 55% 0 80% 50%;
+    border-radius: 80% 0 55% 50% / 55% 0 80% 50%;
+    font: normal 100%/normal Arial, Helvetica, sans-serif;
+    background:#17BEBB;
+    -webkit-transform: rotateZ(-45deg)   ;
+    transform: rotateZ(-45deg)   ;
+    -webkit-transform-origin: 50% 50% 0;
+    transform-origin: 50% 50% 0;
+    cursor:pointer;
+}
+
+.drop.c {
+    animation: c 1s linear 1;
+    animation-fill-mode: forwards;
+}
+
+@keyframes c {
+    0% {
+        background:#17BEBB;
+    }
+    
+    100% {
+        background:gray;
+    }
+}
+
+.textbox1 {
+    display: inline-block;
+    border-radius:4px;
+    font-size:20px;
+    font-weight: 600;
+    padding:15px;
+    margin:5px 10px;
+    width: 80%;
+    height: auto;
+    border: none;
+    align-content: center;
+}
+
+.textbox1.ct {
+    animation: ct 1s linear 1;
+    animation-fill-mode: forwards;
+}
+
+@keyframes ct {
+    0% {
+        background-color:white;
+    }
+    
+    100% {
         background: #17BEBB;
         color: white;
-      }
-  }
-  
-  .drop3 {
-      position: relative;
-      top: 20px;
-      display: inline-block;
-      width: 50px;
-      height: 50px;
-      border: none;
-      -webkit-border-radius: 80% 0 55% 50% / 55% 0 80% 50%;
-      border-radius: 80% 0 55% 50% / 55% 0 80% 50%;
-      font: normal 100%/normal Arial, Helvetica, sans-serif;
-      background:#17BEBB;
-      -webkit-transform: rotateZ(-45deg)   ;
-      transform: rotateZ(-45deg)   ;
-      -webkit-transform-origin: 50% 50% 0;
-      transform-origin: 50% 50% 0;
-      cursor:pointer;
-  }
-  
-  .drop3.c3 {
-      animation: c3 1s linear 1;
-      animation-fill-mode: forwards;
-  }
-  
-  @keyframes c3 {
-      0% {
-          background:#17BEBB;
-      }
-      
-      100% {
-          background:gray;
-      }
-  }
-  
-  .textbox3 {
-      display: inline-block;
-      border-radius:4px;
-      font-size:20px;
-      font-weight: 600;
-      padding:15px;
-      margin:5px 10px;
-      width: 80%;
-      height: auto;
-      border: none;
-      align-content: center;
-  }
-  
-  .textbox3.ct3 {
-      animation: ct3 1s linear 1;
-      animation-fill-mode: forwards;
-  }
-  
-  @keyframes ct3 {
-      0% {
-          background-color:white;
-      }
-      
-      100% {
-        background: #17BEBB;
-        color: white;
-      }
-  }
-  
-  .drop4 {
-      position: relative;
-      top: 20px;
-      display: inline-block;
-      width: 50px;
-      height: 50px;
-      border: none;
-      -webkit-border-radius: 80% 0 55% 50% / 55% 0 80% 50%;
-      border-radius: 80% 0 55% 50% / 55% 0 80% 50%;
-      font: normal 100%/normal Arial, Helvetica, sans-serif;
-      background:#17BEBB;
-      -webkit-transform: rotateZ(-45deg)   ;
-      transform: rotateZ(-45deg)   ;
-      -webkit-transform-origin: 50% 50% 0;
-      transform-origin: 50% 50% 0;
-      cursor:pointer;
-  }
-  
-  .drop4.c4 {
-      animation: c4 1s linear 1;
-      animation-fill-mode: forwards;
-  }
-  
-  @keyframes c4 {
-      0% {
-          background:#17BEBB;
-      }
-      
-      100% {
-          background:gray;
-      }
-  }
-  
-  .textbox4 {
-      display: inline-block;
-      border-radius:4px;
-      font-size:20px;
-      font-weight: 600;
-      padding:15px;
-      margin:5px 10px;
-      width: 80%;
-      height: auto;
-      border: none;
-      align-content: center;
-  }
-  
-  .textbox4.ct4 {
-      animation: ct4 1s linear 1;
-      animation-fill-mode: forwards;
-  }
-  
-  @keyframes ct4 {
-      0% {
-          background-color:white;
-      }
-      
-      100% {
-        background: #17BEBB;
-        color: white;
-      }
-  }
-  
-  .drop5 {
-      position: relative;
-      top: 20px;
-      display: inline-block;
-      width: 50px;
-      height: 50px;
-      border: none;
-      -webkit-border-radius: 80% 0 55% 50% / 55% 0 80% 50%;
-      border-radius: 80% 0 55% 50% / 55% 0 80% 50%;
-      font: normal 100%/normal Arial, Helvetica, sans-serif;
-      background:#17BEBB;
-      -webkit-transform: rotateZ(-45deg)   ;
-      transform: rotateZ(-45deg)   ;
-      -webkit-transform-origin: 50% 50% 0;
-      transform-origin: 50% 50% 0;
-      cursor:pointer;
-  }
-  
-  .drop5.c5 {
-      animation: c5 1s linear 1;
-      animation-fill-mode: forwards;
-  }
-  
-  @keyframes c5 {
-      0% {
-          background:#17BEBB;
-      }
-      
-      100% {
-          background:gray;
-      }
-  }
-  
-  .textbox5 {
-      display: inline-block;
-      border-radius:4px;
-      font-size:20px;
-      font-weight: 600;
-      padding:15px;
-      margin:5px 10px;
-      width: 80%;
-      height: auto;
-      border: none;
-      align-content: center;
-  }
-  
-  .textbox5.ct5 {
-      animation: ct5 1s linear 1;
-      animation-fill-mode: forwards;
-  }
-  
-  @keyframes ct5 {
-      0% {
-          background-color:white;
-      }
-      
-      100% {
-        background: #17BEBB;
-        color: white;
-      }
-  }
+    }
+}
+
+.drop2 {
+    position: relative;
+    top: 20px;
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    border: none;
+    -webkit-border-radius: 80% 0 55% 50% / 55% 0 80% 50%;
+    border-radius: 80% 0 55% 50% / 55% 0 80% 50%;
+    font: normal 100%/normal Arial, Helvetica, sans-serif;
+    background:#17BEBB;
+    -webkit-transform: rotateZ(-45deg)   ;
+    transform: rotateZ(-45deg)   ;
+    -webkit-transform-origin: 50% 50% 0;
+    transform-origin: 50% 50% 0;
+    cursor:pointer;
+}
+
+
+.drop2.c2 {
+    animation: c2 1s linear 1;
+    animation-fill-mode: forwards;
+}
+
+@keyframes c2 {
+    0% {
+        background:#17BEBB;
+    }
+    
+    100% {
+        background:gray;
+    }
+}
+
+.textbox2 {
+    display: inline-block;
+    border-radius:4px;
+    font-size:20px;
+    font-weight: 600;
+    padding:15px;
+    margin:5px 10px;
+    width: 80%;
+    height: auto;
+    border: none;
+    align-content: center;
+}
+
+.textbox2.ct2 {
+    animation: ct2 1s linear 1;
+    animation-fill-mode: forwards;
+}
+
+@keyframes ct2 {
+    0% {
+        background-color:white;
+    }
+    
+    100% {
+      background: #17BEBB;
+      color: white;
+    }
+}
+
+.drop3 {
+    position: relative;
+    top: 20px;
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    border: none;
+    -webkit-border-radius: 80% 0 55% 50% / 55% 0 80% 50%;
+    border-radius: 80% 0 55% 50% / 55% 0 80% 50%;
+    font: normal 100%/normal Arial, Helvetica, sans-serif;
+    background:#17BEBB;
+    -webkit-transform: rotateZ(-45deg)   ;
+    transform: rotateZ(-45deg)   ;
+    -webkit-transform-origin: 50% 50% 0;
+    transform-origin: 50% 50% 0;
+    cursor:pointer;
+}
+
+.drop3.c3 {
+    animation: c3 1s linear 1;
+    animation-fill-mode: forwards;
+}
+
+@keyframes c3 {
+    0% {
+        background:#17BEBB;
+    }
+    
+    100% {
+        background:gray;
+    }
+}
+
+.textbox3 {
+    display: inline-block;
+    border-radius:4px;
+    font-size:20px;
+    font-weight: 600;
+    padding:15px;
+    margin:5px 10px;
+    width: 80%;
+    height: auto;
+    border: none;
+    align-content: center;
+}
+
+.textbox3.ct3 {
+    animation: ct3 1s linear 1;
+    animation-fill-mode: forwards;
+}
+
+@keyframes ct3 {
+    0% {
+        background-color:white;
+    }
+    
+    100% {
+      background: #17BEBB;
+      color: white;
+    }
+}
+
+.drop4 {
+    position: relative;
+    top: 20px;
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    border: none;
+    -webkit-border-radius: 80% 0 55% 50% / 55% 0 80% 50%;
+    border-radius: 80% 0 55% 50% / 55% 0 80% 50%;
+    font: normal 100%/normal Arial, Helvetica, sans-serif;
+    background:#17BEBB;
+    -webkit-transform: rotateZ(-45deg)   ;
+    transform: rotateZ(-45deg)   ;
+    -webkit-transform-origin: 50% 50% 0;
+    transform-origin: 50% 50% 0;
+    cursor:pointer;
+}
+
+.drop4.c4 {
+    animation: c4 1s linear 1;
+    animation-fill-mode: forwards;
+}
+
+@keyframes c4 {
+    0% {
+        background:#17BEBB;
+    }
+    
+    100% {
+        background:gray;
+    }
+}
+
+.textbox4 {
+    display: inline-block;
+    border-radius:4px;
+    font-size:20px;
+    font-weight: 600;
+    padding:15px;
+    margin:5px 10px;
+    width: 80%;
+    height: auto;
+    border: none;
+    align-content: center;
+}
+
+.textbox4.ct4 {
+    animation: ct4 1s linear 1;
+    animation-fill-mode: forwards;
+}
+
+@keyframes ct4 {
+    0% {
+        background-color:white;
+    }
+    
+    100% {
+      background: #17BEBB;
+      color: white;
+    }
+}
+
+.drop5 {
+    position: relative;
+    top: 20px;
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    border: none;
+    -webkit-border-radius: 80% 0 55% 50% / 55% 0 80% 50%;
+    border-radius: 80% 0 55% 50% / 55% 0 80% 50%;
+    font: normal 100%/normal Arial, Helvetica, sans-serif;
+    background:#17BEBB;
+    -webkit-transform: rotateZ(-45deg)   ;
+    transform: rotateZ(-45deg)   ;
+    -webkit-transform-origin: 50% 50% 0;
+    transform-origin: 50% 50% 0;
+    cursor:pointer;
+}
+
+.drop5.c5 {
+    animation: c5 1s linear 1;
+    animation-fill-mode: forwards;
+}
+
+@keyframes c5 {
+    0% {
+        background:#17BEBB;
+    }
+    
+    100% {
+        background:gray;
+    }
+}
+
+.textbox5 {
+    display: inline-block;
+    border-radius:4px;
+    font-size:20px;
+    font-weight: 600;
+    padding:15px;
+    margin:5px 10px;
+    width: 80%;
+    height: auto;
+    border: none;
+    align-content: center;
+}
+
+.textbox5.ct5 {
+    animation: ct5 1s linear 1;
+    animation-fill-mode: forwards;
+}
+
+@keyframes ct5 {
+    0% {
+        background-color:white;
+    }
+    
+    100% {
+      background: #17BEBB;
+      color: white;
+    }
+}

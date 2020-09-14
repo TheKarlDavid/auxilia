@@ -5,7 +5,7 @@ const cookieparser = require("cookie-parser")
 const hbs = require("hbs")
 const mongoose = require("mongoose")
 const {User} = require("./models/user.js")
-// const {Meditation} = require("./models/meditation.js")
+const {Meditation} = require("./models/meditation.js")
 const bcrypt = require("bcryptjs")
 const { body, validationResult } = require('express-validator')
 const { runInNewContext } = require("vm")
@@ -175,9 +175,20 @@ app.get("/home", (req, res)=>{
 
 app.get("/meditation", (req, res)=>{
 
-    // res.render("meditation.hbs")
     if(req.session.email){
-        res.render("meditation.hbs")
+        // res.render("meditation.hbs", {
+            
+        // })
+
+        Meditation.find({}).then((docs)=>{
+            res.render("meditation.hbs", {
+                meditations: docs
+            })
+        }, (err)=>{
+            res.render("meditation.hbs",{
+                error: err
+            })
+        })
     }
 
     else{
