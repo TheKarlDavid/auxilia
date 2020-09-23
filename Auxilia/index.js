@@ -40,9 +40,16 @@ app.get("/", (req, res)=>{
 
     if(req.session.email){
         //user already signed in
-        res.render("home.hbs",{
-            firstname: req.session.firstname,
-            lastname: req.session.lastname
+        Task.find({}).then((docs)=>{
+            res.render("home.hbs", {
+                firstname: req.session.firstname,
+                lastname: req.session.lastname,
+                tasks: docs
+            })
+        }, (err)=>{
+            res.render("home.hbs",{
+                error: err
+            })
         })
     }
 
@@ -165,17 +172,19 @@ app.get("/home", (req, res)=>{
     if(req.session.email){
         Task.find({}).then((docs)=>{
             res.render("home.hbs", {
-                checklist: docs
+                firstname: req.session.firstname,
+                lastname: req.session.lastname,
+                tasks: docs
             })
         }, (err)=>{
             res.render("home.hbs",{
                 error: err
             })
         })
-        res.render("home.hbs",{
-            firstname: req.session.firstname,
-            lastname: req.session.lastname
-        })
+        // res.render("home.hbs",{
+        //     firstname: req.session.firstname,
+        //     lastname: req.session.lastname
+        // })
     }
 
     else{
