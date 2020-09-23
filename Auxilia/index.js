@@ -6,6 +6,7 @@ const hbs = require("hbs")
 const mongoose = require("mongoose")
 const {User} = require("./models/user.js")
 const {Meditation} = require("./models/meditation.js")
+const {Task} = require("./models/tasks.js")
 const bcrypt = require("bcryptjs")
 const { body, validationResult } = require('express-validator')
 const { runInNewContext } = require("vm")
@@ -31,6 +32,7 @@ app.use(session({
         maxAge: 1000 * 60 * 30
     }
 }))
+
 
 app.use(express.static(__dirname + "/public"))
 
@@ -158,10 +160,18 @@ app.get("/login-register", (req, res)=>{
     }
 })
 
-
 app.get("/home", (req, res)=>{
 
     if(req.session.email){
+        Task.find({}).then((docs)=>{
+            res.render("home.hbs", {
+                checklist: docs
+            })
+        }, (err)=>{
+            res.render("home.hbs",{
+                error: err
+            })
+        })
         res.render("home.hbs",{
             firstname: req.session.firstname,
             lastname: req.session.lastname

@@ -31,11 +31,17 @@
         </div>
         <div class="accomplishment-container"> 
           <div class="accomplishment-header">
-            <h1>Accomplishments</h1>
+            <h1>My garden</h1>
           </div>
           
           <div class="accomplishment-list">
-            No accomplishments yet, go do tasks to get accomplishments!
+            {{#each plants}}
+              {{#if accomplishments}}
+              {{/if}}
+            {{/each}}
+            {{#unless plants}}
+              <div>No accomplishments yet, go do tasks to get accomplishments!</div>
+            {{/unless}}
           </div>
         </div>
 

@@ -77,6 +77,15 @@
               </div>
               <div class="tasks-list">
                 <div class="task-item">
+                    {{#each checklist}}
+                      <div class="item">
+                        <div class="drop"></div>
+                        <p class="textbox1" >{{task_description}}</p>
+                      </div>
+                    {{/each}}
+                </div>
+              </div>
+{{!--               
                   <div class="item">
                     <div class="drop"></div>
                     <p class="textbox1" >Watch video</p>
@@ -101,12 +110,8 @@
                     <div class="drop5"></div>
                   <p class="textbox5" >Take a 30 min nap</p>
                   </div>
-                
-                </div>
-                
-              </div>
               
-              
+               --}}
               
           </div>
         </div>
