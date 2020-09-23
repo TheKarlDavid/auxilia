@@ -719,7 +719,7 @@ main{
     height: auto;
     width: auto;
     background-color: white;
-    padding: 10px 30px;
+    padding: 5px 30px;
 }
 
 .task-item{
@@ -727,104 +727,26 @@ main{
   width: auto;
 }
 
-/* .item{
-  padding: 10px 0;
-} */
-
-.drop {
-    position: relative;
-    top: 20px;
-    display: inline-block;
-    width: 50px;
-    height: 50px;
-    border: none;
-    -webkit-border-radius: 80% 0 55% 50% / 55% 0 80% 50%;
-    border-radius: 80% 0 55% 50% / 55% 0 80% 50%;
-    font: normal 100%/normal Arial, Helvetica, sans-serif;
-    background:#17BEBB;
-    -webkit-transform: rotateZ(-45deg)   ;
-    transform: rotateZ(-45deg)   ;
-    -webkit-transform-origin: 50% 50% 0;
-    transform-origin: 50% 50% 0;
-    cursor:pointer;
-}
-
-.drop.c {
-    animation: c 1s linear 1;
-    animation-fill-mode: forwards;
-}
-
-@keyframes c {
-    0% {
-        background:#17BEBB;
-    }
-    
-    100% {
-        background:gray;
-    }
+.item{
+    display: grid;
+    grid-template-columns: 1fr 50px 50px 5px;
+    background: #c6e9d7;
+    margin: 10px 0;
+    border-radius: 5px;
 }
 
 .textbox1 {
+
     display: inline-block;
     border-radius:4px;
     font-size:20px;
     font-weight: 600;
-    padding:15px;
+    padding: 15px;
     margin:5px 10px;
     width: 80%;
     height: auto;
     border: none;
     align-content: center;
-}
-
-.textbox1.ct {
-    animation: ct 1s linear 1;
-    animation-fill-mode: forwards;
-}
-
-@keyframes ct {
-    0% {
-        background-color:white;
-    }
-    
-    100% {
-        background: #17BEBB;
-        color: white;
-    }
-}
-
-.drop2 {
-    position: relative;
-    top: 20px;
-    display: inline-block;
-    width: 50px;
-    height: 50px;
-    border: none;
-    -webkit-border-radius: 80% 0 55% 50% / 55% 0 80% 50%;
-    border-radius: 80% 0 55% 50% / 55% 0 80% 50%;
-    font: normal 100%/normal Arial, Helvetica, sans-serif;
-    background:#17BEBB;
-    -webkit-transform: rotateZ(-45deg)   ;
-    transform: rotateZ(-45deg)   ;
-    -webkit-transform-origin: 50% 50% 0;
-    transform-origin: 50% 50% 0;
-    cursor:pointer;
-}
-
-
-.drop2.c2 {
-    animation: c2 1s linear 1;
-    animation-fill-mode: forwards;
-}
-
-@keyframes c2 {
-    0% {
-        background:#17BEBB;
-    }
-    
-    100% {
-        background:gray;
-    }
 }
 
 .textbox2 {
@@ -840,55 +762,6 @@ main{
     align-content: center;
 }
 
-.textbox2.ct2 {
-    animation: ct2 1s linear 1;
-    animation-fill-mode: forwards;
-}
-
-@keyframes ct2 {
-    0% {
-        background-color:white;
-    }
-    
-    100% {
-      background: #17BEBB;
-      color: white;
-    }
-}
-
-.drop3 {
-    position: relative;
-    top: 20px;
-    display: inline-block;
-    width: 50px;
-    height: 50px;
-    border: none;
-    -webkit-border-radius: 80% 0 55% 50% / 55% 0 80% 50%;
-    border-radius: 80% 0 55% 50% / 55% 0 80% 50%;
-    font: normal 100%/normal Arial, Helvetica, sans-serif;
-    background:#17BEBB;
-    -webkit-transform: rotateZ(-45deg)   ;
-    transform: rotateZ(-45deg)   ;
-    -webkit-transform-origin: 50% 50% 0;
-    transform-origin: 50% 50% 0;
-    cursor:pointer;
-}
-
-.drop3.c3 {
-    animation: c3 1s linear 1;
-    animation-fill-mode: forwards;
-}
-
-@keyframes c3 {
-    0% {
-        background:#17BEBB;
-    }
-    
-    100% {
-        background:gray;
-    }
-}
-
 .textbox3 {
     display: inline-block;
     border-radius:4px;
@@ -900,55 +773,6 @@ main{
     height: auto;
     border: none;
     align-content: center;
-}
-
-.textbox3.ct3 {
-    animation: ct3 1s linear 1;
-    animation-fill-mode: forwards;
-}
-
-@keyframes ct3 {
-    0% {
-        background-color:white;
-    }
-    
-    100% {
-      background: #17BEBB;
-      color: white;
-    }
-}
-
-.drop4 {
-    position: relative;
-    top: 20px;
-    display: inline-block;
-    width: 50px;
-    height: 50px;
-    border: none;
-    -webkit-border-radius: 80% 0 55% 50% / 55% 0 80% 50%;
-    border-radius: 80% 0 55% 50% / 55% 0 80% 50%;
-    font: normal 100%/normal Arial, Helvetica, sans-serif;
-    background:#17BEBB;
-    -webkit-transform: rotateZ(-45deg)   ;
-    transform: rotateZ(-45deg)   ;
-    -webkit-transform-origin: 50% 50% 0;
-    transform-origin: 50% 50% 0;
-    cursor:pointer;
-}
-
-.drop4.c4 {
-    animation: c4 1s linear 1;
-    animation-fill-mode: forwards;
-}
-
-@keyframes c4 {
-    0% {
-        background:#17BEBB;
-    }
-    
-    100% {
-        background:gray;
-    }
 }
 
 .textbox4 {
@@ -964,55 +788,6 @@ main{
     align-content: center;
 }
 
-.textbox4.ct4 {
-    animation: ct4 1s linear 1;
-    animation-fill-mode: forwards;
-}
-
-@keyframes ct4 {
-    0% {
-        background-color:white;
-    }
-    
-    100% {
-      background: #17BEBB;
-      color: white;
-    }
-}
-
-.drop5 {
-    position: relative;
-    top: 20px;
-    display: inline-block;
-    width: 50px;
-    height: 50px;
-    border: none;
-    -webkit-border-radius: 80% 0 55% 50% / 55% 0 80% 50%;
-    border-radius: 80% 0 55% 50% / 55% 0 80% 50%;
-    font: normal 100%/normal Arial, Helvetica, sans-serif;
-    background:#17BEBB;
-    -webkit-transform: rotateZ(-45deg)   ;
-    transform: rotateZ(-45deg)   ;
-    -webkit-transform-origin: 50% 50% 0;
-    transform-origin: 50% 50% 0;
-    cursor:pointer;
-}
-
-.drop5.c5 {
-    animation: c5 1s linear 1;
-    animation-fill-mode: forwards;
-}
-
-@keyframes c5 {
-    0% {
-        background:#17BEBB;
-    }
-    
-    100% {
-        background:gray;
-    }
-}
-
 .textbox5 {
     display: inline-block;
     border-radius:4px;
@@ -1026,18 +801,168 @@ main{
     align-content: center;
 }
 
-.textbox5.ct5 {
-    animation: ct5 1s linear 1;
-    animation-fill-mode: forwards;
+
+/* FOR ADMIN */
+.textbox-admin {
+	display: inline-block;
+    border-radius:4px;
+    font-size:30px;
+    padding: 10px 15px;
+    margin:5px;
+    text-transform: uppercase;
 }
 
-@keyframes ct5 {
-    0% {
-        background-color:white;
+.add-task{
+	display: inline-block;
+	padding: 10px;
+	margin-left: 180px;
+}
+
+.add-task svg{
+	position: relative;
+	top: 7px;
+	cursor: pointer;
+}
+
+.add-label{
+	position: relative;
+	bottom: 2px;
+	display: inline-block;
+	font-size: 23px;
+	font-weight: 600;
+	cursor: pointer;
+}
+
+.add-task:hover{
+	fill: #17BEBB;
+	color: #17BEBB;
+	transition: 0.5s;
+}
+
+.modalTask{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 17px;
+    line-height: 1.6;
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.5);
+}
+
+.modalTask-content{
+    background-color: #f4f4f4;
+    margin: 15% auto;
+    padding: 18px;
+    width: 55%;
+    box-shadow: 0 5px 8px 0 rgba(0,0,0,0.2),
+     0 7px 20px 0 rgba(0,0,0,0.17);
+
+    animation-name: modalopenTask;
+    animation-duration: 1s;
+}
+
+.modalTask-header{
+	background: #17BEBB;	
+ 	border-radius: 5px;
+    padding: 5px;
+    color: white;
+}
+
+.modalTask-header h2{
+	display: inline-block;
+	position: relative;
+	bottom: 8px;
+	margin-left: 36%;
+}
+
+.task-closeBtn{
+  display: inline-block;
+  position: relative;
+  color: #fff;
+  font-size: 55px;
+  margin-left: 29%;
+  line-height: normal;
+}
+
+.task-closeBtn:hover, .task-closeBtn:focus{
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+.modalTask-body{
+    padding: 10px 20px;
+}
+
+.modalTask-footer{
+    color: white;
+    text-align: center;
+}
+
+#form-add-task input{
+    padding: 5px;
+    width: 100%;
+    height: 50px;
+    margin: 5px;
+    font-size:1.4em;
+	font-family:sans-serif;
+	margin: 10px 0;
+}
+
+#form-add-task input:last-child{
+	margin: 10px 0 0;
+}
+
+
+#submit-task{
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #fff;
+    font-size: 20px;
+    background:#17BEBB;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    width: 100%;
+    height: 100%;
+
+    transition-duration:0.5s;
+    transition-timing-function:ease;
+    transition-property:all;
+  }
+
+#submit-task:hover{
+    background: #00a19f;
+  }
+
+@keyframes modalopenTask{
+    from{
+        opacity: 0;
     }
-    
-    100% {
-      background: #17BEBB;
-      color: white;
+    to{
+        opacity: 1;
     }
 }
+
+.item svg{
+    position: relative;
+    top: 11px;
+}
+
+.edit-task:hover{
+    fill: #009795;
+    transition: 0.5s;
+}
+
+.delete-task:hover{
+    fill: #d60000;
+    transition: 0.5s;
+}
+

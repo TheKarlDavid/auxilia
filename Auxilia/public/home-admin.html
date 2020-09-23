@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <link rel="stylesheet" type="text/css" href="home-admin.css">
+
+    <title>Home | Auxilia</title>
+</head>
+<body>
+    <header id="head">
+        <nav>
+          <div class="logo">
+            <img src="img/Auxilia.png"></img>
+          </div>
+          <ul class="navlist">
+            <li><a href="home" method="get">Home</a></li>
+            <li><a href="meditation" method="get">Meditation</a></li>
+            <li><a href="about" method="get">About</a></li>
+            <li><a href="profile" method="get">Profile</a></li>
+          </ul>
+        </nav>
+
+
+      </header>
+      
+      <main>
+        <div class="home-banner">
+          <div class="banner-container">
+            <h1 class="banner">WELCOME <br> {{firstname}} {{lastname}}</h1>
+          </div>
+          
+        </div>
+
+        <div class="home-plant">
+          <h1 id="plant_heading">MY PLANT</h1>
+
+         <!-- partial:index.partial.html -->
+         
+            
+          <div class="box">
+            <div class="stem rain2 rain3 rain4 rain5">
+              <div class="leaf leaf00 r leaf1_2 leaf1_3 leaf1_4 leaf1_5">
+                <div class="line"></div>
+              </div>
+              <div class="leaf leaf01 r r2 r3 r4">
+                <div class="line"></div>
+              </div>
+              <div class="leaf leaf02 t t2 t3">
+                <div class="line"></div>
+              </div>
+              <div class="leaf leaf03 y y2">
+                <div class="line"></div>
+              </div>
+              <div class="leaf leaf04 u">
+                <div class="line"></div>
+              </div>
+              
+            
+            </div>
+            <div class="pot-top"></div>
+            <div class="pot"></div>
+            
+          </div>
+
+        <!-- partial -->
+        </div>
+
+        <div class="home-tasks">
+
+           <div class="notepadbase">
+              <div class="tasks-header">
+                <h1 class="textbox-admin">Daily Tasks</h1>
+                <div class="add-task" id="add-task-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="36" viewBox="0 0 24 24" width="36"><path d="M0 0h24v24H0z" fill="none"/><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5 11h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"/></svg>
+                    <div class="add-label">Add a task</div>
+                </div>
+              </div>
+              <div class="tasks-list">
+                <div class="task-item">
+                  <div class="item">
+                    <p class="textbox1">Watch video</p>
+                    <svg class="edit-task" xmlns="http://www.w3.org/2000/svg" height="40" viewBox="0 0 24 24" width="40"><path d="M0 0h24v24H0z" fill="none"/><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>
+                    <svg class="delete-task" xmlns="http://www.w3.org/2000/svg" height="40" viewBox="0 0 24 24" width="40"><path d="M0 0h24v24H0z" fill="none"/><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+                    <!-- <div class="edit-task-btn">EDIT</div> -->
+                  </div>
+                  <div class="item">
+                    <p class="textbox2" >Exercise for 30 mins</p>
+                    <svg class="edit-task" xmlns="http://www.w3.org/2000/svg" height="40" viewBox="0 0 24 24" width="40"><path d="M0 0h24v24H0z" fill="none"/><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>
+                    <svg class="delete-task" xmlns="http://www.w3.org/2000/svg" height="40" viewBox="0 0 24 24" width="40"><path d="M0 0h24v24H0z" fill="none"/><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+
+                  </div>
+
+                  <div class="item">
+                    <p class="textbox3" >Meditate for 15 mins</p>
+                    <svg class="edit-task" xmlns="http://www.w3.org/2000/svg" height="40" viewBox="0 0 24 24" width="40"><path d="M0 0h24v24H0z" fill="none"/><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>
+                    <svg class="delete-task" xmlns="http://www.w3.org/2000/svg" height="40" viewBox="0 0 24 24" width="40"><path d="M0 0h24v24H0z" fill="none"/><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+                  </div>
+
+                  <div class="item">
+                    <p class="textbox4" >Do something you find fun</p>
+                    <svg class="edit-task" xmlns="http://www.w3.org/2000/svg" height="40" viewBox="0 0 24 24" width="40"><path d="M0 0h24v24H0z" fill="none"/><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>
+                    <svg class="delete-task" xmlns="http://www.w3.org/2000/svg" height="40" viewBox="0 0 24 24" width="40"><path d="M0 0h24v24H0z" fill="none"/><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+                  </div>
+
+                  <div class="item">
+                    <p class="textbox5" >Take a 30 min nap</p>
+                    <svg class="edit-task" xmlns="http://www.w3.org/2000/svg" height="40" viewBox="0 0 24 24" width="40"><path d="M0 0h24v24H0z" fill="none"/><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>
+                    <svg class="delete-task" xmlns="http://www.w3.org/2000/svg" height="40" viewBox="0 0 24 24" width="40"><path d="M0 0h24v24H0z" fill="none"/><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+                  </div>
+                
+                </div>
+                
+              </div>
+              
+          </div>
+        </div>
+
+
+
+        <div id="task-modal" class="modalTask">
+          <div class="modalTask-content">
+
+              <div class="modalTask-header">
+                  <h2>ADD A DAILY TASK</h2>
+                  <span class="task-closeBtn">&times;</span>
+              </div>
+              
+              <div class="modalTask-body">
+                  <form id="form-add-task"  required>
+                      <input id="input-task" placeholder="Input a task for the day" type="text" required></input>
+
+                      <div class="modalTask-footer">
+                        <input id="submit-task" type="submit" name="" value="Add">
+                    </div>
+                  </form>
+              </div>
+
+              
+          </div>
+      </div>
+
+
+      </main>
+      
+      <!-- partial -->
+      <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script>
+      <script src='https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js'></script>
+      <script  src="./home.js"></script>
+      <script  src="./home-admin.js"></script>
+</body>
+</html>

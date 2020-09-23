@@ -11,7 +11,7 @@ const { body, validationResult } = require('express-validator')
 const { runInNewContext } = require("vm")
 const app = express()
 
-mongoose.connect("mongodb://127.0.0.1:27017/userdb",{
+mongoose.connect("mongodb+srv://auxiliaadmin:auxilia101@auxilia.fyxta.mongodb.net/auxiliadb?retryWrites=true&w=majority",{
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true
@@ -104,14 +104,14 @@ app.post("/register", urlencoder, (req,res)=>{
     }
 })
 
-function isAvailable(email){
-    for(let i=0; i <users.length; i++){
-        if(users[i].email == email){
-            return false
-        }
-    }
-    return true
-}
+// function isAvailable(email){
+//     for(let i=0; i <users.length; i++){
+//         if(users[i].email == email){
+//             return false
+//         }
+//     }
+//     return true
+// }
 
 app.post("/login", urlencoder, (req,res)=>{
     let email = req.body.email

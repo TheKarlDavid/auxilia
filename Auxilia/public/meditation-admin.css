@@ -1,0 +1,91 @@
+body{
+    display: grid;
+    grid-template-columns: 365px 1fr 1fr;
+}
+
+main{
+    grid-column: 2/3;
+}
+
+.add-meditation{
+    margin: 25px 0 15px 73%;
+}   
+
+.add-meditation:hover{
+    color: #009795;
+    fill: #009795;
+    transition: 0.5s;
+    transition-timing-function:ease;
+    transition-property:all;
+} 
+
+.add-label{
+    display: inline-block;
+    position: relative;
+    bottom: 10px;
+    font-size: 25px;
+	font-weight: 600;
+    cursor: pointer;
+}
+
+.edit-meditation{
+    margin: 10px 10px 0 86%;
+}
+
+.edit-meditation:hover{
+    fill: #17bebb;
+    transition: 0.5s;
+    transition-timing-function:ease;
+    transition-property:all;
+}
+
+.delete-meditation{
+    margin: 10px 0 0;
+}
+
+.delete-meditation:hover{
+    fill: #d60000;
+    transition: 0.5s;
+    transition-timing-function:ease;
+    transition-property:all;
+}
+
+.video-container{
+    background-color: #ECF9F2;
+    border-radius: 15px;
+    
+}
+
+.video-container:nth-child(1){
+    margin-top: 50px;
+}
+
+.video-container:not(:last-child){
+    margin-bottom: 90px;
+}
+
+.video-container:last-child{
+    margin-bottom: 50px;
+}
+
+.video-head{
+    /* padding-top: 10px; */
+    margin-bottom: 15px;
+
+}
+
+.title{
+    color: black;
+    font-size: 30px;
+    font-weight: bold;
+    padding: 0 20px 10px;
+}
+
+.video-container iframe{
+    padding: 0px 0px 30px;
+}
+
+.desc{
+    font-size: 20px;
+    padding: 5px 20px 0px;
+}
