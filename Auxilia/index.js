@@ -36,6 +36,14 @@ app.use(session({
 
 app.use(express.static(__dirname + "/public"))
 
+hbs.registerHelper('if_equal', function(a, b, opts) {
+    if (a == b) {
+        return opts.fn(this)
+    } else {
+        return opts.inverse(this)
+    }
+})
+
 app.get("/", (req, res)=>{
 
     if(req.session.email){
@@ -44,7 +52,7 @@ app.get("/", (req, res)=>{
             res.render("home.hbs", {
                 firstname: req.session.firstname,
                 lastname: req.session.lastname,
-                tasks: docs
+                tasks: docs 
             })
         }, (err)=>{
             res.render("home.hbs",{
@@ -170,17 +178,19 @@ app.get("/login-register", (req, res)=>{
 app.get("/home", (req, res)=>{
 
     if(req.session.email){
-        Task.find({}).then((docs)=>{
-            res.render("home.hbs", {
-                firstname: req.session.firstname,
-                lastname: req.session.lastname,
-                tasks: docs
-            })
-        }, (err)=>{
-            res.render("home.hbs",{
-                error: err
-            })
-        })
+        res.redirect("/")
+        // Task.find({}).then((docs)=>{
+        //     res.render("home.hbs", {
+        //         firstname: req.session.firstname,
+        //         lastname: req.session.lastname,
+        //         tasks: docs
+        //     })
+        // }, (err)=>{
+        //     res.render("home.hbs",{
+        //         error: err
+        //     })
+        // })
+        
         // res.render("home.hbs",{
         //     firstname: req.session.firstname,
         //     lastname: req.session.lastname

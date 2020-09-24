@@ -78,10 +78,41 @@
               <div class="tasks-list">
                 <div class="task-item">
                     {{#each tasks}}
-                      <div class="item">
-                        <div class="drop"></div>
-                        <p class="textbox1" >{{task_description}}</p>
-                      </div>
+                      {{#if_equal _id "5f6b4ecde151436cd835476e"}}
+                        <div class="item">
+                          <div class="drop"></div>
+                          <p class="textbox1" >{{task_description}}</p>
+                        </div>
+                      {{/if_equal}}
+
+                      {{#if_equal _id "5f6b4eedcf95fd4d6c7ccf91"}}
+                        <div class="item">
+                          <div class="drop2"></div>
+                          <p class="textbox2" >{{task_description}}</p>
+                        </div>
+                      {{/if_equal}}
+
+                      {{#if_equal _id "5f6b4f38af2c041f24bd46f3"}}
+                        <div class="item">
+                          <div class="drop3"></div>
+                          <p class="textbox3" >{{task_description}}</p>
+                        </div>
+                      {{/if_equal}}
+
+                      {{#if_equal _id "5f6b4f4328b4895264821fae"}}
+                        <div class="item">
+                          <div class="drop4"></div>
+                          <p class="textbox4" >{{task_description}}</p>
+                        </div>
+                      {{/if_equal}}
+
+                      {{#if_equal _id "5f6b4f58823d607768875cca"}}
+                        <div class="item">
+                          <div class="drop5"></div>
+                          <p class="textbox5" >{{task_description}}</p>
+                        </div>
+                      {{/if_equal}}
+                      
                     {{/each}}
 
                 </div>
