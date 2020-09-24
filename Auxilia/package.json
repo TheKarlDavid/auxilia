@@ -19,5 +19,8 @@
     "hbs": "^4.1.1",
     "mogoose": "0.0.1-security",
     "mongoose": "^5.10.3"
-  }
+  },
+  "engines" : {
+    "node" : "12.18.3"
+}
 }
