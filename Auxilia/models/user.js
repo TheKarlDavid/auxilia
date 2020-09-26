@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
 
-let User = mongoose.model("user",{
+let User = mongoose.model("User",{
     email: {type: String , required:true, index: true, unique:true},
     password: {type: String, required:true},
     firstname: {type: String, required:true},
@@ -17,6 +17,4 @@ let User = mongoose.model("user",{
     }]
 })
 
-module.exports = {
-    User
-}
+module.exports = User

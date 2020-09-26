@@ -5,6 +5,4 @@ let Task = mongoose.model("tasks",{
     task_description: String
 })
 
-module.exports = {
-    Task
-}
+module.exports = Task

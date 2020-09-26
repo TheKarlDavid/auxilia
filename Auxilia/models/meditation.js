@@ -7,9 +7,7 @@ let Meditation = mongoose.model("meditation",{
     link: String
 })
 
-module.exports = {
-    Meditation
-}
+module.exports = Meditation
 
 
 // let meditation = new Meditation({

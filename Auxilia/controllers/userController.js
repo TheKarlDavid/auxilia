@@ -1,51 +1,36 @@
-const express = require("express")
-const app = express()
-const session = require("express-session")
-const hbs = require("hbs")
-const mongoose = require("mongoose")
-const userRoute = require('./routes/userRoute')
-const bcrypt = require("bcryptjs")
-const { runInNewContext } = require("vm")
-const bodyparser = require("body-parser")
+const User = require('../models/user')
+const Task = require('../models/tasks')
+const Meditation = require('../models/meditation')
+const { body, validationResult } = require('express-validator')
 
-app.set("view engine", "hbs")
+//home page
 
-hbs.registerHelper('if_equal', function(a, b, opts) {
-    if (a == b) {
-        return opts.fn(this)
-    } else {
-        return opts.inverse(this)
+exports.getIndex = (req, res)=>{
+
+    if(req.session.email){
+        //user already signed in
+        Task.find({}).then((docs)=>{
+            res.render("home.hbs", {
+                firstname: req.session.firstname,
+                lastname: req.session.lastname,
+                tasks: docs 
+            })
+        }, (err)=>{
+            res.render("home.hbs",{
+                error: err
+            })
+        })
     }
-})
 
-app.use(bodyparser.urlencoded({
-    extended:false
-}))
-
-app.use(session({
-    secret: "very secret",
-    resave: false,
-    saveUninitialized: true,
-    cookie:{
-        maxAge: 1000 * 60 * 30
+    else{
+        // the user has not registered or logged
+        res.render("index.hbs")
+    
     }
-}))
 
-app.use(userRoute)
-app.use(express.static(__dirname + "/public"))
+}
 
-
-mongoose.connect("mongodb+srv://auxiliaadmin:auxilia101@auxilia.fyxta.mongodb.net/auxiliadb?retryWrites=true&w=majority",{
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useCreateIndex: true
-})
-
-/*
-
-// registering a new user
-
-app.post("/register", urlencoder, (req,res)=>{
+exports.getRegister = (req,res)=>{
     // reading fields from hbs
     let email = req.body.em
     let password = req.body.pw
@@ -94,18 +79,9 @@ app.post("/register", urlencoder, (req,res)=>{
         })
         
     }
-})
+}
 
-// function isAvailable(email){
-//     for(let i=0; i <users.length; i++){
-//         if(users[i].email == email){
-//             return false
-//         }
-//     }
-//     return true
-// }
-
-app.post("/login", urlencoder, (req,res)=>{
+exports.getLogin = (req,res)=>{
     let email = req.body.email
     let password = req.body.password
     
@@ -134,9 +110,9 @@ app.post("/login", urlencoder, (req,res)=>{
     })
 
     
-})
+}
 
-app.get("/login-register", (req, res)=>{
+exports.getLoginRegister = (req, res)=>{
 
     if(req.session.email){
         res.render("home.hbs",{
@@ -148,42 +124,22 @@ app.get("/login-register", (req, res)=>{
     else{
         res.render("login.hbs")
     }
-})
+}
 
-app.get("/home", (req, res)=>{
+exports.getHome = (req, res)=>{
 
     if(req.session.email){
         res.redirect("/")
-        // Task.find({}).then((docs)=>{
-        //     res.render("home.hbs", {
-        //         firstname: req.session.firstname,
-        //         lastname: req.session.lastname,
-        //         tasks: docs
-        //     })
-        // }, (err)=>{
-        //     res.render("home.hbs",{
-        //         error: err
-        //     })
-        // })
-        
-        // res.render("home.hbs",{
-        //     firstname: req.session.firstname,
-        //     lastname: req.session.lastname
-        // })
     }
 
     else{
         res.render("index.hbs")
     }
-})
+}
 
-app.get("/meditation", (req, res)=>{
+exports.getMeditation = (req, res)=>{
 
     if(req.session.email){
-        // res.render("meditation.hbs", {
-            
-        // })
-
         Meditation.find({}).then((docs)=>{
             res.render("meditation.hbs", {
                 meditations: docs
@@ -198,9 +154,9 @@ app.get("/meditation", (req, res)=>{
     else{
         res.render("login.hbs") 
     }
-})
+}
 
-app.get("/about", (req, res)=>{
+exports.getAbout = (req, res)=>{
 
     if(req.session.email){
         res.render("about.hbs")
@@ -209,9 +165,9 @@ app.get("/about", (req, res)=>{
     else{
         res.render("about-not.hbs") 
     }
-})
+}
 
-app.get("/profile", (req, res)=>{
+exports.getProfile = (req, res)=>{
 
     if(req.session.email){
         res.render("profile.hbs",{
@@ -223,17 +179,9 @@ app.get("/profile", (req, res)=>{
     else{
         res.render("login.hbs") 
     }
-})
+}
 
-app.get("/signout", (req,res)=>{
+exports.getSignout = (req,res)=>{
     req.session.destroy()
     res.redirect("/")
-})
-
-*/
-
-app.listen(process.env.PORT || 3000, function(){
-    console.log("now listening to port 3000")
-})
-
-
+}
