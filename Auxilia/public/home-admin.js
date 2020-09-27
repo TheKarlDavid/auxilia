@@ -1,35 +1,43 @@
-//EDIT INTRO MODAL
-var task_modal = document.getElementById('task-modal');
-var modal_btn_task = document.getElementById('add-task-btn');
-var input_task = document.getElementById('input-task');
-var submit_task = document.getElementById('submit-task');
-var closeBtnIntro = document.getElementsByClassName('task-closeBtn')[0];
+//EDIT TASK MODAL
+var edit_task = document.getElementById('edit-task-modal');
+var form_task = document.getElementById('form-edit-task');
+var submit_edit_task = document.getElementById('submit-edit-task');
+var closeBtnEdit = document.getElementsByClassName('edit-task-closeBtn')[0];
 
 //LISTENERS for open click, close click, outside click
-modal_btn_task.addEventListener('click', openModalTask);
-closeBtnIntro.addEventListener('click', closeModalTask);
-window.addEventListener('click', outsideClickTask);
+closeBtnEdit.addEventListener('click', closeEditModal);
+window.addEventListener('click', outsideClickEdit);
 
-function openModalTask(){
-    task_modal.style.display='block';
-    submit_task.addEventListener('click', function(e){
-    e.preventDefault();
+function editTask(){
+  console.log("CLICK");
+
+  edit_task.style.display='block';
+  submit_edit_task.addEventListener('click', function(e){
+  e.preventDefault();
+  console.log("HERE");
     
-    if((input_task.value != null) && (input_task.value != "")){ 
-      console.log("new task added");
-      task_modal.style.display='none';
-    //   clearEditIntro();
-    //   displayIntroData();
-    }
+    // if((form_task.inputEditTitle.value != null) && (form_task.inputEditTitle.value != "") && 
+    //   (form_task.inputEditDesc.value != null) && (form_task.inputEditDesc.value != "") &&
+    //   (form_task.inputEditLink.value != null) && (form_task.inputEditLink.value != "") ){ 
+    //   console.log("new meditatioon video added");
+    //   console.log(form_task.inputEditTitle.value);
+    //   console.log(form_task.inputEditDesc.value);
+    //   console.log(form_task.inputEditLink.value);
+
+    //   edit_task.style.display='none';
+    //   // closeEditModal();
+
+    // }
   });
+
 }
 
-function closeModalTask(){
-    task_modal.style.display='none';
+function closeEditModal(){
+    edit_task.style.display='none';
 }
 
-function outsideClickTask(e){
-  if(e.target == task_modal){
-    task_modal.style.display='none';
+function outsideClickEdit(e){
+  if(e.target == edit_task){
+    edit_task.style.display='none';
   }
 }

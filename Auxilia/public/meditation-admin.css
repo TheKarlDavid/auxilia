@@ -12,8 +12,8 @@ main{
 }   
 
 .add-meditation:hover{
-    color: #009795;
-    fill: #009795;
+    color: #899663;
+    fill: #899663;
     transition: 0.5s;
     transition-timing-function:ease;
     transition-property:all;
@@ -30,6 +30,7 @@ main{
 
 .edit-meditation{
     margin: 10px 10px 0 86%;
+    cursor: pointer;
 }
 
 .edit-meditation:hover{
@@ -41,6 +42,7 @@ main{
 
 .delete-meditation{
     margin: 10px 0 0;
+    cursor: pointer;
 }
 
 .delete-meditation:hover{
@@ -88,4 +90,244 @@ main{
 .desc{
     font-size: 20px;
     padding: 5px 20px 0px;
+}
+
+
+/* FOR ADD MEDITATION MODAL */
+.modalMeditation{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 17px;
+    line-height: 1.6;
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    /* overflow: auto; */
+    background-color: rgba(0,0,0,0.5);
+}
+
+.modalMeditation-content{
+    background-color: #f4f4f4;
+    margin: 13% auto;
+    padding: 18px;
+    width: 55%;
+    border-radius: 5px;
+    box-shadow: 0 5px 8px 0 rgba(0,0,0,0.2),
+     0 7px 20px 0 rgba(0,0,0,0.17);
+
+    animation-name: modelAddMeditation;
+    animation-duration: 1s;
+}
+
+.modalMeditation-header{
+	background: #89aa63;	
+ 	border-radius: 5px;
+    padding: 5px;
+    color: white;
+
+    display: grid;
+    grid-template-columns: 1fr 50px;
+}
+
+.modalMeditation-header h2{
+	display: inline-block;
+	position: relative;
+	bottom: 8px;
+    position: relative;
+    top: 13px;
+    left: 245px;
+}
+
+.meditation-closeBtn{
+  display: inline-block;
+  position: relative;
+  color: #fff;
+  font-size: 55px;
+  /* margin-left: 29%; */
+  line-height: normal;
+}
+
+.meditation-closeBtn:hover, .meditation-closeBtn:focus{
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+.modalMeditation-body{
+    padding: 10px 20px;
+}
+
+.modalMeditation-footer{
+    color: white;
+    text-align: center;
+}
+
+#form-add-meditation input{
+    padding: 5px;
+    width: 98%;
+    height: 50px;
+    margin: 5px;
+    font-size:1.4em;
+	font-family:sans-serif;
+	margin: 10px 0;
+}
+
+#form-add-meditation input:last-child{
+	margin: 10px 0 0;
+}
+
+
+#submit-meditation{
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #fff;
+    font-size: 20px;
+    background:#89aa63;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    width: 100%;
+    height: 100%;
+
+    transition-duration:0.5s;
+    transition-timing-function:ease;
+    transition-property:all;
+  }
+
+#submit-meditation:hover{
+    background: #89a063;
+}
+
+@keyframes modelAddMeditation{
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity: 1;
+    }
+}
+
+
+/* FOR EDIT MEDITATION MODAL */
+.editModalMeditation{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 17px;
+    line-height: 1.6;
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    /* overflow: auto; */
+    background-color: rgba(0,0,0,0.5);
+}
+
+.editModalMeditation-content{
+    background-color: #f4f4f4;
+    margin: 13% auto;
+    padding: 18px;
+    width: 55%;
+    border-radius: 5px;
+    box-shadow: 0 5px 8px 0 rgba(0,0,0,0.2),
+     0 7px 20px 0 rgba(0,0,0,0.17);
+
+    animation-name: modelAddMeditation;
+    animation-duration: 1s;
+}
+
+.editModalMeditation-header{
+	background: #17BEBB;	
+ 	border-radius: 5px;
+    padding: 5px;
+    color: white;
+
+    display: grid;
+    grid-template-columns: 1fr 50px;
+}
+
+.editModalMeditation-header h2{
+	display: inline-block;
+	position: relative;
+	bottom: 8px;
+    position: relative;
+    top: 13px;
+    left: 245px;
+}
+
+.edit-meditation-closeBtn{
+  display: inline-block;
+  position: relative;
+  color: #fff;
+  font-size: 55px;
+  /* margin-left: 29%; */
+  line-height: normal;
+}
+
+.edit-meditation-closeBtn:hover, .edit-meditation-closeBtn:focus{
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+.editModalMeditation-body{
+    padding: 10px 20px;
+}
+
+.editModalMeditation-footer{
+    color: white;
+    text-align: center;
+}
+
+#form-edit-meditation input{
+    padding: 5px;
+    width: 98%;
+    height: 50px;
+    margin: 5px;
+    font-size:1.4em;
+	font-family:sans-serif;
+	margin: 10px 0;
+}
+
+#form-edit-meditation input:last-child{
+	margin: 10px 0 0;
+}
+
+
+#submit-edit-meditation{
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #fff;
+    font-size: 20px;
+    background:#17BEBB;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    width: 100%;
+    height: 100%;
+
+    transition-duration:0.5s;
+    transition-timing-function:ease;
+    transition-property:all;
+  }
+
+#submit-edit-meditation:hover{
+    background: #00a19f;
+  }
+
+@keyframes modelAddMeditation{
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity: 1;
+    }
 }

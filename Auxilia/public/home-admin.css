@@ -729,7 +729,7 @@ main{
 
 .item{
     display: grid;
-    grid-template-columns: 1fr 50px 50px 5px;
+    grid-template-columns: 1fr 60px 5px;
     background: #c6e9d7;
     margin: 10px 0;
     border-radius: 5px;
@@ -812,34 +812,21 @@ main{
     text-transform: uppercase;
 }
 
-.add-task{
-	display: inline-block;
-	padding: 10px;
-	margin-left: 180px;
+.item svg{
+    position: relative;
+    top: 11px;
 }
 
-.add-task svg{
-	position: relative;
-	top: 7px;
-	cursor: pointer;
+.edit-task:hover{
+    fill: #009795;
+    transition: 0.5s;
 }
 
-.add-label{
-	position: relative;
-	bottom: 2px;
-	display: inline-block;
-	font-size: 23px;
-	font-weight: 600;
-	cursor: pointer;
-}
 
-.add-task:hover{
-	fill: #17BEBB;
-	color: #17BEBB;
-	transition: 0.5s;
-}
 
-.modalTask{
+
+/* FOR EDIT MEDITATION MODAL */
+.editModalTask{
     font-family: Arial, Helvetica, sans-serif;
     font-size: 17px;
     line-height: 1.6;
@@ -850,64 +837,69 @@ main{
     top: 0;
     height: 100%;
     width: 100%;
-    overflow: auto;
     background-color: rgba(0,0,0,0.5);
 }
 
-.modalTask-content{
+.editModalTask-content{
     background-color: #f4f4f4;
-    margin: 15% auto;
+    margin: 13% auto;
     padding: 18px;
     width: 55%;
+    border-radius: 5px;
     box-shadow: 0 5px 8px 0 rgba(0,0,0,0.2),
      0 7px 20px 0 rgba(0,0,0,0.17);
 
-    animation-name: modalopenTask;
+    animation-name: modalEditTask;
     animation-duration: 1s;
 }
 
-.modalTask-header{
+.editModalTask-header{
 	background: #17BEBB;	
  	border-radius: 5px;
     padding: 5px;
     color: white;
+
+    display: grid;
+    grid-template-columns: 1fr 50px;
 }
 
-.modalTask-header h2{
+.editModalTask-header h2{
 	display: inline-block;
 	position: relative;
 	bottom: 8px;
-	margin-left: 36%;
+    position: relative;
+    top: 13px;
+    left: 245px;
 }
 
-.task-closeBtn{
+.edit-task-closeBtn{
   display: inline-block;
   position: relative;
   color: #fff;
   font-size: 55px;
-  margin-left: 29%;
+  /* margin-left: 29%; */
   line-height: normal;
 }
 
-.task-closeBtn:hover, .task-closeBtn:focus{
+.edit-task-closeBtn:hover, .edit-task-closeBtn:focus{
   color: black;
   text-decoration: none;
   cursor: pointer;
   transition: 0.5s;
 }
 
-.modalTask-body{
+.editModalTask-body{
     padding: 10px 20px;
 }
 
-.modalTask-footer{
+.editModalTask-footer{
     color: white;
     text-align: center;
 }
 
-#form-add-task input{
+#form-edit-task input{
     padding: 5px;
-    width: 100%;
+    width: 98%;
     height: 50px;
     margin: 5px;
     font-size:1.4em;
@@ -915,12 +907,12 @@ main{
 	margin: 10px 0;
 }
 
-#form-add-task input:last-child{
+#form-edit-task input:last-child{
 	margin: 10px 0 0;
 }
 
 
-#submit-task{
+#submit-edit-task{
     background: transparent;
     border: none;
     outline: none;
@@ -938,11 +930,11 @@ main{
     transition-property:all;
   }
 
-#submit-task:hover{
+#submit-edit-task:hover{
     background: #00a19f;
   }
 
-@keyframes modalopenTask{
+@keyframes modalEditTask{
     from{
         opacity: 0;
     }
@@ -951,18 +943,4 @@ main{
     }
 }
 
-.item svg{
-    position: relative;
-    top: 11px;
-}
-
-.edit-task:hover{
-    fill: #009795;
-    transition: 0.5s;
-}
-
-.delete-task:hover{
-    fill: #d60000;
-    transition: 0.5s;
-}
 

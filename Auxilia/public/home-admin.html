@@ -72,42 +72,37 @@
            <div class="notepadbase">
               <div class="tasks-header">
                 <h1 class="textbox-admin">Daily Tasks</h1>
-                <div class="add-task" id="add-task-btn">
+
+                <!-- <div class="add-task" id="add-task-btn">
                     <svg xmlns="http://www.w3.org/2000/svg" height="36" viewBox="0 0 24 24" width="36"><path d="M0 0h24v24H0z" fill="none"/><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5 11h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"/></svg>
                     <div class="add-label">Add a task</div>
-                </div>
+                </div> -->
+
               </div>
               <div class="tasks-list">
                 <div class="task-item">
                   <div class="item">
                     <p class="textbox1">Watch video</p>
-                    <svg class="edit-task" xmlns="http://www.w3.org/2000/svg" height="40" viewBox="0 0 24 24" width="40"><path d="M0 0h24v24H0z" fill="none"/><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>
-                    <svg class="delete-task" xmlns="http://www.w3.org/2000/svg" height="40" viewBox="0 0 24 24" width="40"><path d="M0 0h24v24H0z" fill="none"/><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+                    <svg onclick="editTask()" class="edit-task" xmlns="http://www.w3.org/2000/svg" height="40" viewBox="0 0 24 24" width="40"><path d="M0 0h24v24H0z" fill="none"/><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>
                     <!-- <div class="edit-task-btn">EDIT</div> -->
                   </div>
                   <div class="item">
                     <p class="textbox2" >Exercise for 30 mins</p>
                     <svg class="edit-task" xmlns="http://www.w3.org/2000/svg" height="40" viewBox="0 0 24 24" width="40"><path d="M0 0h24v24H0z" fill="none"/><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>
-                    <svg class="delete-task" xmlns="http://www.w3.org/2000/svg" height="40" viewBox="0 0 24 24" width="40"><path d="M0 0h24v24H0z" fill="none"/><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
-
                   </div>
 
                   <div class="item">
                     <p class="textbox3" >Meditate for 15 mins</p>
-                    <svg class="edit-task" xmlns="http://www.w3.org/2000/svg" height="40" viewBox="0 0 24 24" width="40"><path d="M0 0h24v24H0z" fill="none"/><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>
-                    <svg class="delete-task" xmlns="http://www.w3.org/2000/svg" height="40" viewBox="0 0 24 24" width="40"><path d="M0 0h24v24H0z" fill="none"/><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
-                  </div>
+                    <svg class="edit-task" xmlns="http://www.w3.org/2000/svg" height="40" viewBox="0 0 24 24" width="40"><path d="M0 0h24v24H0z" fill="none"/><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>                  </div>
 
                   <div class="item">
                     <p class="textbox4" >Do something you find fun</p>
                     <svg class="edit-task" xmlns="http://www.w3.org/2000/svg" height="40" viewBox="0 0 24 24" width="40"><path d="M0 0h24v24H0z" fill="none"/><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>
-                    <svg class="delete-task" xmlns="http://www.w3.org/2000/svg" height="40" viewBox="0 0 24 24" width="40"><path d="M0 0h24v24H0z" fill="none"/><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
                   </div>
 
                   <div class="item">
                     <p class="textbox5" >Take a 30 min nap</p>
                     <svg class="edit-task" xmlns="http://www.w3.org/2000/svg" height="40" viewBox="0 0 24 24" width="40"><path d="M0 0h24v24H0z" fill="none"/><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>
-                    <svg class="delete-task" xmlns="http://www.w3.org/2000/svg" height="40" viewBox="0 0 24 24" width="40"><path d="M0 0h24v24H0z" fill="none"/><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
                   </div>
                 
                 </div>
@@ -118,29 +113,27 @@
         </div>
 
 
-
-        <div id="task-modal" class="modalTask">
-          <div class="modalTask-content">
-
-              <div class="modalTask-header">
-                  <h2>ADD A DAILY TASK</h2>
-                  <span class="task-closeBtn">&times;</span>
+        <div id="edit-task-modal" class="editModalTask">
+          <div class="editModalTask-content">
+  
+              <div class="editModalTask-header">
+                  <h2>EDIT DAILY TASK</h2>
+                  <span class="edit-task-closeBtn">&times;</span>
               </div>
               
-              <div class="modalTask-body">
-                  <form id="form-add-task"  required>
-                      <input id="input-task" placeholder="Input a task for the day" type="text" required></input>
-
-                      <div class="modalTask-footer">
-                        <input id="submit-task" type="submit" name="" value="Add">
+              <div class="editModalTask-body">
+                  <form id="form-edit-task">
+                    <input id="inputEditTitle" value="Title" type="text" required></input>
+                    <!-- <input id="inputEditDesc" value="Description" type="text" required></input>
+                    <input id="inputEditLink" value="Link" type="text" required></input> -->
+  
+                      <div class="editModalTask-footer">
+                        <input id="submit-edit-task" type="submit" name="" value="Edit">
                     </div>
                   </form>
               </div>
-
-              
           </div>
-      </div>
-
+        </div>
 
       </main>
       
@@ -149,5 +142,6 @@
       <script src='https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js'></script>
       <script  src="./home.js"></script>
       <script  src="./home-admin.js"></script>
+
 </body>
 </html>
