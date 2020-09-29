@@ -10,36 +10,38 @@ exports.getIndex = (req, res)=>{
 
     if(req.session.email){
         //user already signed in
-        if(req.session.task){
-            res.render("home.hbs", {
-                firstname: req.session.firstname,
-                lastname: req.session.lastname,
-                tasks:req.session.tasks
-            })
-        }
-        else{
-            req.session.task = 1
-            req.session.tasks = []
-
-            Task.find({}).then((docs)=>{
-                // console.log(docs[0].task_description)
-                for(let i=0; i<docs.length; i++){
-                    let task = {task_description: docs[i].task_description, accomplished: false}
-                    req.session.tasks.push(task)
+        req.session.tasks = []
+        req.session.accomplished = 0
+        User.find({}).then((docs)=>{
+            for(let i=0; i<docs[0].tasks.length; i++){
+                let task = {
+                    task_description: docs[0].tasks[i].task_description, 
+                    accomplished: docs[0].tasks[i].accomplished, 
+                    logged_date: docs[0].tasks[i].logged_date
                 }
+                req.session.tasks.push(task)
+            }
 
-                User.findOneAndUpdate({email:req.session.email}, 
-                    {tasks:req.session.tasks}).then((doc)=>{
-                        // console.log(doc.tasks)
-                        res.render("home.hbs", {
-                            firstname: req.session.firstname,
-                            lastname: req.session.lastname,
-                            tasks:req.session.tasks
-                        })
-                })
+            User.findOne({email:req.session.email}).then(result=>{
+                // console.log(result.tasks)
+                for(let i=0; i<result.tasks.length; i++){
+                    if(result.tasks[i].accomplished){
+                        console.log(result.tasks[i].accomplished)
+                        req.session.accomplished++;
+                        
+                    }
+                    
+                }
+                console.log("nums "+req.session.accomplished)
                 
+                res.render("home.hbs", {
+                    firstname: req.session.firstname,
+                    lastname: req.session.lastname,
+                    tasks:req.session.tasks,
+                    plant: req.session.accomplished
+                })
             })
-        }
+        })
     }
 
     else{
@@ -126,8 +128,62 @@ exports.getLogin = async (req,res)=>{
         if(remember_me){    
             req.session.cookie.maxAge = 1000 * 3600 * 24 * 30
         }
-            res.redirect("/")
+
+        // let today = new Date();
+        let date_today = new Date();
+        let date = ("0" + date_today.getDate()).slice(-2);
+        let month = ("0" + (date_today.getMonth() + 1)).slice(-2);
+        let year = date_today.getFullYear();
+        req.session.today = (year + month  + date)
+        console.log(req.session.today)
+
+        req.session.tasks = []
+
+        User.find({}).then((docs)=>{
+            
+            last_login = docs[0].tasks[0].logged_date
+            console.log(last_login)
+            console.log(req.session.today)
+
+            if(last_login < req.session.today){
+                Task.find({}).then((docs)=>{
+                    for(let i=0; i<docs.length; i++){
+                        let task = {task_description: docs[i].task_description, accomplished: false, logged_date: req.session.today}
+                        req.session.tasks.push(task)
+                    }
+            
+                    User.findOneAndUpdate({email:req.session.email}, 
+                        {tasks:req.session.tasks}).then((doc)=>{
+                            console.log(req.session.tasks)
+                            res.redirect("/")
+                    })
+                            
+                })
+            }
+            else{
+                res.redirect("/")
+            }
+            
+        })
+ 
+        // Task.find({}).then((docs)=>{
+        // // console.log(docs[0].task_description)
+        //     for(let i=0; i<docs.length; i++){
+        //         let task = {task_description: docs[i].task_description, accomplished: false, logged_date: date_today}
+        //         req.session.tasks.push(task)
+        //     }
+
+        //     User.findOneAndUpdate({email:req.session.email}, 
+        //         {tasks:req.session.tasks}).then((doc)=>{
+        //             console.log(req.session.tasks)
+        //             res.redirect("/")
+        //     })
+                
+        // })
     }
+
+    // res.redirect("/")
+
     
 }
 
@@ -160,52 +216,33 @@ exports.getUpdateTask = (req, res)=>{
 
     if(req.session.email){
         User.findOne({email:req.session.email}).then(result=>{
-            console.log(result.tasks)
+            // console.log(result.tasks)
             element = req.body.dropCount
-            let temp = result.tasks[req.body.dropCount].accomplished
-            console.log("DESC :"+req.body.taskDesc)
+            let task_id = result.tasks[req.body.dropCount]
+            // console.log(result._id)
+            console.log(task_id._id)
 
-            User.findOneAndUpdate({task_description: req.body.taskDesc}, 
-            {$set: {accomplished:true}}).then((doc)=>{
-                console.log("SUCCESS UPDATE")
-                // res.render("home.hbs", {
-                //     firstname: req.session.firstname,
-                //     lastname: req.session.lastname,
-                //     tasks: doc.tasks
-                // })
+            User.findOneAndUpdate({
+                _id:result._id,
+                "tasks._id": task_id
+                }, {
+                    "$set": {
+                    "tasks.$": {
+                        task_description: task_id.task_description,
+                        accomplished: true,
+                        logged_date: req.session.today
+                    }
+                }
+            }).then((doc)=>{
+                console.log("UP")
+                // console.log("User: " + JSON.stringify(doc))
+                }, (err)=>{
+                console.log("Error: " +err)
             })
 
-            // console.log(result.firstname)
-            // console.log("temp "+temp)
-            // tasks[parseInt(req.body.dropCount, 10)-1] = 1
-            // User.findOneAndUpdate(
-            //     {email: req.session.email},
-            //     {tasks:temp}
-            // )
         })
         console.log(req.body.dropCount)
         element = req.body.dropCount
-
-        // User.findOneAndUpdate({email:req.session.email}, {"tasks.element.accomplished":true}).then((docs)=>{
-        //     console.log("UPDATE"+ docs)
-        //     // let docObj = docs.toObject()
-        //     // console.log(docObj)
-        //     // console.log(JSON.stringify(docs.firstname))
-        //     // console.log(docs[0].task_description)
-        //     // User.findOneAndUpdate({email:req.session.email}, 
-        //     //     {tasks:docs}).then((doc)=>{
-        //     //         // console.log(doc.tasks)
-        //     //         res.render("home.hbs", {
-        //     //             firstname: req.session.firstname,
-        //     //             lastname: req.session.lastname,
-        //     //             tasks: doc.tasks
-        //     //         })
-        //     // })
-        // }, (err)=>{
-        //     res.render("home.hbs",{
-        //         error: err
-        //     })
-        // })
 
     }
 

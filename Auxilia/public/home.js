@@ -59,8 +59,7 @@ $(".drop").click(function() {
 		url: "update-task",
 		method: "post",
 		data: {
-			dropCount: $(this).next().val(),
-			taskDesc: $(this).next().next().val()              
+			dropCount: $(this).next().val()             
 		},
 		success: function(){
 			console.log("Task updated")
@@ -122,6 +121,17 @@ $(".drop2").click(function() {
 	}
 
 	console.log("DROP2")
+
+	$.ajax({
+		url: "update-task",
+		method: "post",
+		data: {
+			dropCount: $(this).next().val()             
+		},
+		success: function(){
+			console.log("Task updated")
+		}
+	})
 });
 
 $(".drop3").click(function() {
@@ -175,6 +185,17 @@ $(".drop3").click(function() {
 	}
 
 	console.log("DROP3")
+
+	$.ajax({
+		url: "update-task",
+		method: "post",
+		data: {
+			dropCount: $(this).next().val()             
+		},
+		success: function(){
+			console.log("Task updated")
+		}
+	})
 });
 
 $(".drop4").click(function() {
@@ -228,6 +249,17 @@ $(".drop4").click(function() {
 	}
 
 	console.log("DROP4")
+
+	$.ajax({
+		url: "update-task",
+		method: "post",
+		data: {
+			dropCount: $(this).next().val()             
+		},
+		success: function(){
+			console.log("Task updated")
+		}
+	})
 });
 
 $(".drop5").click(function() {
@@ -281,6 +313,17 @@ $(".drop5").click(function() {
 	}
 
 	console.log("DROP5")
+
+	$.ajax({
+		url: "update-task",
+		method: "post",
+		data: {
+			dropCount: $(this).next().val()             
+		},
+		success: function(){
+			console.log("Task updated")
+		}
+	})
 });
 
 

@@ -41,7 +41,9 @@
          
             
           <div class="box">
-            <div class="stem">
+            {{plant}}
+            {{#if_equal plant "0"}}
+              <div class="stem">
               <div class="leaf leaf00">
                 <div class="line"></div>
               </div>
@@ -57,7 +59,102 @@
               <div class="leaf leaf04 ">
                 <div class="line"></div>
               </div>
-              
+            {{/if_equal}}
+
+            {{#if_equal plant "1"}}
+              <div class="stem">
+              <div class="leaf leaf00 r">
+                <div class="line"></div>
+              </div>
+              <div class="leaf leaf01 ">
+                <div class="line"></div>
+              </div>
+              <div class="leaf leaf02 ">
+                <div class="line"></div>
+              </div>
+              <div class="leaf leaf03 ">
+                <div class="line"></div>
+              </div>
+              <div class="leaf leaf04 ">
+                <div class="line"></div>
+              </div>
+            {{/if_equal}}
+
+            {{#if_equal plant "2"}}
+              <div class="stem rain2">
+              <div class="leaf leaf00 r leaf1_2">
+                <div class="line"></div>
+              </div>
+              <div class="leaf leaf01 r">
+                <div class="line"></div>
+              </div>
+              <div class="leaf leaf02 ">
+                <div class="line"></div>
+              </div>
+              <div class="leaf leaf03 ">
+                <div class="line"></div>
+              </div>
+              <div class="leaf leaf04 ">
+                <div class="line"></div>
+              </div>
+            {{/if_equal}}
+
+            {{#if_equal plant "3"}}
+              <div class="stem rain2 rain3">
+              <div class="leaf leaf00 r leaf1_2 leaf1_3">
+                <div class="line"></div>
+              </div>
+              <div class="leaf leaf01 r r2">
+                <div class="line"></div>
+              </div>
+              <div class="leaf leaf02 t">
+                <div class="line"></div>
+              </div>
+              <div class="leaf leaf03 ">
+                <div class="line"></div>
+              </div>
+              <div class="leaf leaf04 ">
+                <div class="line"></div>
+              </div>
+            {{/if_equal}}
+
+            {{#if_equal plant "4"}}
+              <div class="stem rain2 rain3 rain4">
+              <div class="leaf leaf00 r leaf1_2 leaf1_3 leaf1_4">
+                <div class="line"></div>
+              </div>
+              <div class="leaf leaf01 r r2 r3">
+                <div class="line"></div>
+              </div>
+              <div class="leaf leaf02 t t2">
+                <div class="line"></div>
+              </div>
+              <div class="leaf leaf03 y">
+                <div class="line"></div>
+              </div>
+              <div class="leaf leaf04 ">
+                <div class="line"></div>
+              </div>
+            {{/if_equal}}
+
+            {{#if_equal plant "5"}}
+              <div class="stem rain2 rain3 rain4 rain5">
+              <div class="leaf leaf00 r leaf1_2 leaf1_3 leaf1_4 leaf1_5">
+                <div class="line"></div>
+              </div>
+              <div class="leaf leaf01 r r2 r3 r4">
+                <div class="line"></div>
+              </div>
+              <div class="leaf leaf02 t t2 t3">
+                <div class="line"></div>
+              </div>
+              <div class="leaf leaf03 y y2">
+                <div class="line"></div>
+              </div>
+              <div class="leaf leaf04 u">
+                <div class="line"></div>
+              </div>
+            {{/if_equal}}
             
             </div>
             <div class="pot-top"></div>
@@ -78,52 +175,117 @@
               <div class="tasks-list">
                 <div class="task-item">
                     {{#each tasks}}
-                    {{tasks}}
                       {{#if_equal @index "0"}}
-                        {{!-- <div class="item">
-                          <div class="drop"></div>
-                          <p class="textbox1" >{{task_description}}</p>
-                        </div> --}}
 
-                        <form>
-                          <div class="item">
-                            <div class="drop"></div>
-                            <input type="hidden" name="drop" value="1">
-                            <input type="hidden" name="task_id" value="{{task_description}}">
-                            <p class="textbox1" >{{task_description}}</p>
-                          </div>
-                          {{!-- <input type="hidden" name="drop" value="1"> --}}
-                          {{!-- <input type="hidden" name="task" value="{{task_description}}"> --}}
-                        </form>
+                        {{#if accomplished}}
+                          <form>
+                            <div class="item">
+                              <div class="drop c"></div>
+                              <input type="hidden" name="drop" value="0">
+                              {{!-- <input type="hidden" name="task_id" value="{{task_description}}"> --}}
+                              <p class="textbox1 ct" >{{task_description}}</p>
+                            </div>
+                          </form>
+                        {{else}}
+                          <form>
+                            <div class="item">
+                              <div class="drop"></div>
+                              <input type="hidden" name="drop" value="0">
+                              <p class="textbox1" >{{task_description}}</p>
+                            </div>
+                          </form>
+                        {{/if}}
+
                       {{/if_equal}}
 
                       {{#if_equal @index "1"}}
-                        <div class="item">
-                          <div class="drop2"></div>
-                          <p class="textbox2" >{{task_description}}</p>
-                        </div>
+                      
+                        {{#if accomplished}}
+                          <form>
+                            <div class="item">
+                              <div class="drop2 c c2"></div>
+                              <input type="hidden" name="drop" value="1">
+                              <p class="textbox2 ct ct2" >{{task_description}}</p>
+                            </div>
+                          </form>
+                        {{else}}
+                          <form>
+                            <div class="item">
+                              <div class="drop2"></div>
+                              <input type="hidden" name="drop" value="1">
+                              <p class="textbox2" >{{task_description}}</p>
+                            </div>
+                          </form>
+                        {{/if}}
+
                       {{/if_equal}}
 
                       {{#if_equal @index "2"}}
-                        <div class="item">
-                          <div class="drop3"></div>
-                          <p class="textbox3" >{{task_description}}</p>
-                        </div>
+                      
+                        {{#if accomplished}}
+                          <form>
+                            <div class="item">
+                              <div class="drop3 c3"></div>
+                              <input type="hidden" name="drop" value="2">
+                              <p class="textbox3 ct3" >{{task_description}}</p>
+                            </div>
+                          </form>
+                        {{else}}
+                          <form>
+                            <div class="item">
+                              <div class="drop3"></div>
+                              <input type="hidden" name="drop" value="2">
+                              <p class="textbox3" >{{task_description}}</p>
+                            </div>
+                          </form>
+                        {{/if}}
+
                       {{/if_equal}}
 
                       {{#if_equal @index "3"}}
-                        <div class="item">
-                          <div class="drop4"></div>
-                          <p class="textbox4" >{{task_description}}</p>
-                        </div>
+                      
+                        {{#if accomplished}}
+                          <form>
+                            <div class="item">
+                              <div class="drop4 c4"></div>
+                              <input type="hidden" name="drop" value="3">
+                              <p class="textbox4 ct4" >{{task_description}}</p>
+                            </div>
+                          </form>
+                        {{else}}
+                          <form>
+                            <div class="item">
+                              <div class="drop4"></div>
+                              <input type="hidden" name="drop" value="3">
+                              <p class="textbox4" >{{task_description}}</p>
+                            </div>
+                          </form>
+                        {{/if}}
+
                       {{/if_equal}}
 
                       {{#if_equal @index "4"}}
-                        <div class="item">
-                          <div class="drop5"></div>
-                          <p class="textbox5" >{{task_description}}</p>
-                        </div>
+                      
+                        {{#if accomplished}}
+                          <form>
+                            <div class="item">
+                              <div class="drop5 c5"></div>
+                              <input type="hidden" name="drop" value="4">
+                              <p class="textbox5 ct5" >{{task_description}}</p>
+                            </div>
+                          </form>
+                        {{else}}
+                          <form>
+                            <div class="item">
+                              <div class="drop5"></div>
+                              <input type="hidden" name="drop" value="4">
+                              <p class="textbox5" >{{task_description}}</p>
+                            </div>
+                          </form>
+                        {{/if}}
+
                       {{/if_equal}}
+
                       
                     {{/each}}
 
