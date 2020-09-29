@@ -1,10 +1,21 @@
 body{
     display: grid;
-    grid-template-columns: 365px 1fr 1fr;
+    grid-template-columns: 365px 1fr 365px;
 }
 
 main{
     grid-column: 2/3;
+}
+
+.no-video{
+    width: 100%;
+    color: #899663;
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+    background: white;
+    padding: 15px;
+    border-radius: 5px;
 }
 
 .video-container{

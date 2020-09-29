@@ -40,6 +40,13 @@
       
       <main>
         {{error}}
+        {{#unless meditations}}
+          <div class="no-video">
+            No more meditation videos, please add a video
+          </div>
+        {{/unless}}
+
+
         {{#each meditations}}
           <div class="video-container">
             <div  class="video-head">
@@ -97,6 +104,6 @@
         
       </main>
       
-      <script src="meditation.js"></script>
+      {{!-- <script src="meditation.js"></script> --}}
 </body>
 </html>

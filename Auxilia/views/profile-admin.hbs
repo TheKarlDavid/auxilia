@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <link rel="stylesheet" type="text/css" href="profile.css">
+
+    <title>Profile | Auxilia</title>
+</head>
+<body>
+    <header id="head">
+        <nav>
+          <div class="logo">
+            <img src="img/Auxilia.png"></img>
+          </div>
+          <ul class="navlist">
+            <li><a href="home" method="get">Home</a></li>
+            <li><a href="meditation" method="get">Meditation</a></li>
+            <li><a href="about" method="get">About</a></li>
+            <li><a href="profile" method="get">Profile</a></li>
+          </ul>
+        </nav>
+
+
+      </header>
+      
+      <main>
+        <div class="header-banner"> 
+          <h1>Hello, {{firstname}} {{lastname}} !</h1>
+        </div>
+        <div class="accomplishment-container"> 
+          <div class="accomplishment-header">
+            <h1>My garden</h1>
+          </div>
+          
+          <div class="accomplishment-list">
+            {{#each plants}}
+              {{#if accomplishments}}
+              {{/if}}
+            {{/each}}
+            {{#unless plants}}
+              <div>No accomplishments yet, go do tasks to get accomplishments!</div>
+            {{/unless}}
+          </div>
+        </div>
+
+        <a href="signout" id="signout" method="get">Sign out</a>
+        
+      </main>
+      
+      <!-- partial -->
+      <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script>
+      <script src='https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js'></script><script  src="./home.js"></script>
+</body>
+</html>

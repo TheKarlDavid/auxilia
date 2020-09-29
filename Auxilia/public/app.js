@@ -13,3 +13,12 @@ function login(){
     registerForm.style.left="450px";
     btn.style.left="0px";
 }
+
+// FOR REMEMBER ME CHECKBOX
+$(document).ready(function(){
+
+    $("input#remember").click(function(){
+      $("input#remember").val("1");
+    })
+
+})

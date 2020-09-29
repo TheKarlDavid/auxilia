@@ -2,6 +2,7 @@ const User = require('../models/user')
 const Task = require('../models/tasks')
 const Meditation = require('../models/meditation')
 const { body, validationResult } = require('express-validator')
+const bcrypt = require("bcryptjs")
 
 //home page
 
@@ -9,17 +10,36 @@ exports.getIndex = (req, res)=>{
 
     if(req.session.email){
         //user already signed in
-        Task.find({}).then((docs)=>{
+        if(req.session.task){
             res.render("home.hbs", {
                 firstname: req.session.firstname,
                 lastname: req.session.lastname,
-                tasks: docs 
+                tasks:req.session.tasks
             })
-        }, (err)=>{
-            res.render("home.hbs",{
-                error: err
+        }
+        else{
+            req.session.task = 1
+            req.session.tasks = []
+
+            Task.find({}).then((docs)=>{
+                // console.log(docs[0].task_description)
+                for(let i=0; i<docs.length; i++){
+                    let task = {task_description: docs[i].task_description, accomplished: false}
+                    req.session.tasks.push(task)
+                }
+
+                User.findOneAndUpdate({email:req.session.email}, 
+                    {tasks:req.session.tasks}).then((doc)=>{
+                        // console.log(doc.tasks)
+                        res.render("home.hbs", {
+                            firstname: req.session.firstname,
+                            lastname: req.session.lastname,
+                            tasks:req.session.tasks
+                        })
+                })
+                
             })
-        })
+        }
     }
 
     else{
@@ -52,9 +72,9 @@ exports.getRegister = (req,res)=>{
     }
     else{
 
-        // var salt = bcrypt.genSaltSync(10);
-        // var hash = bcrypt.hashSync(password,salt);
-        // password = hash;
+        var salt = bcrypt.genSaltSync(10);
+        var hash = bcrypt.hashSync(password,salt);
+        password = hash;
 
 
         let user = new User({
@@ -81,34 +101,33 @@ exports.getRegister = (req,res)=>{
     }
 }
 
-exports.getLogin = (req,res)=>{
+exports.getLogin = async (req,res)=>{
     let email = req.body.email
     let password = req.body.password
-    
+    let remember_me = req.body.remember
 
-        User.findOne({email: email, password: password}).then(result=>{
-            if(result == null){     
-                console.log(result)
+    var user = await User.findOne({ email: email }).exec();
+    if(!user) {
+        res.render("login.hbs", {
+            errors:"Invalid email/password" 
+        })
+    }
+    if(!bcrypt.compareSync(password, user.password)) {
+        res.render("login.hbs", {
+            errors:"Invalid email/password" 
+        })
+    }
+    else{
+        req.session.email = req.body.email
+        req.session.password = req.body.password
+        req.session.firstname = user.firstname
+        req.session.lastname = user.lastname
 
-                res.render("login.hbs", {
-                    errors:"Invalid email/password" 
-                })
-            }
-            else{
-                req.session.email = req.body.email
-                req.session.password = req.body.password
-
-                req.session.firstname = result.firstname
-                req.session.lastname = result.lastname
-                // console.log("Name is " +result.firstname)
-
-                res.redirect("/")
-            }
-        
-    }, (err)=>{
-        res.send(err)
-    })
-
+        if(remember_me){    
+            req.session.cookie.maxAge = 1000 * 3600 * 24 * 30
+        }
+            res.redirect("/")
+    }
     
 }
 
@@ -137,10 +156,68 @@ exports.getHome = (req, res)=>{
     }
 }
 
+exports.getUpdateTask = (req, res)=>{
+
+    if(req.session.email){
+        User.findOne({email:req.session.email}).then(result=>{
+            console.log(result.tasks)
+            element = req.body.dropCount
+            let temp = result.tasks[req.body.dropCount].accomplished
+            console.log("DESC :"+req.body.taskDesc)
+
+            User.findOneAndUpdate({task_description: req.body.taskDesc}, 
+            {$set: {accomplished:true}}).then((doc)=>{
+                console.log("SUCCESS UPDATE")
+                // res.render("home.hbs", {
+                //     firstname: req.session.firstname,
+                //     lastname: req.session.lastname,
+                //     tasks: doc.tasks
+                // })
+            })
+
+            // console.log(result.firstname)
+            // console.log("temp "+temp)
+            // tasks[parseInt(req.body.dropCount, 10)-1] = 1
+            // User.findOneAndUpdate(
+            //     {email: req.session.email},
+            //     {tasks:temp}
+            // )
+        })
+        console.log(req.body.dropCount)
+        element = req.body.dropCount
+
+        // User.findOneAndUpdate({email:req.session.email}, {"tasks.element.accomplished":true}).then((docs)=>{
+        //     console.log("UPDATE"+ docs)
+        //     // let docObj = docs.toObject()
+        //     // console.log(docObj)
+        //     // console.log(JSON.stringify(docs.firstname))
+        //     // console.log(docs[0].task_description)
+        //     // User.findOneAndUpdate({email:req.session.email}, 
+        //     //     {tasks:docs}).then((doc)=>{
+        //     //         // console.log(doc.tasks)
+        //     //         res.render("home.hbs", {
+        //     //             firstname: req.session.firstname,
+        //     //             lastname: req.session.lastname,
+        //     //             tasks: doc.tasks
+        //     //         })
+        //     // })
+        // }, (err)=>{
+        //     res.render("home.hbs",{
+        //         error: err
+        //     })
+        // })
+
+    }
+
+    else{
+        res.render("index.hbs")
+    }
+}
+
 exports.getMeditation = (req, res)=>{
 
     if(req.session.email){
-        Meditation.find({}).then((docs)=>{
+        Meditation.find({}).sort({date: 'desc'}).then((docs)=>{
             res.render("meditation.hbs", {
                 meditations: docs
             })

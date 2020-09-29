@@ -4,7 +4,8 @@ const bcrypt = require("bcryptjs");
 let Meditation = mongoose.model("meditation",{
     title: String,
     description: String,
-    link: String
+    link: String,
+    date: Date
 })
 
 module.exports = Meditation

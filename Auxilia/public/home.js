@@ -5,51 +5,67 @@ $(".drop").click(function() {
 	
 	$(".drop").data("clicked", true);
 
-if(	$(".drop2").data("clicked") || 
-	$(".drop3").data("clicked") ||	
-	$(".drop4").data("clicked") ||
-	$(".drop5").data("clicked")) 
-{
-	$(".stem").addClass("rain2")
-	$(".leaf00").addClass("leaf1_2");
-	$(".leaf01").addClass("r"); 
-}
+	if(	$(".drop2").data("clicked") || 
+		$(".drop3").data("clicked") ||	
+		$(".drop4").data("clicked") ||
+		$(".drop5").data("clicked")) 
+	{
+		$(".stem").addClass("rain2")
+		$(".leaf00").addClass("leaf1_2");
+		$(".leaf01").addClass("r"); 
+	}
 
-if(	$(".drop2").data("clicked") && $(".drop3").data("clicked") ||
-	$(".drop2").data("clicked") && $(".drop4").data("clicked") ||
-	$(".drop2").data("clicked") && $(".drop5").data("clicked") ||
-	$(".drop3").data("clicked") && $(".drop4").data("clicked") ||	
-	$(".drop3").data("clicked") && $(".drop5").data("clicked") ||
-	$(".drop4").data("clicked") && $(".drop5").data("clicked") )
-{	
-	$(".stem").addClass("rain3")
-	$(".leaf00").addClass("leaf1_3");
-	$(".leaf01").addClass("r2");
-	$(".leaf02").addClass("t");
-}
+	if(	$(".drop2").data("clicked") && $(".drop3").data("clicked") ||
+		$(".drop2").data("clicked") && $(".drop4").data("clicked") ||
+		$(".drop2").data("clicked") && $(".drop5").data("clicked") ||
+		$(".drop3").data("clicked") && $(".drop4").data("clicked") ||	
+		$(".drop3").data("clicked") && $(".drop5").data("clicked") ||
+		$(".drop4").data("clicked") && $(".drop5").data("clicked") )
+	{	
+		$(".stem").addClass("rain3")
+		$(".leaf00").addClass("leaf1_3");
+		$(".leaf01").addClass("r2");
+		$(".leaf02").addClass("t");
+	}
 
-if(	$(".drop2").data("clicked") && $(".drop3").data("clicked") && $(".drop4").data("clicked") ||
-	$(".drop2").data("clicked") && $(".drop3").data("clicked") && $(".drop5").data("clicked") ||
-	$(".drop2").data("clicked") && $(".drop4").data("clicked") && $(".drop5").data("clicked") ||
-	$(".drop3").data("clicked") && $(".drop4").data("clicked") && $(".drop5").data("clicked") )
-{	
-	$(".stem").addClass("rain4")
-	$(".leaf00").addClass("leaf1_4");
-	$(".leaf01").addClass("r3");
-	$(".leaf02").addClass("t2");
-	$(".leaf03").addClass("y");
-}
+	if(	$(".drop2").data("clicked") && $(".drop3").data("clicked") && $(".drop4").data("clicked") ||
+		$(".drop2").data("clicked") && $(".drop3").data("clicked") && $(".drop5").data("clicked") ||
+		$(".drop2").data("clicked") && $(".drop4").data("clicked") && $(".drop5").data("clicked") ||
+		$(".drop3").data("clicked") && $(".drop4").data("clicked") && $(".drop5").data("clicked") )
+	{	
+		$(".stem").addClass("rain4")
+		$(".leaf00").addClass("leaf1_4");
+		$(".leaf01").addClass("r3");
+		$(".leaf02").addClass("t2");
+		$(".leaf03").addClass("y");
+	}
 
-if(	$(".drop2").data("clicked") && $(".drop3").data("clicked") && 
-	$(".drop4").data("clicked") && $(".drop5").data("clicked") )
-{	
-	$(".stem").addClass("rain5")
-	$(".leaf00").addClass("leaf1_5");
-	$(".leaf01").addClass("r4");
-	$(".leaf02").addClass("t3");
-	$(".leaf03").addClass("y2");
-	$(".leaf04").addClass("u");
-}
+	if(	$(".drop2").data("clicked") && $(".drop3").data("clicked") && 
+		$(".drop4").data("clicked") && $(".drop5").data("clicked") )
+	{	
+		$(".stem").addClass("rain5")
+		$(".leaf00").addClass("leaf1_5");
+		$(".leaf01").addClass("r4");
+		$(".leaf02").addClass("t3");
+		$(".leaf03").addClass("y2");
+		$(".leaf04").addClass("u");
+	}
+
+	console.log("DROP1")
+	// console.log($(this).next().val())
+	console.log($(this).next().next().val())
+
+	$.ajax({
+		url: "update-task",
+		method: "post",
+		data: {
+			dropCount: $(this).next().val(),
+			taskDesc: $(this).next().next().val()              
+		},
+		success: function(){
+			console.log("Task updated")
+		}
+	})
 });
 
 
@@ -62,51 +78,50 @@ $(".drop2").click(function() {
 
 	$(".drop2").data("clicked", true);
 
-	if(	$(".drop").data("clicked") || 
-	$(".drop3").data("clicked") ||	
-	$(".drop4").data("clicked") ||
-	$(".drop5").data("clicked")) 
-{
-	$(".stem").addClass("rain2")
-	$(".leaf00").addClass("leaf1_2");
-	$(".leaf01").addClass("r"); 
-}
+	if(	$(".drop").data("clicked") || $(".drop3").data("clicked") || $(".drop4").data("clicked") || $(".drop5").data("clicked")) 
+	{
+		$(".stem").addClass("rain2")
+		$(".leaf00").addClass("leaf1_2");
+		$(".leaf01").addClass("r"); 
+	}
 
-if(	$(".drop").data("clicked") && $(".drop3").data("clicked") ||
-	$(".drop").data("clicked") && $(".drop4").data("clicked") ||
-	$(".drop").data("clicked") && $(".drop5").data("clicked") ||
-	$(".drop3").data("clicked") && $(".drop4").data("clicked") ||	
-	$(".drop3").data("clicked") && $(".drop5").data("clicked") ||
-	$(".drop4").data("clicked") && $(".drop5").data("clicked") )
-{	
-	$(".stem").addClass("rain3")
-	$(".leaf00").addClass("leaf1_3");
-	$(".leaf01").addClass("r2");
-	$(".leaf02").addClass("t");
-}
+	if(	$(".drop").data("clicked") && $(".drop3").data("clicked") ||
+		$(".drop").data("clicked") && $(".drop4").data("clicked") ||
+		$(".drop").data("clicked") && $(".drop5").data("clicked") ||
+		$(".drop3").data("clicked") && $(".drop4").data("clicked") ||	
+		$(".drop3").data("clicked") && $(".drop5").data("clicked") ||
+		$(".drop4").data("clicked") && $(".drop5").data("clicked") )
+	{	
+		$(".stem").addClass("rain3")
+		$(".leaf00").addClass("leaf1_3");
+		$(".leaf01").addClass("r2");
+		$(".leaf02").addClass("t");
+	}
 
-if(	$(".drop").data("clicked") && $(".drop3").data("clicked") && $(".drop4").data("clicked") ||
-	$(".drop").data("clicked") && $(".drop3").data("clicked") && $(".drop5").data("clicked") ||
-	$(".drop").data("clicked") && $(".drop4").data("clicked") && $(".drop5").data("clicked") ||
-	$(".drop3").data("clicked") && $(".drop4").data("clicked") && $(".drop5").data("clicked") )
-{	
-	$(".stem").addClass("rain4")
-	$(".leaf00").addClass("leaf1_4");
-	$(".leaf01").addClass("r3");
-	$(".leaf02").addClass("t2");
-	$(".leaf03").addClass("y");
-}
+	if(	$(".drop").data("clicked") && $(".drop3").data("clicked") && $(".drop4").data("clicked") ||
+		$(".drop").data("clicked") && $(".drop3").data("clicked") && $(".drop5").data("clicked") ||
+		$(".drop").data("clicked") && $(".drop4").data("clicked") && $(".drop5").data("clicked") ||
+		$(".drop3").data("clicked") && $(".drop4").data("clicked") && $(".drop5").data("clicked") )
+	{	
+		$(".stem").addClass("rain4")
+		$(".leaf00").addClass("leaf1_4");
+		$(".leaf01").addClass("r3");
+		$(".leaf02").addClass("t2");
+		$(".leaf03").addClass("y");
+	}
 
-if(	$(".drop").data("clicked") && $(".drop3").data("clicked") && 
-	$(".drop4").data("clicked") && $(".drop5").data("clicked") )
-{	
-	$(".stem").addClass("rain5")
-	$(".leaf00").addClass("leaf1_5");
-	$(".leaf01").addClass("r4");
-	$(".leaf02").addClass("t3");
-	$(".leaf03").addClass("y2");
-	$(".leaf04").addClass("u");
-}
+	if(	$(".drop").data("clicked") && $(".drop3").data("clicked") && 
+		$(".drop4").data("clicked") && $(".drop5").data("clicked") )
+	{	
+		$(".stem").addClass("rain5")
+		$(".leaf00").addClass("leaf1_5");
+		$(".leaf01").addClass("r4");
+		$(".leaf02").addClass("t3");
+		$(".leaf03").addClass("y2");
+		$(".leaf04").addClass("u");
+	}
+
+	console.log("DROP2")
 });
 
 $(".drop3").click(function() {
@@ -116,51 +131,50 @@ $(".drop3").click(function() {
 
 	$(".drop3").data("clicked", true);
 
-	if(	$(".drop").data("clicked") || 
-	$(".drop2").data("clicked") ||	
-	$(".drop4").data("clicked") ||
-	$(".drop5").data("clicked")) 
-{
-	$(".stem").addClass("rain2")
-	$(".leaf00").addClass("leaf1_2");
-	$(".leaf01").addClass("r"); 
-}
+	if(	$(".drop").data("clicked") || $(".drop2").data("clicked") || $(".drop4").data("clicked") || $(".drop5").data("clicked")) 
+	{
+		$(".stem").addClass("rain2")
+		$(".leaf00").addClass("leaf1_2");
+		$(".leaf01").addClass("r"); 
+	}
 
-if(	$(".drop").data("clicked") && $(".drop2").data("clicked") ||
-	$(".drop").data("clicked") && $(".drop4").data("clicked") ||
-	$(".drop").data("clicked") && $(".drop5").data("clicked") ||
-	$(".drop2").data("clicked") && $(".drop4").data("clicked") ||	
-	$(".drop2").data("clicked") && $(".drop5").data("clicked") ||
-	$(".drop4").data("clicked") && $(".drop5").data("clicked") )
-{	
-	$(".stem").addClass("rain3")
-	$(".leaf00").addClass("leaf1_3");
-	$(".leaf01").addClass("r2");
-	$(".leaf02").addClass("t");
-}
+	if(	$(".drop").data("clicked") && $(".drop2").data("clicked") ||
+		$(".drop").data("clicked") && $(".drop4").data("clicked") ||
+		$(".drop").data("clicked") && $(".drop5").data("clicked") ||
+		$(".drop2").data("clicked") && $(".drop4").data("clicked") ||	
+		$(".drop2").data("clicked") && $(".drop5").data("clicked") ||
+		$(".drop4").data("clicked") && $(".drop5").data("clicked") )
+	{	
+		$(".stem").addClass("rain3")
+		$(".leaf00").addClass("leaf1_3");
+		$(".leaf01").addClass("r2");
+		$(".leaf02").addClass("t");
+	}
 
-if(	$(".drop").data("clicked") && $(".drop2").data("clicked") && $(".drop4").data("clicked") ||
-	$(".drop").data("clicked") && $(".drop2").data("clicked") && $(".drop5").data("clicked") ||
-	$(".drop").data("clicked") && $(".drop4").data("clicked") && $(".drop5").data("clicked") ||
-	$(".drop2").data("clicked") && $(".drop4").data("clicked") && $(".drop5").data("clicked") )
-{	
-	$(".stem").addClass("rain4")
-	$(".leaf00").addClass("leaf1_4");
-	$(".leaf01").addClass("r3");
-	$(".leaf02").addClass("t2");
-	$(".leaf03").addClass("y");
-}
+	if(	$(".drop").data("clicked") && $(".drop2").data("clicked") && $(".drop4").data("clicked") ||
+		$(".drop").data("clicked") && $(".drop2").data("clicked") && $(".drop5").data("clicked") ||
+		$(".drop").data("clicked") && $(".drop4").data("clicked") && $(".drop5").data("clicked") ||
+		$(".drop2").data("clicked") && $(".drop4").data("clicked") && $(".drop5").data("clicked") )
+	{	
+		$(".stem").addClass("rain4")
+		$(".leaf00").addClass("leaf1_4");
+		$(".leaf01").addClass("r3");
+		$(".leaf02").addClass("t2");
+		$(".leaf03").addClass("y");
+	}
 
-if(	$(".drop").data("clicked") && $(".drop2").data("clicked") && 
-	$(".drop4").data("clicked") && $(".drop5").data("clicked") )
-{	
-	$(".stem").addClass("rain5")
-	$(".leaf00").addClass("leaf1_5");
-	$(".leaf01").addClass("r4");
-	$(".leaf02").addClass("t3");
-	$(".leaf03").addClass("y2");
-	$(".leaf04").addClass("u");
-}
+	if(	$(".drop").data("clicked") && $(".drop2").data("clicked") && 
+		$(".drop4").data("clicked") && $(".drop5").data("clicked") )
+	{	
+		$(".stem").addClass("rain5")
+		$(".leaf00").addClass("leaf1_5");
+		$(".leaf01").addClass("r4");
+		$(".leaf02").addClass("t3");
+		$(".leaf03").addClass("y2");
+		$(".leaf04").addClass("u");
+	}
+
+	console.log("DROP3")
 });
 
 $(".drop4").click(function() {
@@ -170,51 +184,50 @@ $(".drop4").click(function() {
 
 	$(".drop4").data("clicked", true);
 
-	if(	$(".drop").data("clicked") || 
-	$(".drop2").data("clicked") ||	
-	$(".drop3").data("clicked") ||
-	$(".drop5").data("clicked")) 
-{
-	$(".stem").addClass("rain2")
-	$(".leaf00").addClass("leaf1_2");
-	$(".leaf01").addClass("r"); 
-}
+	if(	$(".drop").data("clicked") || $(".drop2").data("clicked") || $(".drop3").data("clicked") || $(".drop5").data("clicked")) 
+	{
+		$(".stem").addClass("rain2")
+		$(".leaf00").addClass("leaf1_2");
+		$(".leaf01").addClass("r"); 
+	}
 
-if(	$(".drop").data("clicked") && $(".drop2").data("clicked") ||
-	$(".drop").data("clicked") && $(".drop3").data("clicked") ||
-	$(".drop").data("clicked") && $(".drop5").data("clicked") ||
-	$(".drop2").data("clicked") && $(".drop3").data("clicked") ||	
-	$(".drop2").data("clicked") && $(".drop5").data("clicked") ||
-	$(".drop3").data("clicked") && $(".drop5").data("clicked") )
-{	
-	$(".stem").addClass("rain3")
-	$(".leaf00").addClass("leaf1_3");
-	$(".leaf01").addClass("r2");
-	$(".leaf02").addClass("t");
-}
+	if(	$(".drop").data("clicked") && $(".drop2").data("clicked") ||
+		$(".drop").data("clicked") && $(".drop3").data("clicked") ||
+		$(".drop").data("clicked") && $(".drop5").data("clicked") ||
+		$(".drop2").data("clicked") && $(".drop3").data("clicked") ||	
+		$(".drop2").data("clicked") && $(".drop5").data("clicked") ||
+		$(".drop3").data("clicked") && $(".drop5").data("clicked") )
+	{	
+		$(".stem").addClass("rain3")
+		$(".leaf00").addClass("leaf1_3");
+		$(".leaf01").addClass("r2");
+		$(".leaf02").addClass("t");
+	}
 
-if(	$(".drop").data("clicked") && $(".drop2").data("clicked") && $(".drop3").data("clicked") ||
-	$(".drop").data("clicked") && $(".drop2").data("clicked") && $(".drop5").data("clicked") ||
-	$(".drop").data("clicked") && $(".drop3").data("clicked") && $(".drop5").data("clicked") ||
-	$(".drop2").data("clicked") && $(".drop3").data("clicked") && $(".drop5").data("clicked") )
-{	
-	$(".stem").addClass("rain4")
-	$(".leaf00").addClass("leaf1_4");
-	$(".leaf01").addClass("r3");
-	$(".leaf02").addClass("t2");
-	$(".leaf03").addClass("y");
-}
+	if(	$(".drop").data("clicked") && $(".drop2").data("clicked") && $(".drop3").data("clicked") ||
+		$(".drop").data("clicked") && $(".drop2").data("clicked") && $(".drop5").data("clicked") ||
+		$(".drop").data("clicked") && $(".drop3").data("clicked") && $(".drop5").data("clicked") ||
+		$(".drop2").data("clicked") && $(".drop3").data("clicked") && $(".drop5").data("clicked") )
+	{	
+		$(".stem").addClass("rain4")
+		$(".leaf00").addClass("leaf1_4");
+		$(".leaf01").addClass("r3");
+		$(".leaf02").addClass("t2");
+		$(".leaf03").addClass("y");
+	}
 
-if(	$(".drop").data("clicked") && $(".drop2").data("clicked") && 
-	$(".drop3").data("clicked") && $(".drop5").data("clicked") )
-{	
-	$(".stem").addClass("rain5")
-	$(".leaf00").addClass("leaf1_5");
-	$(".leaf01").addClass("r4");
-	$(".leaf02").addClass("t3");
-	$(".leaf03").addClass("y2");
-	$(".leaf04").addClass("u");
-}
+	if(	$(".drop").data("clicked") && $(".drop2").data("clicked") && 
+		$(".drop3").data("clicked") && $(".drop5").data("clicked") )
+	{	
+		$(".stem").addClass("rain5")
+		$(".leaf00").addClass("leaf1_5");
+		$(".leaf01").addClass("r4");
+		$(".leaf02").addClass("t3");
+		$(".leaf03").addClass("y2");
+		$(".leaf04").addClass("u");
+	}
+
+	console.log("DROP4")
 });
 
 $(".drop5").click(function() {
@@ -224,51 +237,50 @@ $(".drop5").click(function() {
 
 	$(".drop5").data("clicked", true);
 
-	if(	$(".drop").data("clicked") || 
-	$(".drop2").data("clicked") ||	
-	$(".drop3").data("clicked") ||
-	$(".drop4").data("clicked")) 
-{
-	$(".stem").addClass("rain2")
-	$(".leaf00").addClass("leaf1_2");
-	$(".leaf01").addClass("r"); 
-}
+	if(	$(".drop").data("clicked") || $(".drop2").data("clicked") || $(".drop3").data("clicked") || $(".drop4").data("clicked")) 
+	{
+		$(".stem").addClass("rain2")
+		$(".leaf00").addClass("leaf1_2");
+		$(".leaf01").addClass("r"); 
+	}
 
-if(	$(".drop").data("clicked") && $(".drop2").data("clicked") ||
-	$(".drop").data("clicked") && $(".drop3").data("clicked") ||
-	$(".drop").data("clicked") && $(".drop4").data("clicked") ||
-	$(".drop2").data("clicked") && $(".drop3").data("clicked") ||	
-	$(".drop2").data("clicked") && $(".drop4").data("clicked") ||
-	$(".drop3").data("clicked") && $(".drop4").data("clicked") )
-{	
-	$(".stem").addClass("rain3")
-	$(".leaf00").addClass("leaf1_3");
-	$(".leaf01").addClass("r2");
-	$(".leaf02").addClass("t");
-}
+	if(	$(".drop").data("clicked") && $(".drop2").data("clicked") ||
+		$(".drop").data("clicked") && $(".drop3").data("clicked") ||
+		$(".drop").data("clicked") && $(".drop4").data("clicked") ||
+		$(".drop2").data("clicked") && $(".drop3").data("clicked") ||	
+		$(".drop2").data("clicked") && $(".drop4").data("clicked") ||
+		$(".drop3").data("clicked") && $(".drop4").data("clicked") )
+	{	
+		$(".stem").addClass("rain3")
+		$(".leaf00").addClass("leaf1_3");
+		$(".leaf01").addClass("r2");
+		$(".leaf02").addClass("t");
+	}
 
-if(	$(".drop").data("clicked") && $(".drop2").data("clicked") && $(".drop3").data("clicked") ||
-	$(".drop").data("clicked") && $(".drop2").data("clicked") && $(".drop4").data("clicked") ||
-	$(".drop").data("clicked") && $(".drop3").data("clicked") && $(".drop4").data("clicked") ||
-	$(".drop2").data("clicked") && $(".drop3").data("clicked") && $(".drop4").data("clicked") )
-{	
-	$(".stem").addClass("rain4")
-	$(".leaf00").addClass("leaf1_4");
-	$(".leaf01").addClass("r3");
-	$(".leaf02").addClass("t2");
-	$(".leaf03").addClass("y");
-}
+	if(	$(".drop").data("clicked") && $(".drop2").data("clicked") && $(".drop3").data("clicked") ||
+		$(".drop").data("clicked") && $(".drop2").data("clicked") && $(".drop4").data("clicked") ||
+		$(".drop").data("clicked") && $(".drop3").data("clicked") && $(".drop4").data("clicked") ||
+		$(".drop2").data("clicked") && $(".drop3").data("clicked") && $(".drop4").data("clicked") )
+	{	
+		$(".stem").addClass("rain4")
+		$(".leaf00").addClass("leaf1_4");
+		$(".leaf01").addClass("r3");
+		$(".leaf02").addClass("t2");
+		$(".leaf03").addClass("y");
+	}
 
-if(	$(".drop").data("clicked") && $(".drop2").data("clicked") && 
-	$(".drop3").data("clicked") && $(".drop4").data("clicked") )
-{	
-	$(".stem").addClass("rain5")
-	$(".leaf00").addClass("leaf1_5");
-	$(".leaf01").addClass("r4");
-	$(".leaf02").addClass("t3");
-	$(".leaf03").addClass("y2");
-	$(".leaf04").addClass("u");
-}
+	if(	$(".drop").data("clicked") && $(".drop2").data("clicked") && 
+		$(".drop3").data("clicked") && $(".drop4").data("clicked") )
+	{	
+		$(".stem").addClass("rain5")
+		$(".leaf00").addClass("leaf1_5");
+		$(".leaf01").addClass("r4");
+		$(".leaf02").addClass("t3");
+		$(".leaf03").addClass("y2");
+		$(".leaf04").addClass("u");
+	}
+
+	console.log("DROP5")
 });
 
 

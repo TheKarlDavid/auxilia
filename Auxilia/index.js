@@ -4,6 +4,7 @@ const session = require("express-session")
 const hbs = require("hbs")
 const mongoose = require("mongoose")
 const userRoute = require('./routes/userRoute')
+const adminRoute = require('./routes/adminRoute')
 const bcrypt = require("bcryptjs")
 const { runInNewContext } = require("vm")
 const bodyparser = require("body-parser")
@@ -32,6 +33,7 @@ app.use(session({
 }))
 
 app.use(userRoute)
+// app.use(adminRoute)
 app.use(express.static(__dirname + "/public"))
 
 

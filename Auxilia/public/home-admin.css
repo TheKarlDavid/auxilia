@@ -814,7 +814,8 @@ main{
 
 .item svg{
     position: relative;
-    top: 11px;
+	top: 11px;
+	cursor: pointer;
 }
 
 .edit-task:hover{
@@ -827,7 +828,7 @@ main{
 
 /* FOR EDIT MEDITATION MODAL */
 .editModalTask{
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Montserrat';
     font-size: 17px;
     line-height: 1.6;
     display: none;
@@ -854,6 +855,7 @@ main{
 }
 
 .editModalTask-header{
+	font-family: 'Montserrat';
 	background: #17BEBB;	
  	border-radius: 5px;
     padding: 5px;
@@ -869,7 +871,7 @@ main{
 	bottom: 8px;
     position: relative;
     top: 13px;
-    left: 245px;
+    left: 275px;
 }
 
 .edit-task-closeBtn{
@@ -882,7 +884,7 @@ main{
 }
 
 .edit-task-closeBtn:hover, .edit-task-closeBtn:focus{
-  color: black;
+  color: #d60000;
   text-decoration: none;
   cursor: pointer;
   transition: 0.5s;
@@ -897,17 +899,17 @@ main{
     text-align: center;
 }
 
-#form-edit-task input{
+.form-edit-task input{
     padding: 5px;
     width: 98%;
     height: 50px;
     margin: 5px;
     font-size:1.4em;
-	font-family:sans-serif;
+	font-family: 'Montserrat';
 	margin: 10px 0;
 }
 
-#form-edit-task input:last-child{
+.form-edit-task input:last-child{
 	margin: 10px 0 0;
 }
 

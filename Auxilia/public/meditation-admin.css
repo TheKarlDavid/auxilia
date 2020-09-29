@@ -1,10 +1,22 @@
 body{
     display: grid;
-    grid-template-columns: 365px 1fr 1fr;
+    grid-template-columns: 365px 1fr 365px;
+    /* grid-template-columns: 365px 1fr 1fr; */
 }
 
 main{
     grid-column: 2/3;
+}
+
+.no-video{
+    width: 100%;
+    color: #899663;
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+    background: white;
+    padding: 15px;
+    border-radius: 5px;
 }
 
 .add-meditation{
@@ -95,7 +107,7 @@ main{
 
 /* FOR ADD MEDITATION MODAL */
 .modalMeditation{
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Montserrat';
     font-size: 17px;
     line-height: 1.6;
     display: none;
@@ -105,7 +117,6 @@ main{
     top: 0;
     height: 100%;
     width: 100%;
-    /* overflow: auto; */
     background-color: rgba(0,0,0,0.5);
 }
 
@@ -138,7 +149,7 @@ main{
 	bottom: 8px;
     position: relative;
     top: 13px;
-    left: 245px;
+    left: 230px;
 }
 
 .meditation-closeBtn{
@@ -151,7 +162,7 @@ main{
 }
 
 .meditation-closeBtn:hover, .meditation-closeBtn:focus{
-  color: black;
+  color: #d60000;
   text-decoration: none;
   cursor: pointer;
   transition: 0.5s;
@@ -166,18 +177,29 @@ main{
     text-align: center;
 }
 
-#form-add-meditation input{
+.form-add-meditation input{
+    font-family: 'Montserrat';
     padding: 5px;
     width: 98%;
     height: 50px;
     margin: 5px;
     font-size:1.4em;
-	font-family:sans-serif;
 	margin: 10px 0;
 }
 
-#form-add-meditation input:last-child{
-	margin: 10px 0 0;
+.form-add-meditation input:last-child{
+    margin: 10px 0 0;
+    font-weight: bold;
+}
+
+.form-add-meditation textarea{
+    font-family: 'Montserrat';
+    padding: 5px;
+    width: 98%;
+    height: 150%;
+    margin: 5px;
+    font-size:1.4em;
+	margin: 10px 0;
 }
 
 
@@ -215,7 +237,7 @@ main{
 
 /* FOR EDIT MEDITATION MODAL */
 .editModalMeditation{
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Montserrat';
     font-size: 17px;
     line-height: 1.6;
     display: none;
@@ -225,7 +247,6 @@ main{
     top: 0;
     height: 100%;
     width: 100%;
-    /* overflow: auto; */
     background-color: rgba(0,0,0,0.5);
 }
 
@@ -258,7 +279,7 @@ main{
 	bottom: 8px;
     position: relative;
     top: 13px;
-    left: 245px;
+    left: 230px;
 }
 
 .edit-meditation-closeBtn{
@@ -271,7 +292,7 @@ main{
 }
 
 .edit-meditation-closeBtn:hover, .edit-meditation-closeBtn:focus{
-  color: black;
+  color: #d60000;
   text-decoration: none;
   cursor: pointer;
   transition: 0.5s;
@@ -286,18 +307,29 @@ main{
     text-align: center;
 }
 
-#form-edit-meditation input{
+.form-edit-meditation input{
+    font-family: 'Montserrat';
     padding: 5px;
     width: 98%;
     height: 50px;
     margin: 5px;
     font-size:1.4em;
-	font-family:sans-serif;
 	margin: 10px 0;
 }
 
-#form-edit-meditation input:last-child{
+.form-edit-meditation input:last-child{
+    font-weight: bold;
 	margin: 10px 0 0;
+}
+
+.form-edit-meditation textarea{
+    font-family: 'Montserrat';
+    padding: 5px;
+    width: 98%;
+    height: 150%;
+    margin: 5px;
+    font-size:1.4em;
+	margin: 10px 0;
 }
 
 
