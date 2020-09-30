@@ -70,7 +70,7 @@ p{
 .about-us{
     height: 100%;
     width: auto;
-    margin: 50px 80px 100px;
+    margin: 50px 80px 30px;
     /* border: 4px solid #ECF9F2; */
     display: grid;
     grid-template-rows: 90px 1fr;
@@ -138,6 +138,40 @@ p{
     color: #009299;
 }
 
+.about-npm-packages{
+    background: #ECF9F2;
+    padding: 10px 30px;
+    color: black;
+}
+
+.npm-header{
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.npm-body{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    margin: 0 auto;
+}
+
+.npm-package{
+    font-size: 23px;
+    font-weight: 400;
+}
+
+.npm-package a{
+    color: black;
+    display: inline-block;
+    text-decoration: none;
+    margin: 10px;
+}
+
+.npm-package a:hover{
+    color: #00c2cb;
+    
+}
 
 
 

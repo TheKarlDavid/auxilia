@@ -23,16 +23,12 @@ exports.getIndex = (req, res)=>{
             }
 
             User.findOne({email:req.session.email}).then(result=>{
-                // console.log(result.tasks)
                 for(let i=0; i<result.tasks.length; i++){
                     if(result.tasks[i].accomplished){
-                        console.log(result.tasks[i].accomplished)
                         req.session.accomplished++;
-                        
                     }
                     
                 }
-                console.log("nums "+req.session.accomplished)
                 
                 res.render("home.hbs", {
                     firstname: req.session.firstname,
@@ -42,6 +38,7 @@ exports.getIndex = (req, res)=>{
                 })
             })
         })
+
     }
 
     else{
@@ -78,12 +75,14 @@ exports.getRegister = (req,res)=>{
         var hash = bcrypt.hashSync(password,salt);
         password = hash;
 
+        let accomplishments = {accomplished_today: false, count_of_times: 0}
 
         let user = new User({
              email: email,
              password: password,
              firstname: first_name,
-             lastname: last_name
+             lastname: last_name,
+             accomplishments: accomplishments
         })
 
         user.save().then((doc)=>{
@@ -135,15 +134,12 @@ exports.getLogin = async (req,res)=>{
         let month = ("0" + (date_today.getMonth() + 1)).slice(-2);
         let year = date_today.getFullYear();
         req.session.today = (year + month  + date)
-        console.log(req.session.today)
 
         req.session.tasks = []
 
         User.find({}).then((docs)=>{
-            
+
             last_login = docs[0].tasks[0].logged_date
-            console.log(last_login)
-            console.log(req.session.today)
 
             if(last_login < req.session.today){
                 Task.find({}).then((docs)=>{
@@ -154,10 +150,15 @@ exports.getLogin = async (req,res)=>{
             
                     User.findOneAndUpdate({email:req.session.email}, 
                         {tasks:req.session.tasks}).then((doc)=>{
-                            console.log(req.session.tasks)
-                            res.redirect("/")
-                    })
-                            
+
+                            let count = doc.accomplishments.count_of_times
+                            let accomplishments = {accomplished_today: false, count_of_times: count}
+
+                            User.findOneAndUpdate({email:req.session.email}, 
+                                {accomplishments: accomplishments}).then((doc)=>{
+                                res.redirect("/")
+                            })
+                    })                       
                 })
             }
             else{
@@ -165,26 +166,8 @@ exports.getLogin = async (req,res)=>{
             }
             
         })
- 
-        // Task.find({}).then((docs)=>{
-        // // console.log(docs[0].task_description)
-        //     for(let i=0; i<docs.length; i++){
-        //         let task = {task_description: docs[i].task_description, accomplished: false, logged_date: date_today}
-        //         req.session.tasks.push(task)
-        //     }
-
-        //     User.findOneAndUpdate({email:req.session.email}, 
-        //         {tasks:req.session.tasks}).then((doc)=>{
-        //             console.log(req.session.tasks)
-        //             res.redirect("/")
-        //     })
-                
-        // })
     }
-
-    // res.redirect("/")
-
-    
+  
 }
 
 exports.getLoginRegister = (req, res)=>{
@@ -216,11 +199,9 @@ exports.getUpdateTask = (req, res)=>{
 
     if(req.session.email){
         User.findOne({email:req.session.email}).then(result=>{
-            // console.log(result.tasks)
-            element = req.body.dropCount
+
             let task_id = result.tasks[req.body.dropCount]
-            // console.log(result._id)
-            console.log(task_id._id)
+            // console.log(task_id._id)
 
             User.findOneAndUpdate({
                 _id:result._id,
@@ -234,15 +215,11 @@ exports.getUpdateTask = (req, res)=>{
                     }
                 }
             }).then((doc)=>{
-                console.log("UP")
-                // console.log("User: " + JSON.stringify(doc))
+                console.log("UPDATED TASK")
                 }, (err)=>{
                 console.log("Error: " +err)
             })
-
         })
-        console.log(req.body.dropCount)
-        element = req.body.dropCount
 
     }
 
@@ -284,10 +261,81 @@ exports.getAbout = (req, res)=>{
 exports.getProfile = (req, res)=>{
 
     if(req.session.email){
-        res.render("profile.hbs",{
-            firstname: req.session.firstname,
-            lastname: req.session.lastname
+
+        User.findOne({email:req.session.email}).then(result=>{
+
+            req.session.accomplished = 0 
+            for(let i=0; i<result.tasks.length; i++){
+
+                if(result.tasks[i].accomplished){
+                    req.session.accomplished++;
+                }     
+            }
+
+            if(req.session.accomplished == 5){
+
+                if(result.accomplishments.accomplished_today){
+
+                    let plant = result.accomplishments.count_of_times
+                    let plants =[]
+                    for(let i=0; i<plant; i++){
+                        plants.push({plant})
+                    }
+
+                    res.render("profile.hbs", {
+                        firstname: req.session.firstname,
+                        lastname: req.session.lastname,
+                        plants: plants 
+                    })
+                }
+                else{
+                    let count = result.accomplishments.count_of_times + 1
+                    User.findOneAndUpdate({email:req.session.email}, 
+                        {accomplishments:  {accomplished_today: true, count_of_times: count}}).then((doc)=>{
+                        let plant = count
+                        let plants =[]
+
+                        for(let i=0; i<plant; i++){
+                            plants.push({plant})
+                        }
+
+                        res.render("profile.hbs", {
+                            firstname: req.session.firstname,
+                            lastname: req.session.lastname,
+                            plants: plants 
+                        })
+                    })
+                }
+            }
+            
+            else{
+                if(result.accomplishments.count_of_times){
+                    let plant = result.accomplishments.count_of_times
+                    let plants =[]
+                    for(let i=0; i<plant; i++){
+                        plants.push({plant})
+                    }
+
+                    res.render("profile.hbs", {
+                        firstname: req.session.firstname,
+                        lastname: req.session.lastname,
+                        plants: plants 
+                    })
+                }
+                else{
+                    res.render("profile.hbs", {
+                        firstname: req.session.firstname,
+                        lastname: req.session.lastname,
+                        plants: plants 
+                    })
+                }
+            }
         })
+
+        // res.render("profile.hbs",{
+        //     firstname: req.session.firstname,
+        //     lastname: req.session.lastname
+        // })
     }
 
     else{
