@@ -33,7 +33,7 @@ app.use(session({
 }))
 
 app.use(userRoute)
-// app.use(adminRoute)
+app.use(adminRoute)
 app.use(express.static(__dirname + "/public"))
 
 

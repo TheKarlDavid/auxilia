@@ -1,84 +1,8 @@
-const Admin = require('../models/admin')
 const Task = require('../models/tasks')
 const Meditation = require('../models/meditation')
 const { body, validationResult } = require('express-validator')
-const bcrypt = require("bcryptjs")
 
-//home page
-
-exports.getIndex = (req, res)=>{
-
-    if(req.session.email){
-        //admin already signed in
-        Task.find({}).then((docs)=>{
-            res.render("home-admin.hbs", {
-                firstname: req.session.firstname,
-                lastname: req.session.lastname,
-                tasks: docs 
-            })
-        }, (err)=>{
-            res.render("home-admin.hbs",{
-                error: err
-            })
-        })
-    }
-
-    else{
-        // the admin has not logged
-        res.render("index.hbs")
-    
-    }
-
-}
-
-exports.getLogin = async (req,res)=>{
-    let email = req.body.email
-    let password = req.body.password
-    let remember_me = req.body.remember
-
-    var admin = await Admin.findOne({ email: email }).exec();
-    if(!admin) {
-        res.render("login.hbs", {
-            errors:"Invalid email/password" 
-        })
-    }
-    if(!bcrypt.compareSync(password, admin.password)) {
-        console.log(password)
-        console.log(admin.password)
-
-        res.render("login.hbs", {
-            errors:"Invalid email/password" 
-        })
-    }
-    else{
-        req.session.email = req.body.email
-        req.session.password = req.body.password
-        req.session.firstname = admin.firstname
-        req.session.lastname = admin.lastname
-
-        if(remember_me){    
-            req.session.cookie.maxAge = 1000 * 3600 * 24 * 30
-        }
-            res.redirect("/")
-    }
-    
-}
-
-exports.getLoginRegister = (req, res)=>{
-
-    if(req.session.email){
-        res.render("home-admin.hbs",{
-            firstname: req.session.firstname,
-            lastname: req.session.lastname
-        })
-    }
-
-    else{
-        res.render("login.hbs")
-    }
-}
-
-exports.getHome = (req, res)=>{
+exports.getAdminHome = (req, res)=>{
 
     if(req.session.email){
         res.redirect("/")
@@ -119,25 +43,6 @@ exports.getEditTask = (req, res)=>{
         res.render("login.hbs") 
     }
 
-}
-
-exports.getMeditation = (req, res)=>{
-
-    if(req.session.email){
-        Meditation.find({}).sort({date: 'desc'}).then((docs)=>{
-            res.render("meditation-admin.hbs", {
-                meditations: docs
-            })
-        }, (err)=>{
-            res.render("meditation-admin.hbs",{
-                error: err
-            })
-        })
-    }
-
-    else{
-        res.render("login.hbs") 
-    }
 }
 
 exports.getAddMeditation = (req, res)=>{
@@ -229,18 +134,7 @@ exports.getDeleteMeditation = (req, res)=>{
     }
 }
 
-exports.getAbout = (req, res)=>{
-
-    if(req.session.email){
-        res.render("about-admin.hbs")
-    }
-
-    else{
-        res.render("about-not.hbs") 
-    }
-}
-
-exports.getProfile = (req, res)=>{
+exports.getAdminProfile = (req, res)=>{
 
     if(req.session.email){
         res.render("profile-admin.hbs",{
@@ -252,9 +146,4 @@ exports.getProfile = (req, res)=>{
     else{
         res.render("login.hbs") 
     }
-}
-
-exports.getSignout = (req,res)=>{
-    req.session.destroy()
-    res.redirect("/")
 }

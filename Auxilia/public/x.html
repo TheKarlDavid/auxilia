@@ -26,25 +26,32 @@
       </header>
       
       <main>
-        <div class="header-banner"> 
+        <!-- <div class="header-banner"> 
           <h1>Hello, {{firstname}} {{lastname}} !</h1>
         </div>
-        <div class="accomplishment-container"> 
+
+        <div class="accomplishment-container-admin"> 
           <div class="accomplishment-header">
             <h1>My garden</h1>
           </div>
           
           <div class="accomplishment-list">
-            <img src="img/plant.png"></img>
-
-            <!-- {{#each plants}}
+            {{#each plants}}
               {{#if accomplishments}}
               {{/if}}
-            {{/each}} -->
-            <!-- {{#unless plants}}
+            {{/each}}
+            {{#unless plants}}
               <div>No accomplishments yet, go do tasks to get accomplishments!</div>
-            {{/unless}} -->
+            {{/unless}}
           </div>
+        </div> -->
+
+        <div class="header-banner"> 
+          <h1>Hello, {{firstname}} {{lastname}} !</h1>
+        </div>
+
+        <div class="main-admin"> 
+          <img src="img/admin.png"></img>
         </div>
 
         <a href="signout" id="signout" method="get">Sign out</a>

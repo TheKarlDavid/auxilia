@@ -1,4 +1,5 @@
 const User = require('../models/user')
+const Admin = require('../models/admin')
 const Task = require('../models/tasks')
 const Meditation = require('../models/meditation')
 const { body, validationResult } = require('express-validator')
@@ -9,36 +10,51 @@ const bcrypt = require("bcryptjs")
 exports.getIndex = (req, res)=>{
 
     if(req.session.email){
-        //user already signed in
-        req.session.tasks = []
-        req.session.accomplished = 0
-        User.find({}).then((docs)=>{
-            for(let i=0; i<docs[0].tasks.length; i++){
-                let task = {
-                    task_description: docs[0].tasks[i].task_description, 
-                    accomplished: docs[0].tasks[i].accomplished, 
-                    logged_date: docs[0].tasks[i].logged_date
-                }
-                req.session.tasks.push(task)
-            }
-
-            User.findOne({email:req.session.email}).then(result=>{
-                for(let i=0; i<result.tasks.length; i++){
-                    if(result.tasks[i].accomplished){
-                        req.session.accomplished++;
-                    }
-                    
-                }
-                
-                res.render("home.hbs", {
+        if(req.session.isAdmin){
+            //admin already signed in
+            Task.find({}).then((docs)=>{
+                res.render("home-admin.hbs", {
                     firstname: req.session.firstname,
                     lastname: req.session.lastname,
-                    tasks:req.session.tasks,
-                    plant: req.session.accomplished
+                    tasks: docs 
+                })
+            }, (err)=>{
+                res.render("home-admin.hbs",{
+                    error: err
                 })
             })
-        })
+        }
+        else{
+            //user already signed in
+            req.session.tasks = []
+            req.session.accomplished = 0
+            User.find({}).then((docs)=>{
+                for(let i=0; i<docs[0].tasks.length; i++){
+                    let task = {
+                        task_description: docs[0].tasks[i].task_description, 
+                        accomplished: docs[0].tasks[i].accomplished, 
+                        logged_date: docs[0].tasks[i].logged_date
+                    }
+                    req.session.tasks.push(task)
+                }
 
+                User.findOne({email:req.session.email}).then(result=>{
+                    for(let i=0; i<result.tasks.length; i++){
+                        if(result.tasks[i].accomplished){
+                            req.session.accomplished++;
+                        }
+                        
+                    }
+                    
+                    res.render("home.hbs", {
+                        firstname: req.session.firstname,
+                        lastname: req.session.lastname,
+                        tasks:req.session.tasks,
+                        plant: req.session.accomplished
+                    })
+                })
+            })
+        }
     }
 
     else{
@@ -108,64 +124,89 @@ exports.getLogin = async (req,res)=>{
     let remember_me = req.body.remember
 
     var user = await User.findOne({ email: email }).exec();
+    var admin = await Admin.findOne({ email: email }).exec();
+
     if(!user) {
-        res.render("login.hbs", {
-            errors:"Invalid email/password" 
-        })
-    }
-    if(!bcrypt.compareSync(password, user.password)) {
-        res.render("login.hbs", {
-            errors:"Invalid email/password" 
-        })
-    }
-    else{
-        req.session.email = req.body.email
-        req.session.password = req.body.password
-        req.session.firstname = user.firstname
-        req.session.lastname = user.lastname
 
-        if(remember_me){    
-            req.session.cookie.maxAge = 1000 * 3600 * 24 * 30
+        if(!admin) {
+            res.render("login.hbs", {
+                errors:"Invalid email/password" 
+            })
         }
-
-        // let today = new Date();
-        let date_today = new Date();
-        let date = ("0" + date_today.getDate()).slice(-2);
-        let month = ("0" + (date_today.getMonth() + 1)).slice(-2);
-        let year = date_today.getFullYear();
-        req.session.today = (year + month  + date)
-
-        req.session.tasks = []
-
-        User.find({}).then((docs)=>{
-
-            last_login = docs[0].tasks[0].logged_date
-
-            if(last_login < req.session.today){
-                Task.find({}).then((docs)=>{
-                    for(let i=0; i<docs.length; i++){
-                        let task = {task_description: docs[i].task_description, accomplished: false, logged_date: req.session.today}
-                        req.session.tasks.push(task)
-                    }
-            
-                    User.findOneAndUpdate({email:req.session.email}, 
-                        {tasks:req.session.tasks}).then((doc)=>{
-
-                            let count = doc.accomplishments.count_of_times
-                            let accomplishments = {accomplished_today: false, count_of_times: count}
-
-                            User.findOneAndUpdate({email:req.session.email}, 
-                                {accomplishments: accomplishments}).then((doc)=>{
-                                res.redirect("/")
-                            })
-                    })                       
+    
+        else if(admin) {
+            if(!bcrypt.compareSync(password, admin.password)) {
+                res.render("login.hbs", {
+                    errors:"Invalid email/password" 
                 })
             }
-            else{
+            else{    
+                req.session.email = req.body.email
+                req.session.password = req.body.password
+                req.session.firstname = admin.firstname
+                req.session.lastname = admin.lastname
+                req.session.isAdmin = true
+    
                 res.redirect("/")
             }
-            
-        })
+        }
+    }
+
+    else if(user) {
+        if(!bcrypt.compareSync(password, user.password)) {
+            res.render("login.hbs", {
+                errors:"Invalid email/password" 
+            })
+        }
+        else{
+            req.session.email = req.body.email
+            req.session.password = req.body.password
+            req.session.firstname = user.firstname
+            req.session.lastname = user.lastname
+            req.session.isAdmin = false
+
+            if(remember_me){    
+                req.session.cookie.maxAge = 1000 * 3600 * 24 * 30
+            }
+
+            // let today = new Date();
+            let date_today = new Date();
+            let date = ("0" + date_today.getDate()).slice(-2);
+            let month = ("0" + (date_today.getMonth() + 1)).slice(-2);
+            let year = date_today.getFullYear();
+            req.session.today = (year + month  + date)
+
+            req.session.tasks = []
+
+            User.find({}).then((docs)=>{
+
+                last_login = docs[0].tasks[0].logged_date
+
+                if(last_login < req.session.today){
+                    Task.find({}).then((docs)=>{
+                        for(let i=0; i<docs.length; i++){
+                            let task = {task_description: docs[i].task_description, accomplished: false, logged_date: req.session.today}
+                            req.session.tasks.push(task)
+                        }
+                
+                        User.findOneAndUpdate({email:req.session.email}, 
+                            {tasks:req.session.tasks}).then((doc)=>{
+
+                                let count = doc.accomplishments.count_of_times
+                                let accomplishments = {accomplished_today: false, count_of_times: count}
+
+                                User.findOneAndUpdate({email:req.session.email}, 
+                                    {accomplishments: accomplishments}).then((doc)=>{
+                                    res.redirect("/")
+                                })
+                        })                       
+                    })
+                }
+                else{
+                    res.redirect("/")
+                }
+            })
+        }
     }
   
 }
@@ -231,15 +272,29 @@ exports.getUpdateTask = (req, res)=>{
 exports.getMeditation = (req, res)=>{
 
     if(req.session.email){
-        Meditation.find({}).sort({date: 'desc'}).then((docs)=>{
-            res.render("meditation.hbs", {
-                meditations: docs
+        if(req.session.isAdmin){
+            Meditation.find({}).sort({date: 'desc'}).then((docs)=>{
+                res.render("meditation-admin.hbs", {
+                    meditations: docs
+                })
+            }, (err)=>{
+                res.render("meditation-admin.hbs",{
+                    error: err
+                })
             })
-        }, (err)=>{
-            res.render("meditation.hbs",{
-                error: err
+        }
+        else{
+            Meditation.find({}).sort({date: 'desc'}).then((docs)=>{
+                res.render("meditation.hbs", {
+                    meditations: docs
+                })
+            }, (err)=>{
+                res.render("meditation.hbs",{
+                    error: err
+                })
             })
-        })
+        }
+        
     }
 
     else{
@@ -261,27 +316,33 @@ exports.getAbout = (req, res)=>{
 exports.getProfile = (req, res)=>{
 
     if(req.session.email){
-
-        User.findOne({email:req.session.email}).then(result=>{
+        if(req.session.isAdmin){
+            res.render("profile-admin.hbs",{
+                firstname: req.session.firstname,
+                lastname: req.session.lastname
+            })
+        }
+        else{
+            User.findOne({email:req.session.email}).then(result=>{
 
             req.session.accomplished = 0 
             for(let i=0; i<result.tasks.length; i++){
-
+    
                 if(result.tasks[i].accomplished){
                     req.session.accomplished++;
                 }     
             }
-
+    
             if(req.session.accomplished == 5){
 
                 if(result.accomplishments.accomplished_today){
-
+    
                     let plant = result.accomplishments.count_of_times
                     let plants =[]
                     for(let i=0; i<plant; i++){
                         plants.push({plant})
                     }
-
+    
                     res.render("profile.hbs", {
                         firstname: req.session.firstname,
                         lastname: req.session.lastname,
@@ -294,11 +355,11 @@ exports.getProfile = (req, res)=>{
                         {accomplishments:  {accomplished_today: true, count_of_times: count}}).then((doc)=>{
                         let plant = count
                         let plants =[]
-
+    
                         for(let i=0; i<plant; i++){
                             plants.push({plant})
                         }
-
+    
                         res.render("profile.hbs", {
                             firstname: req.session.firstname,
                             lastname: req.session.lastname,
@@ -307,7 +368,7 @@ exports.getProfile = (req, res)=>{
                     })
                 }
             }
-            
+                
             else{
                 if(result.accomplishments.count_of_times){
                     let plant = result.accomplishments.count_of_times
@@ -315,7 +376,7 @@ exports.getProfile = (req, res)=>{
                     for(let i=0; i<plant; i++){
                         plants.push({plant})
                     }
-
+    
                     res.render("profile.hbs", {
                         firstname: req.session.firstname,
                         lastname: req.session.lastname,
@@ -330,12 +391,8 @@ exports.getProfile = (req, res)=>{
                     })
                 }
             }
-        })
-
-        // res.render("profile.hbs",{
-        //     firstname: req.session.firstname,
-        //     lastname: req.session.lastname
-        // })
+            })
+        }
     }
 
     else{
