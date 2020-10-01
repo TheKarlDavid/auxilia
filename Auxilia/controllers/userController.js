@@ -384,6 +384,12 @@ exports.getProfile = (req, res)=>{
                     })
                 }
                 else{
+                    let plant = result.accomplishments.count_of_times
+                    let plants =[]
+                    for(let i=0; i<plant; i++){
+                        plants.push({plant})
+                    }
+                    
                     res.render("profile.hbs", {
                         firstname: req.session.firstname,
                         lastname: req.session.lastname,
