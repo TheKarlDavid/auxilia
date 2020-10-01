@@ -7,6 +7,26 @@ const bcrypt = require("bcryptjs")
 
 //home page
 
+    // let student = new Task({
+    //     // new version of js if name same for property and variable age:age -> age 
+    //     name,
+    //     age
+    // })
+
+    // // add student to db
+    // student.save().then((doc)=>{
+    //     // successful callback(adding)
+    //     res.redirect("/")
+    // }, (error)=>{ //error
+    //     // second promise - only be called if error on first promise
+    //     Student.find({}).then((students)=>{
+    //         res.render("index.hbs", {
+    //             error,
+    //             students
+    //         })
+    //     })
+    // })
+
 exports.getIndex = (req, res)=>{
 
     if(req.session.email){
@@ -60,6 +80,7 @@ exports.getIndex = (req, res)=>{
     }
 
     else{
+
         // the user has not registered or logged
         res.render("index.hbs")
     
@@ -118,7 +139,7 @@ exports.getRegister = (req,res)=>{
 
                     User.findOneAndUpdate({email:req.session.email}, 
                         {accomplishments: accomplishments}).then((doc)=>{
-                        res.redirect("/")
+                        // res.redirect("/")
                     })
             })                       
         })

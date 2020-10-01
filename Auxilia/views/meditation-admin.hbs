@@ -4,6 +4,114 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="styles.css">
+    <link rel="stylesheet" type="text/css" href="home-admin.css">
+
+    <title>Home | Auxilia</title>
+</head>
+<body>
+    <header id="head">
+        <nav>
+          <div class="logo">
+            <img src="img/Auxilia.png"></img>
+          </div>
+          <ul class="navlist">
+            <li><a href="home" method="get">Home</a></li>
+            <li><a href="meditation" method="get">Meditation</a></li>
+            <li><a href="about" method="get">About</a></li>
+            <li><a href="profile" method="get">Profile</a></li>
+          </ul>
+        </nav>
+
+
+      </header>
+      
+      <main>
+        <div class="home-banner">
+          <div class="banner-container">
+            <h1 class="banner">WELCOME <br> {{firstname}} {{lastname}}</h1>
+          </div>
+          
+        </div>
+
+        <div class="home-tasks">
+
+           <div class="notepadbase">
+              <div class="tasks-header">
+                <h1 class="textbox-admin">Tasks for today</h1>
+
+              </div>
+              <div class="tasks-list">
+                <div class="task-item">
+
+                <div class="item">
+                    <p class="textbox1">Watch video</p>
+                  </div>
+                  <div class="item">
+                    <p class="textbox2" >Exercise for 30 mins</p>
+                  </div>
+
+                  <div class="item">
+                    <p class="textbox3" >Meditate for 15 mins</p>
+                  </div>
+
+                  <div class="item">
+                    <p class="textbox4" >Do something you find fun</p>
+                  </div>
+
+                  <div class="item">
+                    <p class="textbox5" >Take a 30 min nap</p>
+                  </div> 
+            
+                </div>
+              </div>    
+          </div>
+        </div>
+
+        <div class="home-tasks-tomorrow">
+
+          <div class="notepadbase">
+             <div class="tasks-header">
+               <h1 class="textbox-admin">Add tasks for next days</h1>
+
+             </div>
+             <div class="tasks-list">
+               <div class="task-item">
+
+                <form class="form-add-task" action="add-task" method="post">
+                  <input name="task-day" type="date" required/>
+                  <input name="task1" type="text" required/>
+                  <input name="task2" type="text" required/>
+                  <input name="task3" type="text" required/>
+                  <input name="task4" type="text" required/>
+                  <input name="task5" type="text" required/>
+                  <input id="submit-add-task" type="submit" value="ADD TASK"/>
+
+                </form>
+           
+               </div>
+             </div>    
+         </div>
+       </div>
+
+      </main>
+      
+      <!-- partial -->
+      <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script>
+      <script src='https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js'></script>
+      <!-- <script  src="./home.js"></script> -->
+      <script  src="./home-admin.js"></script>
+
+</body>
+</html>
+
+
+
+{{!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="styles.css">
     <link rel="stylesheet" type="text/css" href="meditation-admin.css">
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 
@@ -117,4 +225,4 @@
       {{!-- <script src="meditation.js"></script> --}}
       <script  src="./meditation-admin.js"></script>
 </body>
-</html>
+</html> --}}

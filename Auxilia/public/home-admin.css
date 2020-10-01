@@ -1,7 +1,9 @@
 main{
     display: grid;
     grid-template-rows: 100px 1fr;
-    grid-template-columns: 50% 50%;
+	grid-template-columns: 50% 50%;
+	
+	padding: 0 0 20px;
 }
 
 /* welcome banner */
@@ -102,594 +104,25 @@ main{
 
 .home-banner{
     grid-row: 1/2;
-    grid-column: 1/3;
-    
-
-}
-
-.home-plant{
-    grid-row: 2/3;
-    grid-column: 1/2;
-}
-
-#plant_heading{
-    border-radius: 15px;
-    border: #17BEBB;
-    padding-top: 10px;
-    text-align: center;
-    margin-top: 34px;
-    margin-left: 38%;
-    margin-bottom: 8px;
-    width: 200px;
-    height: 50px;
-    background-color: #ECF9F2;
+	grid-column: 1/3;
+	
 }
 
 
 .home-tasks{
+	grid-row: 2/3;
+    grid-column: 1/2;
+    /* grid-row: 2/3;
+    grid-column: 2/3; */
+	/* margin: -20px 40px 20px; */
+	margin: 0 auto;
+}
+
+.home-tasks-tomorrow{
     grid-row: 2/3;
     grid-column: 2/3;
-    margin: -20px 40px 20px;
-}
-
-
-
-
-
-.home-plant p{
-    font-size: 30px;
-    margin: 30px 20px;
-}
-
-  /* .wrapper {
-      position:absolute;
-      bottom:0;
-      width:100%;
-  } */
-  
-  .box {
-	position:relative;
-	margin:auto;
-	display:block;
-	margin-top:-15.5%;
-	width:600px;
-	height:600px;
-	background:none;
-}
-
-.pot {
-	position:absolute;
-	width:20%;
-	height:20%;
-	bottom:0;
-	left:40%;
-	background:#FCAA67;
-	-webkit-clip-path: polygon(0 0, 100% 0, 90% 100%, 10% 100%);
-	clip-path: polygon(0 0, 100% 0, 90% 100%, 10% 100%);
-	box-shadow: inset 0 16px 20px rgba(0,0,0,0.3);
-}
-
-.pot-top {
-	position:absolute;
-	width:22%;
-	height:5%;
-	bottom:17%;
-	left:39%;
-	background:#FCAA67;
-    border-radius:3px;
-    z-index: 1;
-}
-
-
-.stem {
-	position:absolute;
-	width:12px;
-	height:12px;
-	left:49%;
-	bottom:20%;
-	background:#70B77E;
-}
-
-.leaf {
-	position:absolute;
-	width:90px;
-	height:30px;
-	border-radius:50%;
-	background:#70B77E;
-}
-
-.leaf .line {
-	position:absolute;
-	width:80%;
-	height:1%;
-	background:rgba(0,0,0,0.1);
-	top:48%;
-}
-
-.leaf00 {
-	width:0px;
-	height:0px;
-	top:0%;
-	left:5px;
-	transform:rotate(-60deg);
-}
-
-.leaf01 {
-	width:0px;
-	height:0px;
-	top:40%;
-	right: 5px;
-	transform:rotate(-150deg);
-}
-
-.leaf02 {
-	width:0px;
-	height:0px;
-	top:0%;
-	left:5px;
-	transform:rotate(-40deg);
-}
-
-.leaf03 {
-	width:0px;
-	height:0px;
-	top:0%;
-	right: -5px;
-	transform:rotate(-150deg);
-}
-
-.leaf04 {
-	width:50px;
-	height:30px;
-	top:100%;
-	left: 5px;
-	transform:rotate(-40deg);
-}
-
-
-/* --- ANIMATION --- */
-
-/* --- 1st ANIMATION --- */
-
-.leaf00.r {
-	animation: g 2s;
-	animation-fill-mode: forwards;
-}
-
-@keyframes g {
-	0% {
-		width:0%;
-		height:0%;
-		top:0%;
-		left:5px;
-		transform:rotate(-60deg);
-	}
-	
-	100% {
-		width:50px;
-		height:30px;
-		top:-250%;
-		left:-10px;
-		transform:rotate(-60deg);
-	}
-}
-
-/* --- 2nd ANIMATION --- */
-
-.leaf00.leaf1_2 {
-	animation: g3 1s;
-	animation-fill-mode: forwards;
-}
-
-@keyframes g3 {
-	0% {
-		width:50px;
-		height:30px;
-		top:-100%;
-		left:-10px;
-		transform:rotate(-60deg);
-	}
-	
-	100% {
-		width:50px;
-		height:30px;
-		top:-40%;
-		left:-10px;
-		transform:rotate(-60deg);
-	}
-}  
-
-.stem.rain2 {
-	animation: grow2 2s linear 1;
-	animation-fill-mode:forwards;
-}
-
-@keyframes grow2 {
-	0% {
-		width:12px;
-		height:20px;
-		left:49%;
-		bottom:20%;
-	}
-	
-	100% {
-		width:12px;
-		height:75px;
-		left:49%;
-		bottom:20%;
-	}
-}
-
-.leaf01.r {
-	animation: h 3s;
-	animation-fill-mode: forwards;
-}
-
-@keyframes h {
-	0% {
-		width:0px;
-		height:0px;
-		top:80%;
-		right: 5px;
-		transform:rotate(-150deg);
-	}
-	
-	100% {
-		width:50px;
-		height:30px;
-		top:40%;
-		right: 5px;
-		transform:rotate(-150deg);
-	}
-}  
-
-/* --- 3rd ANIMATION --- */
-
-.leaf00.leaf1_3 {
-	animation: g4 1s;
-	animation-fill-mode: forwards;
-}
-
-@keyframes g4 {
-	0% {
-		width:50px;
-		height:30px;
-		top:-40%;
-		left:-10px;
-		transform:rotate(-60deg);
-	}
-	
-	100% {
-		width:50px;
-		height:30px;
-		top:-10%;
-		left:-10px;
-		transform:rotate(-60deg);
-	}
-}  
-
-.stem.rain3 {
-	animation: grow3 2s;
-	animation-fill-mode:forwards;
-}
-
-@keyframes grow3 {
-	0% {
-		width:12px;
-		height:75px;
-		left:49%;
-		bottom:20%;
-	}
-	
-	100% {
-		width:12px;
-		height:150px;
-		left:49%;
-		bottom:20%;
-	}
-}
-
-.leaf01.r2 {
-	animation: h2 2s;
-	animation-fill-mode: forwards;
-}
-
-@keyframes h2 {
-	0% {
-		width:50px;
-		height:30px;
-		top:40%;
-		right: 5px;
-		transform:rotate(-150deg);
-	}
-	
-	100% {
-		width:50px;
-		height:30px;
-		top:30%;
-		right: 5px;
-		transform:rotate(-150deg);
-	}
-}  
-
-.leaf02.t {
-	animation: j 2s;
-	animation-fill-mode: forwards;
-}
-
-@keyframes j {
-	0% {
-		width:0%;
-		height:0%;
-		top:100%;
-		left:5px;
-		transform:rotate(-40deg);
-	}
-	
-	100% {
-		width:50px;
-		height:30px;
-		top:60%;
-		left:0px;
-		transform:rotate(-40deg);
-	}
-}  
-
-/* --- 4th ANIMATION --- */
-
-
-.leaf00.leaf1_4 {
-	animation: g5 1s;
-	animation-fill-mode: forwards;
-}
-
-@keyframes g5 {
-	0% {
-		width:50px;
-		height:30px;
-		top:-10%;
-		left:-10px;
-		transform:rotate(-60deg);
-	}
-	
-	100% {
-		width:50px;
-		height:30px;
-		top:-10%;
-		left:-10px;
-		transform:rotate(-60deg);
-	}
-}  
-
-.stem.rain4 {
-	animation: grow4 2s;
-	animation-fill-mode:forwards;
-}
-
-@keyframes grow4 {
-	0% {
-		width:12px;
-		height:150px;
-		left:49%;
-		bottom:20%;
-	}
-	
-	100% {
-		width:12px;
-		height:225px;
-		left:49%;
-		bottom:20%;
-	}
-}
-
-.leaf01.r3 {
-	animation: h3 2s;
-	animation-fill-mode: forwards;
-}
-
-@keyframes h3 {
-	0% {
-		width:50px;
-		height:30px;
-		top:30%;
-		right: 5px;
-		transform:rotate(-150deg);
-	}
-	
-	100% {
-		width:50px;
-		height:30px;
-		top:17.5%;
-		right: 5px;
-		transform:rotate(-150deg);
-	}
-}  
-
-.leaf02.t2 {
-	animation: j2 2s;
-	animation-fill-mode: forwards;
-}
-
-@keyframes j2 {
-	0% {
-		width:50px;
-		height:30px;
-		top:60%;
-		left:0px;
-		transform:rotate(-40deg);
-	}
-	
-	100% {
-		width:50px;
-		height:30px;
-		top:40%;
-		left:0px;
-		transform:rotate(-40deg);
-	}
-}  
-
-.leaf03.y {
-	animation: q 2s;
-	animation-fill-mode: forwards;
-}
-
-@keyframes q {
-	0% {
-		width:0px;
-		height:0px;
-		top:100%;
-		right:5px;
-		transform:rotate(-160deg);
-	}
-	
-	100% {
-		width:50px;
-		height:30px;
-		top:65%;
-		right: 5px;
-		transform:rotate(-160deg);
-	}
-} 
-
-
-
-/* --- 5th ANIMATION --- */
-
-
-.leaf00.leaf1_5 {
-	animation: g6 1s;
-	animation-fill-mode: forwards;
-}
-
-@keyframes g6 {
-	0% {
-		width:50px;
-		height:30px;
-		top:-10%;
-		left:-10px;
-		transform:rotate(-60deg);
-	}
-	
-	100% {
-		width:50px;
-		height:30px;
-		top:-10%;
-		left:-10px;
-		transform:rotate(-60deg);
-	}
-}  
-
-.stem.rain5 {
-	animation: grow5 2s;
-	animation-fill-mode:forwards;
-}
-
-@keyframes grow5 {
-	0% {
-		width:12px;
-		height:225px;
-		left:49%;
-		bottom:20%;
-	}
-	
-	100% {
-		width:12px;
-		height:325px;
-		left:49%;
-		bottom:20%;
-	}
-}
-
-.leaf01.r4 {
-	animation: h4 2s;
-	animation-fill-mode: forwards;
-}
-
-@keyframes h4 {
-	0% {
-		width:50px;
-		height:30px;
-		top:17.5%;
-		right: 5px;
-		transform:rotate(-150deg);
-	}
-	
-	100% {
-		width:50px;
-		height:30px;
-		top:10%;
-		right: 5px;
-		transform:rotate(-150deg);
-	}
-}  
-
-.leaf02.t3 {
-	animation: j3 2s;
-	animation-fill-mode: forwards;
-}
-
-@keyframes j3 {
-	0% {
-		width:50px;
-		height:30px;
-		top:40%;
-		left:0px;
-		transform:rotate(-40deg);
-	}
-	
-	100% {
-		width:50px;
-		height:30px;
-		top:30%;
-		left:0px;
-		transform:rotate(-40deg);
-	}
-}  
-
-.leaf03.y2 {
-	animation: q2 2s;
-	animation-fill-mode: forwards;
-}
-
-@keyframes q2 {
-	0% {
-		width:50px;
-		height:30px;
-		top:65%;
-		right: 5px;
-		transform:rotate(-160deg);
-	}
-	
-	100% {
-		width:50px;
-		height:30px;
-		top:50%;
-		right: 5px;
-		transform:rotate(-160deg);
-	}
-}
-
-.leaf04.u {
-	animation: p 2s;
-	animation-fill-mode: forwards;
-}
-
-@keyframes p {
-	0% {
-		width:0px;
-		height:0px;
-		top:100%;
-		left:0px;
-		transform:rotate(-30deg);
-	}
-	
-	100% {
-		width:50px;
-		height:30px;
-		top:75%;
-		left:0px;
-		transform:rotate(-30deg);
-	}
+	/* margin: -20px 40px 20px; */
+	margin: 0 auto;
 }
 
 
@@ -700,8 +133,9 @@ main{
     font-size:16px;
     padding-bottom: 35px;
     margin-top:70px;
-    margin-right:60px;
-    width: auto;
+    /* margin-right:60px;
+	width: auto; */
+	width: 630px;
     height: auto;
     border: none;
     align-content: center;
@@ -728,8 +162,8 @@ main{
 }
 
 .item{
-    display: grid;
-    grid-template-columns: 1fr 60px 5px;
+    /* display: grid;
+    grid-template-columns: 1fr 60px 5px; */
     background: #c6e9d7;
     margin: 10px 0;
     border-radius: 5px;
@@ -743,10 +177,11 @@ main{
     font-weight: 600;
     padding: 15px;
     margin:5px 10px;
-    width: 80%;
+    /* width: 80%; */
     height: auto;
     border: none;
-    align-content: center;
+	align-content: center;
+	text-align: center;
 }
 
 .textbox2 {
@@ -756,7 +191,7 @@ main{
     font-weight: 600;
     padding:15px;
     margin:5px 10px;
-    width: 80%;
+    /* width: 80%; */
     height: auto;
     border: none;
     align-content: center;
@@ -769,7 +204,7 @@ main{
     font-weight: 600;
     padding:15px;
     margin:5px 10px;
-    width: 80%;
+    /* width: 80%; */
     height: auto;
     border: none;
     align-content: center;
@@ -782,7 +217,7 @@ main{
     font-weight: 600;
     padding:15px;
     margin:5px 10px;
-    width: 80%;
+    /* width: 80%; */
     height: auto;
     border: none;
     align-content: center;
@@ -795,7 +230,7 @@ main{
     font-weight: 600;
     padding:15px;
     margin:5px 10px;
-    width: 80%;
+    /* width: 80%; */
     height: auto;
     border: none;
     align-content: center;
@@ -812,94 +247,8 @@ main{
     text-transform: uppercase;
 }
 
-.item svg{
-    position: relative;
-	top: 11px;
-	cursor: pointer;
-}
 
-.edit-task:hover{
-    fill: #009795;
-    transition: 0.5s;
-}
-
-
-
-
-/* FOR EDIT MEDITATION MODAL */
-.editModalTask{
-    font-family: 'Montserrat';
-    font-size: 17px;
-    line-height: 1.6;
-    display: none;
-    position: fixed;
-    z-index: 1;
-    left: 0;
-    top: 0;
-    height: 100%;
-    width: 100%;
-    background-color: rgba(0,0,0,0.5);
-}
-
-.editModalTask-content{
-    background-color: #f4f4f4;
-    margin: 13% auto;
-    padding: 18px;
-    width: 55%;
-    border-radius: 5px;
-    box-shadow: 0 5px 8px 0 rgba(0,0,0,0.2),
-     0 7px 20px 0 rgba(0,0,0,0.17);
-
-    animation-name: modalEditTask;
-    animation-duration: 1s;
-}
-
-.editModalTask-header{
-	font-family: 'Montserrat';
-	background: #17BEBB;	
- 	border-radius: 5px;
-    padding: 5px;
-    color: white;
-
-    display: grid;
-    grid-template-columns: 1fr 50px;
-}
-
-.editModalTask-header h2{
-	display: inline-block;
-	position: relative;
-	bottom: 8px;
-    position: relative;
-    top: 13px;
-    left: 275px;
-}
-
-.edit-task-closeBtn{
-  display: inline-block;
-  position: relative;
-  color: #fff;
-  font-size: 55px;
-  /* margin-left: 29%; */
-  line-height: normal;
-}
-
-.edit-task-closeBtn:hover, .edit-task-closeBtn:focus{
-  color: #d60000;
-  text-decoration: none;
-  cursor: pointer;
-  transition: 0.5s;
-}
-
-.editModalTask-body{
-    padding: 10px 20px;
-}
-
-.editModalTask-footer{
-    color: white;
-    text-align: center;
-}
-
-.form-edit-task input{
+.form-add-task input{
     padding: 5px;
     width: 98%;
     height: 50px;
@@ -909,40 +258,29 @@ main{
 	margin: 10px 0;
 }
 
-.form-edit-task input:last-child{
+.form-add-task input:last-child{
 	margin: 10px 0 0;
 }
 
 
-#submit-edit-task{
+#submit-add-task{
     background: transparent;
     border: none;
     outline: none;
-    color: #fff;
+    color: #000;
     font-size: 20px;
-    background:#17BEBB;
+    background:#c6e9d7;
     padding: 10px 20px;
     cursor: pointer;
     border-radius: 5px;
     width: 100%;
-    height: 100%;
+    height: 50px;
 
     transition-duration:0.5s;
     transition-timing-function:ease;
     transition-property:all;
   }
 
-#submit-edit-task:hover{
-    background: #00a19f;
+#submit-add-task:hover{
+    background: #9cdfbd;
   }
-
-@keyframes modalEditTask{
-    from{
-        opacity: 0;
-    }
-    to{
-        opacity: 1;
-    }
-}
-
-

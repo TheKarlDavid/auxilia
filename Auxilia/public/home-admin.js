@@ -1,13 +1,13 @@
 //EDIT TASK MODAL
-function editTask(modal_id){
+function editTask(){
   $(document).ready(function(){
     console.log("CLICK FORM EDIT TASK");
-    
+    console.log($("input#date").val())
     $(".edit-task-closeBtn").click(function(){
-      $('#'+modal_id).hide();
+      $('.addModalTask').hide();
     })
 
-    $('#'+modal_id).show();
+    $('.addModalTask').show();
   })
 
 }
