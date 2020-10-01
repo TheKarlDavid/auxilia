@@ -78,12 +78,13 @@
                <div class="task-item">
 
                 <form class="form-add-task" action="add-task" method="post">
+                  <div class="error-add">Invalid: Already made task for day</div>
                   <input id="date" name="task-day" type="date" required/>
-                  <!-- <input name="task1" type="text" required/>
+                  <input name="task1" type="text" required/>
                   <input name="task2" type="text" required/>
                   <input name="task3" type="text" required/>
                   <input name="task4" type="text" required/>
-                  <input name="task5" type="text" required/>  -->
+                  <input name="task5" type="text" required/> 
                   <input onclick ="editTask()" id="submit-add-task" type="submit" value="ADD TASK"/>
 
                 </form>

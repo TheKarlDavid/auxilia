@@ -43,7 +43,7 @@
           <div class="box">
             
             {{!-- {{plant}} --}}
-            {{#if_equal plant "0"}}
+            {{#if_equal completedTasks.length "0"}}
               <div class="stem">
               <div class="leaf leaf00">
                 <div class="line"></div>
@@ -62,7 +62,7 @@
               </div>
             {{/if_equal}}
 
-            {{#if_equal plant "1"}}
+            {{#if_equal completedTasks.length "1"}}
               <div class="stem">
               <div class="leaf leaf00 r">
                 <div class="line"></div>
@@ -81,7 +81,7 @@
               </div>
             {{/if_equal}}
 
-            {{#if_equal plant "2"}}
+            {{#if_equal completedTasks.length "2"}}
               <div class="stem rain2">
               <div class="leaf leaf00 r leaf1_2">
                 <div class="line"></div>
@@ -100,7 +100,7 @@
               </div>
             {{/if_equal}}
 
-            {{#if_equal plant "3"}}
+            {{#if_equal completedTasks.length "3"}}
               <div class="stem rain2 rain3">
               <div class="leaf leaf00 r leaf1_2 leaf1_3">
                 <div class="line"></div>
@@ -119,7 +119,7 @@
               </div>
             {{/if_equal}}
 
-            {{#if_equal plant "4"}}
+            {{#if_equal completedTasks.length "4"}}
               <div class="stem rain2 rain3 rain4">
               <div class="leaf leaf00 r leaf1_2 leaf1_3 leaf1_4">
                 <div class="line"></div>
@@ -138,7 +138,7 @@
               </div>
             {{/if_equal}}
 
-            {{#if_equal plant "5"}}
+            {{#if_equal completedTasks.length "5"}}
               <div class="stem rain2 rain3 rain4 rain5">
               <div class="leaf leaf00 r leaf1_2 leaf1_3 leaf1_4 leaf1_5">
                 <div class="line"></div>
@@ -176,9 +176,10 @@
               <div class="tasks-list">
                 <div class="task-item">
                     {{#each tasks}}
+                      
                       {{#if_equal @index "0"}}
 
-                        {{#if accomplished}}
+                        {{#ifCheck completedTasks _id}}
                           <form>
                             <div class="item">
                               <div class="drop c"></div>
@@ -195,13 +196,13 @@
                               <p class="textbox1" >{{task_description}}</p>
                             </div>
                           </form>
-                        {{/if}}
+                        {{/ifCheck}}
 
                       {{/if_equal}}
 
                       {{#if_equal @index "1"}}
                       
-                        {{#if accomplished}}
+                        {{#ifCheck completedTasks _id}}
                           <form>
                             <div class="item">
                               <div class="drop2 c c2"></div>
@@ -217,13 +218,13 @@
                               <p class="textbox2" >{{task_description}}</p>
                             </div>
                           </form>
-                        {{/if}}
+                        {{/ifCheck}}
 
                       {{/if_equal}}
 
                       {{#if_equal @index "2"}}
                       
-                        {{#if accomplished}}
+                        {{#ifCheck completedTasks _id}}
                           <form>
                             <div class="item">
                               <div class="drop3 c3"></div>
@@ -239,13 +240,13 @@
                               <p class="textbox3" >{{task_description}}</p>
                             </div>
                           </form>
-                        {{/if}}
+                        {{/ifCheck}}
 
                       {{/if_equal}}
 
                       {{#if_equal @index "3"}}
                       
-                        {{#if accomplished}}
+                        {{#ifCheck completedTasks _id}}
                           <form>
                             <div class="item">
                               <div class="drop4 c4"></div>
@@ -261,13 +262,13 @@
                               <p class="textbox4" >{{task_description}}</p>
                             </div>
                           </form>
-                        {{/if}}
+                        {{/ifCheck}}
 
                       {{/if_equal}}
 
                       {{#if_equal @index "4"}}
                       
-                        {{#if accomplished}}
+                        {{#ifCheck completedTasks _id}}
                           <form>
                             <div class="item">
                               <div class="drop5 c5"></div>
@@ -283,7 +284,7 @@
                               <p class="textbox5" >{{task_description}}</p>
                             </div>
                           </form>
-                        {{/if}}
+                        {{/ifCheck}}
 
                       {{/if_equal}}
 

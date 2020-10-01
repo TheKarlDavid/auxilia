@@ -284,3 +284,15 @@ main{
 #submit-add-task:hover{
     background: #9cdfbd;
   }
+
+  .error-add{
+      font-size: 24 px;
+      text-align: center;
+      padding: 10px 0px;
+      border-top: 2px solid #dc0000;
+      border-bottom: 2px solid #dc0000;
+      border-left: 10px solid #dc0000;
+      border-right: 10px solid #dc0000;
+      border-radius: 5px;
+      font-weight: bold;
+  }

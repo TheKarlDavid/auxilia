@@ -13,30 +13,106 @@ exports.getAdminHome = (req, res)=>{
     }
 }
 
-exports.getEditTask = (req, res)=>{
+exports.getAddTask = (req, res)=>{
     
-    let task = req.body.task
-    let id = req.body.edit_id
+    // let task = req.body.task-date
+    // let id = req.body.task1
+    // console.log(req.body.taskdate)
+    // console.log(req.body.task1)
     
-    console.log(task)
+    // let date = new Date()
+    
+    // res.redirect("/")
 
+    // console.log(task)
     if(req.session.email){
-        Task.findOneAndUpdate({
-            _id:id
-        }, {
-            task_description: task
-        }).then(()=>{
-            res.redirect("/")
-        }, (error)=>{ 
-            Task.find({}).then((docs)=>{
-                res.render("home-admin.hbs", {
-                    error: error,
-                    firstname: req.session.firstname,
-                    lastname: req.session.lastname,
-                    tasks: docs 
+
+        let task1 = req.body.task1
+        let task2 = req.body.task2
+        let task3 = req.body.task3
+        let task4 = req.body.task4
+        let task5 = req.body.task5
+        let task_date = req.body.taskdate
+
+        Task.findOne({task_date: task_date}).then((doc)=>{
+            if(doc == null){
+                     
+                let taskOne = new Task({
+                    task_date:task_date,
+                    task_description:task1
                 })
-            })
+
+                let taskTwo = new Task({
+                    task_date:task_date,
+                    task_description:task2
+                })
+
+                let taskThree = new Task({
+                    task_date:task_date,
+                    task_description:task3
+                })
+
+                let taskFour = new Task({
+                    task_date:task_date,
+                    task_description:task4
+                })
+
+                let taskFive = new Task({
+                    task_date:task_date,
+                    task_description:task5
+                })
+
+                taskOne.save().then((docA)=>{
+                    console.log("Task 1 added")                   
+                }, (error)=>{ //error
+                    console.log("ERROR ADDING 1 "+ error)
+                })
+
+                taskTwo.save().then((docB)=>{
+                    console.log("Task 2 added")               
+                }, (error)=>{ //error
+                    console.log("ERROR ADDING 2 "+ error)
+                })
+
+                taskThree.save().then((docC)=>{
+                    console.log("Task 3 added")                    
+                }, (error)=>{ //error
+                    console.log("ERROR ADDING 3 "+ error)
+                })
+
+                taskFour.save().then((docD)=>{
+                    console.log("Task 4 added")                   
+                }, (error)=>{ //error
+                    console.log("ERROR ADDING 4 "+ error)
+                })
+
+                taskFive.save().then((docE)=>{
+                    console.log("Task 5 added")
+                    res.redirect("/")                   
+                }, (error)=>{ //error
+                    console.log("ERROR ADDING 5 "+ error)
+                })
+            }
+            else{
+                res.render("home-admin.hbs", {
+                    error: task_date
+                })
+            }
+            console.log(doc)
+
+        }, (err)=>{
+            console.log("ERROR "+err)
         })
+
+        // if(task_date.getTime() === date.getTime()){
+        //     console.log("equal")
+        // }
+
+
+        // res.redirect("/")
+        // if()
+
+        
     }
 
     else{
@@ -44,6 +120,38 @@ exports.getEditTask = (req, res)=>{
     }
 
 }
+
+// exports.getEditTask = (req, res)=>{
+    
+//     let task = req.body.task
+//     let id = req.body.edit_id
+    
+//     console.log(task)
+
+//     if(req.session.email){
+//         Task.findOneAndUpdate({
+//             _id:id
+//         }, {
+//             task_description: task
+//         }).then(()=>{
+//             res.redirect("/")
+//         }, (error)=>{ 
+//             Task.find({}).then((docs)=>{
+//                 res.render("home-admin.hbs", {
+//                     error: error,
+//                     firstname: req.session.firstname,
+//                     lastname: req.session.lastname,
+//                     tasks: docs 
+//                 })
+//             })
+//         })
+//     }
+
+//     else{
+//         res.render("login.hbs") 
+//     }
+
+// }
 
 exports.getAddMeditation = (req, res)=>{
     

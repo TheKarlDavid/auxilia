@@ -19,6 +19,19 @@ hbs.registerHelper('if_equal', function(a, b, opts) {
     }
 })
 
+hbs.registerHelper('ifCheck', function(a, b, opts) {
+    if(a){
+        console.log(a)
+        for (var i=0; i<a.length; i++){
+            if(a[i]._id == b){
+                return opts.fn(this)
+            }
+        }
+    }
+    
+    return opts.inverse(this)
+})
+
 app.use(bodyparser.urlencoded({
     extended:false
 }))

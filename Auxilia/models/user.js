@@ -13,8 +13,9 @@ let User = mongoose.model("User",{
     },
     tasks:[{
         task_description: String,
+        task_date: Date,
         accomplished: Boolean,
-        logged_date: Number
+        logged_date: Date
     }]
 })
 

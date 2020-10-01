@@ -7,26 +7,6 @@ const bcrypt = require("bcryptjs")
 
 //home page
 
-    // let student = new Task({
-    //     // new version of js if name same for property and variable age:age -> age 
-    //     name,
-    //     age
-    // })
-
-    // // add student to db
-    // student.save().then((doc)=>{
-    //     // successful callback(adding)
-    //     res.redirect("/")
-    // }, (error)=>{ //error
-    //     // second promise - only be called if error on first promise
-    //     Student.find({}).then((students)=>{
-    //         res.render("index.hbs", {
-    //             error,
-    //             students
-    //         })
-    //     })
-    // })
-
 exports.getIndex = (req, res)=>{
 
     if(req.session.email){
@@ -46,36 +26,36 @@ exports.getIndex = (req, res)=>{
         }
         else{
             //user already signed in
-            req.session.tasks = []
-            req.session.accomplished = 0
-            User.findOne({email:req.session.email}).then((docs)=>{
+            let date_today = new Date()
+            date_today.setUTCHours(0,0,0,0)
+            let tasks = []
 
-                for(let i=0; i<docs.tasks.length; i++){
-                    // console.log(docs.tasks[i])
-                    let task = {
-                        task_description: docs.tasks[i].task_description, 
-                        accomplished: docs.tasks[i].accomplished, 
-                        logged_date: docs.tasks[i].logged_date
-                    }
-                    req.session.tasks.push(task)
-                }
-
-                User.findOne({email:req.session.email}).then(result=>{
+            Task.find({task_date:date_today.toISOString()}).then((docs)=>{
+                // console.log(docs)
+                tasks= docs
+             
+                let completedTasks = []
+                User.findOne({email:req.session.email}).then((result)=>{
                     for(let i=0; i<result.tasks.length; i++){
-                        if(result.tasks[i].accomplished){
-                            req.session.accomplished++;
+                        // console.log(result.tasks[i].task_date)
+                        // console.log(date_today.toISOString())
+                        if(result.tasks[i].task_date.toISOString() == date_today.toISOString()){
+                            completedTasks.push(result.tasks[i])
                         }
-                        
                     }
-                    
+
+                    console.log(completedTasks)
+
                     res.render("home.hbs", {
                         firstname: req.session.firstname,
                         lastname: req.session.lastname,
-                        tasks:req.session.tasks,
-                        plant: req.session.accomplished
+                        tasks:tasks,
+                        completedTasks: completedTasks
                     })
                 })
+                     
             })
+            
         }
     }
 
@@ -115,39 +95,20 @@ exports.getRegister = (req,res)=>{
         password = hash;
 
         let accomplishments = {accomplished_today: false, count_of_times: 0}
+        let date_today = new Date();
+        req.session.today = date_today
 
         let user = new User({
              email: email,
              password: password,
              firstname: first_name,
              lastname: last_name,
-             accomplishments: accomplishments
-        })
-
-        req.session.tasks = []
-        Task.find({}).then((docs)=>{
-            for(let i=0; i<docs.length; i++){
-                let task = {task_description: docs[i].task_description, accomplished: false, logged_date: req.session.today}
-                req.session.tasks.push(task)
-            }
-    
-            User.findOneAndUpdate({email:email}, 
-                {tasks:req.session.tasks}).then((doc)=>{
-                    console.log(doc)
-                    // let count = doc.accomplishments.count_of_times
-                    let accomplishments = {accomplished_today: false, count_of_times: 0}
-
-                    User.findOneAndUpdate({email:req.session.email}, 
-                        {accomplishments: accomplishments}).then((doc)=>{
-                        // res.redirect("/")
-                    })
-            })                       
+             accomplishments: accomplishments,
+             tasks: []
         })
 
         user.save().then((doc)=>{
             console.log("Succesfully added: "+ doc)
-
-            req.session.email = doc.email
             res.render("login.hbs", {
             message:"Registration successful"
             })
@@ -212,43 +173,8 @@ exports.getLogin = async (req,res)=>{
                 req.session.cookie.maxAge = 1000 * 3600 * 24 * 30
             }
 
-            // let today = new Date();
-            let date_today = new Date();
-            let date = ("0" + date_today.getDate()).slice(-2);
-            let month = ("0" + (date_today.getMonth() + 1)).slice(-2);
-            let year = date_today.getFullYear();
-            req.session.today = (year + month  + date)
+            res.redirect("/")
 
-            req.session.tasks = []
-
-            User.findOne({email:req.session.email}).then((docs)=>{
-
-                last_login = docs.tasks[0].logged_date
-
-                if(last_login < req.session.today){
-                    Task.find({}).then((docs)=>{
-                        for(let i=0; i<docs.length; i++){
-                            let task = {task_description: docs[i].task_description, accomplished: false, logged_date: req.session.today}
-                            req.session.tasks.push(task)
-                        }
-                
-                        User.findOneAndUpdate({email:req.session.email}, 
-                            {tasks:req.session.tasks}).then((doc)=>{
-                                console.log(doc)
-                                let count = doc.accomplishments.count_of_times
-                                let accomplishments = {accomplished_today: false, count_of_times: count}
-
-                                User.findOneAndUpdate({email:req.session.email}, 
-                                    {accomplishments: accomplishments}).then((doc)=>{
-                                    res.redirect("/")
-                                })
-                        })                       
-                    })
-                }
-                else{
-                    res.redirect("/")
-                }
-            })
         }
     }
   
@@ -282,28 +208,34 @@ exports.getHome = (req, res)=>{
 exports.getUpdateTask = (req, res)=>{
 
     if(req.session.email){
-        User.findOne({email:req.session.email}).then(result=>{
+        let date_today = new Date()
+        date_today.setUTCHours(0,0,0,0)
 
-            let task_id = result.tasks[req.body.dropCount]
-            // console.log(task_id._id)
+        Task.find({task_date:date_today.toISOString()}).then((result1)=>{
 
-            User.findOneAndUpdate({
-                _id:result._id,
-                "tasks._id": task_id
-                }, {
-                    "$set": {
-                    "tasks.$": {
-                        task_description: task_id.task_description,
-                        accomplished: true,
-                        logged_date: req.session.today
-                    }
-                }
-            }).then((doc)=>{
-                console.log("UPDATED TASK")
-                }, (err)=>{
-                console.log("Error: " +err)
+            User.findOne({email:req.session.email}).then(result=>{
+                console.log(req.body.dropCount)
+                let updated_task = result.tasks
+                updated_task.push(result1[req.body.dropCount])
+ 
+                console.log(result1)
+                console.log(updated_task)
+    
+                User.findOneAndUpdate({
+                    _id:result._id
+                    }, {
+                        tasks: updated_task
+                },
+                {
+                    new:true
+                }).then((doc)=>{
+                    console.log("UPDATED TASK")
+                    }, (err)=>{
+                    console.log("Error: " +err)
+                })
             })
         })
+        
 
     }
 
