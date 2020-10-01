@@ -28,12 +28,14 @@ exports.getIndex = (req, res)=>{
             //user already signed in
             req.session.tasks = []
             req.session.accomplished = 0
-            User.find({}).then((docs)=>{
-                for(let i=0; i<docs[0].tasks.length; i++){
+            User.findOne({email:req.session.email}).then((docs)=>{
+
+                for(let i=0; i<docs.tasks.length; i++){
+                    // console.log(docs.tasks[i])
                     let task = {
-                        task_description: docs[0].tasks[i].task_description, 
-                        accomplished: docs[0].tasks[i].accomplished, 
-                        logged_date: docs[0].tasks[i].logged_date
+                        task_description: docs.tasks[i].task_description, 
+                        accomplished: docs.tasks[i].accomplished, 
+                        logged_date: docs.tasks[i].logged_date
                     }
                     req.session.tasks.push(task)
                 }
@@ -99,6 +101,26 @@ exports.getRegister = (req,res)=>{
              firstname: first_name,
              lastname: last_name,
              accomplishments: accomplishments
+        })
+
+        req.session.tasks = []
+        Task.find({}).then((docs)=>{
+            for(let i=0; i<docs.length; i++){
+                let task = {task_description: docs[i].task_description, accomplished: false, logged_date: req.session.today}
+                req.session.tasks.push(task)
+            }
+    
+            User.findOneAndUpdate({email:email}, 
+                {tasks:req.session.tasks}).then((doc)=>{
+                    console.log(doc)
+                    let count = doc.accomplishments.count_of_times
+                    let accomplishments = {accomplished_today: false, count_of_times: count}
+
+                    User.findOneAndUpdate({email:req.session.email}, 
+                        {accomplishments: accomplishments}).then((doc)=>{
+                        res.redirect("/")
+                    })
+            })                       
         })
 
         user.save().then((doc)=>{
@@ -191,7 +213,7 @@ exports.getLogin = async (req,res)=>{
                 
                         User.findOneAndUpdate({email:req.session.email}, 
                             {tasks:req.session.tasks}).then((doc)=>{
-
+                                console.log(doc)
                                 let count = doc.accomplishments.count_of_times
                                 let accomplishments = {accomplished_today: false, count_of_times: count}
 
