@@ -113,8 +113,8 @@ exports.getRegister = (req,res)=>{
             User.findOneAndUpdate({email:email}, 
                 {tasks:req.session.tasks}).then((doc)=>{
                     console.log(doc)
-                    let count = doc.accomplishments.count_of_times
-                    let accomplishments = {accomplished_today: false, count_of_times: count}
+                    // let count = doc.accomplishments.count_of_times
+                    let accomplishments = {accomplished_today: false, count_of_times: 0}
 
                     User.findOneAndUpdate({email:req.session.email}, 
                         {accomplishments: accomplishments}).then((doc)=>{
@@ -200,9 +200,9 @@ exports.getLogin = async (req,res)=>{
 
             req.session.tasks = []
 
-            User.find({}).then((docs)=>{
+            User.findOne({email:req.session.email}).then((docs)=>{
 
-                last_login = docs[0].tasks[0].logged_date
+                last_login = docs.tasks[0].logged_date
 
                 if(last_login < req.session.today){
                     Task.find({}).then((docs)=>{
