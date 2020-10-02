@@ -43,6 +43,9 @@ exports.getAddTask = (req, res)=>{
         if(task_date < date_today){
             // invalid_date = true
             res.render("home-admin.hbs", {
+                firstname: req.session.firstname,
+                lastname: req.session.lastname,
+                tasks: req.session.admintasks ,
                 error: "Invalid: Date "+date + " ,should be for succeeding days" 
             })
         }
@@ -109,6 +112,9 @@ exports.getAddTask = (req, res)=>{
                 }
                 else{
                     res.render("home-admin.hbs", {
+                        firstname: req.session.firstname,
+                        lastname: req.session.lastname,
+                        tasks: req.session.admintasks ,
                         error: "Invalid: Already made task for " + date
                     })
                 }

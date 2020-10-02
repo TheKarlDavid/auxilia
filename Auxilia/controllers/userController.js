@@ -14,7 +14,9 @@ exports.getIndex = (req, res)=>{
             //admin already signed in
             let date_today = new Date()
             date_today.setUTCHours(0,0,0,0)
+            
             Task.find({task_date:date_today.toISOString()}).then((docs)=>{
+                req.session.admintasks = docs
                 res.render("home-admin.hbs", {
                     firstname: req.session.firstname,
                     lastname: req.session.lastname,
