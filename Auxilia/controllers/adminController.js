@@ -118,8 +118,7 @@ exports.getAddTask = (req, res)=>{
             }, (err)=>{
                     console.log("ERROR "+err)
             })
-        
-            res.redirect("/")  
+         
         }
 
         
