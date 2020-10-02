@@ -32,85 +32,95 @@ exports.getAddTask = (req, res)=>{
         let task3 = req.body.task3
         let task4 = req.body.task4
         let task5 = req.body.task5
-        let task_date = req.body.taskdate
+        let date = req.body.taskdate
 
-        Task.findOne({task_date: task_date}).then((doc)=>{
-            if(doc == null){
-                     
-                let taskOne = new Task({
-                    task_date:task_date,
-                    task_description:task1
-                })
+        let date_today = new Date()
+        task_date = new Date(date)
+        let invalid_date = false
 
-                let taskTwo = new Task({
-                    task_date:task_date,
-                    task_description:task2
-                })
+        console.log(date_today)
+        console.log(task_date)
+        if(task_date < date_today){
+            // invalid_date = true
+            res.render("home-admin.hbs", {
+                error: "Invalid: Date "+date + " ,should be for succeeding days" 
+            })
+        }
 
-                let taskThree = new Task({
-                    task_date:task_date,
-                    task_description:task3
-                })
-
-                let taskFour = new Task({
-                    task_date:task_date,
-                    task_description:task4
-                })
-
-                let taskFive = new Task({
-                    task_date:task_date,
-                    task_description:task5
-                })
-
-                taskOne.save().then((docA)=>{
-                    console.log("Task 1 added")                   
-                }, (error)=>{ //error
-                    console.log("ERROR ADDING 1 "+ error)
-                })
-
-                taskTwo.save().then((docB)=>{
-                    console.log("Task 2 added")               
-                }, (error)=>{ //error
-                    console.log("ERROR ADDING 2 "+ error)
-                })
-
-                taskThree.save().then((docC)=>{
-                    console.log("Task 3 added")                    
-                }, (error)=>{ //error
-                    console.log("ERROR ADDING 3 "+ error)
-                })
-
-                taskFour.save().then((docD)=>{
-                    console.log("Task 4 added")                   
-                }, (error)=>{ //error
-                    console.log("ERROR ADDING 4 "+ error)
-                })
-
-                taskFive.save().then((docE)=>{
-                    console.log("Task 5 added")
-                    res.redirect("/")                   
-                }, (error)=>{ //error
-                    console.log("ERROR ADDING 5 "+ error)
-                })
-            }
-            else{
-                res.render("home-admin.hbs", {
-                    error: task_date
-                })
-            }
+        else{
+            Task.findOne({task_date: date}).then((doc)=>{
+                if(doc == null){
+                             
+                    let taskOne = new Task({
+                        task_date:date,
+                        task_description:task1
+                    })
+            
+                    let taskTwo = new Task({
+                        task_date:date,
+                        task_description:task2
+                    })
+            
+                    let taskThree = new Task({
+                        task_date:date,
+                        task_description:task3
+                    })
+            
+                    let taskFour = new Task({
+                        task_date:date,
+                        task_description:task4
+                    })
+            
+                    let taskFive = new Task({
+                        task_date:date,
+                        task_description:task5
+                    })
+            
+                    taskOne.save().then((docA)=>{
+                        console.log("Task 1 added")                   
+                    }, (error)=>{ //error
+                        console.log("ERROR ADDING 1 "+ error)
+                    })
+            
+                    taskTwo.save().then((docB)=>{
+                        console.log("Task 2 added")               
+                    }, (error)=>{ //error
+                        console.log("ERROR ADDING 2 "+ error)
+                    })
+            
+                    taskThree.save().then((docC)=>{
+                        console.log("Task 3 added")                    
+                    }, (error)=>{ //error
+                        console.log("ERROR ADDING 3 "+ error)
+                    })
+            
+                    taskFour.save().then((docD)=>{
+                        console.log("Task 4 added")                   
+                    }, (error)=>{ //error
+                        console.log("ERROR ADDING 4 "+ error)
+                    })
+            
+                    taskFive.save().then((docE)=>{
+                        console.log("Task 5 added")
+                        res.redirect("/")                   
+                    }, (error)=>{ //error
+                                console.log("ERROR ADDING 5 "+ error)
+                    })
+                }
+                else{
+                    res.render("home-admin.hbs", {
+                        error: "Invalid: Already made task for " + date
+                    })
+                }
+                    
             console.log(doc)
-
-        }, (err)=>{
-            console.log("ERROR "+err)
-        })
-
-        // if(task_date.getTime() === date.getTime()){
-        //     console.log("equal")
-        // }
-
-
-        // res.redirect("/")
-        // if()
+        
+            }, (err)=>{
+                    console.log("ERROR "+err)
+            })
+        
+            res.redirect("/")  
+        }
 
         
     }

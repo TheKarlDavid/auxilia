@@ -37,33 +37,44 @@
 
            <div class="notepadbase">
               <div class="tasks-header">
-                <h1 class="textbox-admin">Tasks for today</h1>
+                <h1 class="textbox-admin">Tasks for today  ({{#prettifyDate tasks.0.task_date}}{{/prettifyDate}})</h1>
+
+                <div class="tasks-list">
+                  {{#each tasks}}
+                    {{#if_equal @index "0"}}
+                      <div class="item">
+                        <p class="textbox1" >{{task_description}}</p>
+                      </div>
+                    {{/if_equal}}
+
+                    {{#if_equal @index "1"}}
+                      <div class="item">
+                        <p class="textbox2" >{{task_description}}</p>
+                      </div>
+                    {{/if_equal}}
+
+                    {{#if_equal @index "2"}}
+                      <div class="item">
+                        <p class="textbox3" >{{task_description}}</p>
+                      </div>
+                    {{/if_equal}}
+
+                    {{#if_equal @index "3"}}
+                      <div class="item">
+                        <p class="textbox4" >{{task_description}}</p>
+                      </div>
+                    {{/if_equal}}
+
+                    {{#if_equal @index "4"}}
+                      <div class="item">
+                        <p class="textbox5" >{{task_description}}</p>
+                      </div>
+                    {{/if_equal}}
+                  {{/each}}
+                </div>
+                
 
               </div>
-              <div class="tasks-list">
-                <div class="task-item">
-
-                <div class="item">
-                    <p class="textbox1">Watch video</p>
-                  </div>
-                  <div class="item">
-                    <p class="textbox2" >Exercise for 30 mins</p>
-                  </div>
-
-                  <div class="item">
-                    <p class="textbox3" >Meditate for 15 mins</p>
-                  </div>
-
-                  <div class="item">
-                    <p class="textbox4" >Do something you find fun</p>
-                  </div>
-
-                  <div class="item">
-                    <p class="textbox5" >Take a 30 min nap</p>
-                  </div> 
-            
-                </div>
-              </div>    
           </div>
         </div>
 
@@ -80,15 +91,15 @@
                 <form class="form-add-task" action="add-task" method="post">
 
                   {{#if error}}
-                    <div class="error-add">Invalid: Already made task for {{error}}</div>
+                    <div class="error-add">{{error}}</div>
                   {{/if}}
                   
                   <input name="taskdate" type="date" required/>
-                  <input name="task1" type="text" placeholder="Input first task" value="task1" required/>
-                  <input name="task2" type="text" placeholder="Input second task" value="task2" required/>
-                  <input name="task3" type="text" placeholder="Input third task" value="task3" required/>
-                  <input name="task4" type="text" placeholder="Input fourth task" value="task4" required/>
-                  <input name="task5" type="text" placeholder="Input fifth task" value="task5" required/>
+                  <input name="task1" type="text" placeholder="Input first task" required/>
+                  <input name="task2" type="text" placeholder="Input second task" required/>
+                  <input name="task3" type="text" placeholder="Input third task" required/>
+                  <input name="task4" type="text" placeholder="Input fourth task" required/>
+                  <input name="task5" type="text" placeholder="Input fifth task" required/>
                   <input id="submit-add-task" type="submit" value="ADD TASK"/>
 
                 </form>
@@ -108,187 +119,3 @@
 
 </body>
 </html>
-
-{{!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="styles.css">
-    <link rel="stylesheet" type="text/css" href="home-admin.css">
-
-    <title>Home | Auxilia</title>
-</head>
-<body>
-    <header id="head">
-        <nav>
-          <div class="logo">
-            <img src="img/Auxilia.png"></img>
-          </div>
-          <ul class="navlist">
-            <li><a href="home" method="get">Home</a></li>
-            <li><a href="meditation" method="get">Meditation</a></li>
-            <li><a href="about" method="get">About</a></li>
-            <li><a href="profile" method="get">Profile</a></li>
-          </ul>
-        </nav>
-
-
-      </header>
-      
-      <main>
-        <div class="home-banner">
-          <div class="banner-container">
-            <h1 class="banner">WELCOME <br> {{firstname}} {{lastname}}</h1>
-          </div>
-          
-        </div>
-
-        <div class="home-plant">
-          <h1 id="plant_heading">MY PLANT</h1>
-
-         <!-- partial:index.partial.html -->
-         
-            
-          <div class="box">
-            <div class="stem rain2 rain3 rain4 rain5">
-              <div class="leaf leaf00 r leaf1_2 leaf1_3 leaf1_4 leaf1_5">
-                <div class="line"></div>
-              </div>
-              <div class="leaf leaf01 r r2 r3 r4">
-                <div class="line"></div>
-              </div>
-              <div class="leaf leaf02 t t2 t3">
-                <div class="line"></div>
-              </div>
-              <div class="leaf leaf03 y y2">
-                <div class="line"></div>
-              </div>
-              <div class="leaf leaf04 u">
-                <div class="line"></div>
-              </div>
-              
-            
-            </div>
-            <div class="pot-top"></div>
-            <div class="pot"></div>
-            
-          </div>
-
-        <!-- partial -->
-        </div>
-
-        <div class="home-tasks">
-          
-            {{#if error}}
-              {{error}}
-            {{/if}}
-
-           <div class="notepadbase">
-              <div class="tasks-header">
-                <h1 class="textbox-admin">Daily Tasks</h1>
-
-              </div>
-              <div class="tasks-list">
-                <div class="task-item">
-
-                  {{#each tasks}}
-                      {{#if_equal _id "5f6b4ecde151436cd835476e"}}
-                        <div class="item">
-                          <p class="textbox1" >{{task_description}}</p>
-                          <svg onclick="editTask({{@index}})" class="edit-task" xmlns="http://www.w3.org/2000/svg" height="40" viewBox="0 0 24 24" width="40"><path d="M0 0h24v24H0z" fill="none"/><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>
-                        </div>
-                      {{/if_equal}}
-
-                      {{#if_equal _id "5f6b4eedcf95fd4d6c7ccf91"}}
-                        <div class="item">
-                          <p class="textbox2" >{{task_description}}</p>
-                          <svg onclick="editTask({{@index}})" class="edit-task" xmlns="http://www.w3.org/2000/svg" height="40" viewBox="0 0 24 24" width="40"><path d="M0 0h24v24H0z" fill="none"/><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>
-                        </div>
-                      {{/if_equal}}
-
-                      {{#if_equal _id "5f6b4f38af2c041f24bd46f3"}}
-                        <div class="item">
-                          <p class="textbox3" >{{task_description}}</p>
-                          <svg onclick="editTask({{@index}})" class="edit-task" xmlns="http://www.w3.org/2000/svg" height="40" viewBox="0 0 24 24" width="40"><path d="M0 0h24v24H0z" fill="none"/><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>
-                        </div>
-                      {{/if_equal}}
-
-                      {{#if_equal _id "5f6b4f4328b4895264821fae"}}
-                        <div class="item">
-                          <p class="textbox4" >{{task_description}}</p>
-                          <svg onclick="editTask({{@index}})" class="edit-task" xmlns="http://www.w3.org/2000/svg" height="40" viewBox="0 0 24 24" width="40"><path d="M0 0h24v24H0z" fill="none"/><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>
-                        </div>
-                      {{/if_equal}}
-
-                      {{#if_equal _id "5f6b4f58823d607768875cca"}}
-                        <div class="item">
-                          <p class="textbox5" >{{task_description}}</p>
-                          <svg onclick="editTask({{@index}})" class="edit-task" xmlns="http://www.w3.org/2000/svg" height="40" viewBox="0 0 24 24" width="40"><path d="M0 0h24v24H0z" fill="none"/><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>
-                        </div>
-                      {{/if_equal}}
-                        <div id="{{@index}}" class="editModalTask">
-                          <div class="editModalTask-content">
-                  
-                              <div class="editModalTask-header">
-                                  <h2>EDIT A DAILY TASK</h2>
-                                  <span class="edit-task-closeBtn">&times;</span>
-                              </div>
-                              
-                              <div class="editModalTask-body">
-                                  <form id="{{_id}}" class="form-edit-task" action="edit-task" method="post">
-                                    <input name="task" value="{{task_description}}" type="text" required></input>
-
-                                    <input type="hidden" name="edit_id" value="{{_id}}">
-  
-                                      <div class="editModalTask-footer">
-                                        <input id="submit-edit-task" type="submit" value="UPDATE">
-                                    </div>
-                                  </form>
-                              </div>
-                          </div>
-                        </div>
-                      
-                    {{/each}}
-
-                  {{!-- <div class="item">
-                    <p class="textbox1">Watch video</p>
-                    <svg onclick="editTask()" class="edit-task" xmlns="http://www.w3.org/2000/svg" height="40" viewBox="0 0 24 24" width="40"><path d="M0 0h24v24H0z" fill="none"/><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>
-                  </div>
-                  <div class="item">
-                    <p class="textbox2" >Exercise for 30 mins</p>
-                    <svg class="edit-task" xmlns="http://www.w3.org/2000/svg" height="40" viewBox="0 0 24 24" width="40"><path d="M0 0h24v24H0z" fill="none"/><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>
-                  </div>
-
-                  <div class="item">
-                    <p class="textbox3" >Meditate for 15 mins</p>
-                    <svg class="edit-task" xmlns="http://www.w3.org/2000/svg" height="40" viewBox="0 0 24 24" width="40"><path d="M0 0h24v24H0z" fill="none"/><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>                  
-                  </div>
-
-                  <div class="item">
-                    <p class="textbox4" >Do something you find fun</p>
-                    <svg class="edit-task" xmlns="http://www.w3.org/2000/svg" height="40" viewBox="0 0 24 24" width="40"><path d="M0 0h24v24H0z" fill="none"/><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>
-                  </div>
-
-                  <div class="item">
-                    <p class="textbox5" >Take a 30 min nap</p>
-                    <svg class="edit-task" xmlns="http://www.w3.org/2000/svg" height="40" viewBox="0 0 24 24" width="40"><path d="M0 0h24v24H0z" fill="none"/><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>
-                  </div> --}}
-                
-                </div>
-                
-              </div>
-              
-          </div>
-        </div>
-
-      </main>
-      
-      <!-- partial -->
-      <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script>
-      <script src='https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js'></script>
-      <script  src="./home.js"></script>
-      <script  src="./home-admin.js"></script>
-
-</body>
-</html> --}}

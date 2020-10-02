@@ -12,7 +12,9 @@ exports.getIndex = (req, res)=>{
     if(req.session.email){
         if(req.session.isAdmin){
             //admin already signed in
-            Task.find({}).then((docs)=>{
+            let date_today = new Date()
+            date_today.setUTCHours(0,0,0,0)
+            Task.find({task_date:date_today.toISOString()}).then((docs)=>{
                 res.render("home-admin.hbs", {
                     firstname: req.session.firstname,
                     lastname: req.session.lastname,
@@ -341,7 +343,7 @@ exports.getProfile = (req, res)=>{
                         let result_date = result.accomplishments[i].date_accomplished
 
                         if(result_date.toISOString() == date_today.toISOString()){
-                            console.log("Same date")
+                            console.log("USER Same date")
                             same_date = true
                         }
                         

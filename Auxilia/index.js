@@ -23,10 +23,6 @@ hbs.registerHelper('ifCheck', function(a, b, opts) {
     if(a){
         for (var i=0; i<a.length; i++){
             if(a[i]._id.equals(b)){
-                // console.log("same")
-                // console.log("A " +a[i]._id)
-                // console.log("B " +b)
-                
                 return opts.fn(this)
             }
         }
