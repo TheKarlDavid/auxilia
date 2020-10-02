@@ -36,7 +36,10 @@
           
           <div class="accomplishment-list">
             {{#each plants}}
-              <img src="img/plant.png"></img>
+              <div class="accomplishment">
+                <img src="img/plant.png"></img>
+                <div class="accomplishment-date">{{#prettifyDate date_accomplished}}{{/prettifyDate}}</div>
+              </div>
             {{/each}}
             {{#unless plants}}
               <div>No accomplishments yet, go do tasks to get accomplishments!</div>

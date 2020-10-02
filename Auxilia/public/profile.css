@@ -42,11 +42,25 @@
     text-transform: none;
 }
 
+.accomplishment{
+    display: inline-block;
+    height: auto;
+    width: 130px;
+    /* margin: 0 5px; */
+    margin: 0 13px;
+    cursor: pointer;
+}
+
 .accomplishment-list img{
     height: 130px;
     width: 130px;
-    margin: 0 5px;
-    cursor: pointer;
+    /* cursor: pointer; */
+}
+
+.accomplishment-date{
+    text-align: center;
+    font-weight: bold;
+    color: #899663;
 }
 
 .main-admin{

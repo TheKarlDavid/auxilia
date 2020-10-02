@@ -31,20 +31,17 @@ exports.getIndex = (req, res)=>{
             let tasks = []
 
             Task.find({task_date:date_today.toISOString()}).then((docs)=>{
-                // console.log(docs)
                 tasks= docs
              
                 let completedTasks = []
+                let completed = 0
                 User.findOne({email:req.session.email}).then((result)=>{
                     for(let i=0; i<result.tasks.length; i++){
-                        // console.log(result.tasks[i].task_date)
-                        // console.log(date_today.toISOString())
+                        
                         if(result.tasks[i].task_date.toISOString() == date_today.toISOString()){
                             completedTasks.push(result.tasks[i])
                         }
                     }
-
-                    console.log(completedTasks)
 
                     res.render("home.hbs", {
                         firstname: req.session.firstname,
@@ -52,17 +49,28 @@ exports.getIndex = (req, res)=>{
                         tasks:tasks,
                         completedTasks: completedTasks
                     })
-                })
-                     
+                })       
             })
             
         }
     }
 
     else{
-
         // the user has not registered or logged
-        res.render("index.hbs")
+        
+        let date_today = new Date()
+        date_today.setUTCHours(0,0,0,0)
+        let tasks = []
+
+        Task.find({task_date:date_today.toISOString()}).then((docs)=>{
+            tasks= docs
+
+            res.render("index.hbs", {
+                tasks:tasks
+            })   
+        })
+
+        
     
     }
 
@@ -94,7 +102,6 @@ exports.getRegister = (req,res)=>{
         var hash = bcrypt.hashSync(password,salt);
         password = hash;
 
-        let accomplishments = {accomplished_today: false, count_of_times: 0}
         let date_today = new Date();
         req.session.today = date_today
 
@@ -103,7 +110,7 @@ exports.getRegister = (req,res)=>{
              password: password,
              firstname: first_name,
              lastname: last_name,
-             accomplishments: accomplishments,
+             accomplishments: [],
              tasks: []
         })
 
@@ -183,10 +190,11 @@ exports.getLogin = async (req,res)=>{
 exports.getLoginRegister = (req, res)=>{
 
     if(req.session.email){
-        res.render("home.hbs",{
-            firstname: req.session.firstname,
-            lastname: req.session.lastname
-        })
+        res.redirect("/")
+        // res.render("home.hbs",{
+        //     firstname: req.session.firstname,
+        //     lastname: req.session.lastname
+        // })
     }
 
     else{
@@ -196,13 +204,14 @@ exports.getLoginRegister = (req, res)=>{
 
 exports.getHome = (req, res)=>{
 
-    if(req.session.email){
-        res.redirect("/")
-    }
+    res.redirect("/")
+    // if(req.session.email){
+    //     res.redirect("/")
+    // }
 
-    else{
-        res.render("index.hbs")
-    }
+    // else{
+    //     res.render("index.hbs")
+    // }
 }
 
 exports.getUpdateTask = (req, res)=>{
@@ -298,81 +307,123 @@ exports.getProfile = (req, res)=>{
             })
         }
         else{
-            User.findOne({email:req.session.email}).then(result=>{
-
-            req.session.accomplished = 0 
-            for(let i=0; i<result.tasks.length; i++){
-    
-                if(result.tasks[i].accomplished){
-                    req.session.accomplished++;
-                }     
-            }
-    
-            if(req.session.accomplished == 5){
-
-                if(result.accomplishments.accomplished_today){
-    
-                    let plant = result.accomplishments.count_of_times
-                    let plants =[]
-                    for(let i=0; i<plant; i++){
-                        plants.push({plant})
-                    }
-    
-                    res.render("profile.hbs", {
-                        firstname: req.session.firstname,
-                        lastname: req.session.lastname,
-                        plants: plants 
-                    })
-                }
-                else{
-                    let count = result.accomplishments.count_of_times + 1
-                    User.findOneAndUpdate({email:req.session.email}, 
-                        {accomplishments:  {accomplished_today: true, count_of_times: count}}).then((doc)=>{
-                        let plant = count
-                        let plants =[]
-    
-                        for(let i=0; i<plant; i++){
-                            plants.push({plant})
+            
+            let date_today = new Date()
+            date_today.setUTCHours(0,0,0,0)
+            let tasks = []
+            
+            Task.find({task_date:date_today.toISOString()}).then((docs)=>{
+                tasks= docs
+                let completedTasks = []
+                let accomplished = 0
+                User.findOne({email:req.session.email}).then((result)=>{
+                    for(let i=0; i<result.tasks.length; i++){
+                        
+                        if(result.tasks[i].task_date.toISOString() == date_today.toISOString()){
+                            completedTasks.push(result.tasks[i])
                         }
-    
+                    }
+
+                    for (let i=0; i<completedTasks.length; i++){
+                        for(let j=0; j<tasks.length; j++){
+
+                            if(completedTasks[i]._id.equals(tasks[j]._id)){
+                                accomplished++
+                            }
+                        }                        
+                    }
+
+                    let num_accomplishments = result.accomplishments.length
+                    let date_accomplished = tasks[0].task_date
+                    let same_date = false 
+
+                    for(let i=0; i<num_accomplishments; i++){
+                        let result_date = result.accomplishments[i].date_accomplished
+
+                        if(result_date.toISOString() == date_today.toISOString()){
+                            console.log("Same date")
+                            same_date = true
+                        }
+                        
+                    }
+
+                    if(accomplished == 5 && !same_date){ //no accomplishment registered yet for today
+                        
+                        if(num_accomplishments){ //HAVE ACCOMPLISHMENTS FROM PAST
+                            
+                            let update_accomplishments = {date_accomplished: date_accomplished, completed:true}
+                            let plants =result.accomplishments
+                            
+                            User.findOne({email:req.session.email}).then(result=>{
+                                let accomplishments = result.accomplishments
+                                accomplishments.push(update_accomplishments)
+
+                                plants.push(update_accomplishments)
+                                console.log(plants)
+
+                                User.findOneAndUpdate({
+                                    _id:result._id
+                                    }, {
+                                        accomplishments: accomplishments
+                                },
+                                {
+                                    new:true
+                                }).then((doc)=>{
+                                    console.log("UPDATED TASK")
+                                    console.log("1")
+                                    res.render("profile.hbs", {
+                                        firstname: req.session.firstname,
+                                        lastname: req.session.lastname,
+                                        plants: plants
+                                    })
+                                    }, (err)=>{
+                                    console.log("Error: " +err)
+                                })
+                            })
+                        }
+
+                        else{ // NO ACCOMPLISHMENTS FORM PAST
+
+                                let update_accomplishments 
+                                update_accomplishments={date_accomplished: date_accomplished, completed:true}
+                                let plants = []
+
+                                plants.push(update_accomplishments)
+                                console.log(plants)
+
+                                User.findOneAndUpdate({
+                                    _id:result._id
+                                    }, {
+                                        accomplishments: update_accomplishments
+                                },
+                                {
+                                    new:true
+                                }).then((doc)=>{
+                                    console.log("UPDATED USER ACCOMPLISHEMNTS")
+                                    res.render("profile.hbs", {
+                                        firstname: req.session.firstname,
+                                        lastname: req.session.lastname,
+                                        plants: plants
+                                    })
+                                    }, (err)=>{
+                                    console.log("Error: " +err)
+                                })  
+                        }
+                        
+                    }
+
+                    else{ //get previous plant history: not yet accomplished or already accomplished for today
+                        let plants=result.accomplishments
+
                         res.render("profile.hbs", {
                             firstname: req.session.firstname,
                             lastname: req.session.lastname,
-                            plants: plants 
+                            plants: plants
                         })
-                    })
-                }
-            }
-                
-            else{
-                if(result.accomplishments.count_of_times){
-                    let plant = result.accomplishments.count_of_times
-                    let plants =[]
-                    for(let i=0; i<plant; i++){
-                        plants.push({plant})
-                    }
-    
-                    res.render("profile.hbs", {
-                        firstname: req.session.firstname,
-                        lastname: req.session.lastname,
-                        plants: plants 
-                    })
-                }
-                else{
-                    let plant = result.accomplishments.count_of_times
-                    let plants =[]
-                    for(let i=0; i<plant; i++){
-                        plants.push({plant})
                     }
                     
-                    res.render("profile.hbs", {
-                        firstname: req.session.firstname,
-                        lastname: req.session.lastname,
-                        plants: plants 
-                    })
-                }
-            }
-            })
+                })       
+            })   
         }
     }
 

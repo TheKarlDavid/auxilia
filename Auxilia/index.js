@@ -21,9 +21,12 @@ hbs.registerHelper('if_equal', function(a, b, opts) {
 
 hbs.registerHelper('ifCheck', function(a, b, opts) {
     if(a){
-        console.log(a)
         for (var i=0; i<a.length; i++){
-            if(a[i]._id == b){
+            if(a[i]._id.equals(b)){
+                // console.log("same")
+                // console.log("A " +a[i]._id)
+                // console.log("B " +b)
+                
                 return opts.fn(this)
             }
         }
@@ -31,6 +34,20 @@ hbs.registerHelper('ifCheck', function(a, b, opts) {
     
     return opts.inverse(this)
 })
+
+hbs.registerHelper("prettifyDate", function(timestamp) {
+    console.log(timestamp)
+    var curr_date = timestamp.getDate();
+    var curr_month = timestamp.getMonth();
+    var curr_year = timestamp.getFullYear();
+
+    curr_month++;
+    if(curr_date < 10)
+        curr_date = "0" + curr_date 
+    result = curr_month + "-" + curr_date + "-" + curr_year;
+    console.log(result)
+    return result;
+});
 
 app.use(bodyparser.urlencoded({
     extended:false

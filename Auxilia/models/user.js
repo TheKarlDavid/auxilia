@@ -7,10 +7,10 @@ let User = mongoose.model("User",{
     firstname: {type: String, required:true},
     lastname: {type: String, required:true},
 
-    accomplishments:{
-        accomplished_today: Boolean,
-        count_of_times: Number
-    },
+    accomplishments:[{
+        date_accomplished: Date,
+        completed: Boolean
+    }],
     tasks:[{
         task_description: String,
         task_date: Date,

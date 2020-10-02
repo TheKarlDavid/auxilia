@@ -72,30 +72,45 @@
               </div>
               <div class="tasks-list">
                 <div class="task-item">
-                  <div class="item">
-                    <a href="login-register" method="get"><div class="drop"></div></a>
-                    <p class="textbox1" >Watch video</p>
-                  </div>
+                  {{#each tasks}}
+
+                    {{#if_equal @index "0"}}
+                      <div class="item">
+                        <a href="login-register" method="get"><div class="drop"></div></a>
+                        <p class="textbox1" >{{task_description}}</p>
+                      </div>
+                    {{/if_equal}}
+
+                    {{#if_equal @index "1"}}
+                      <div class="item">
+                        <a href="login-register" method="get"><div class="drop2"></div></a>
+                        <p class="textbox2" >{{task_description}}</p>
+                      </div>
+                    {{/if_equal}}
+
+                    {{#if_equal @index "2"}}
+                      <div class="item">
+                        <a href="login-register" method="get"><div class="drop3"></div></a>
+                        <p class="textbox3" >{{task_description}}</p>
+                      </div>
+                    {{/if_equal}}
+                      
+                    {{#if_equal @index "3"}}
+                      <div class="item">
+                        <a href="login-register" method="get"><div class="drop4"></div></a>
+                        <p class="textbox4" >{{task_description}}</p>
+                      </div>
+                    {{/if_equal}}
+
+                    {{#if_equal @index "4"}}
+                      <div class="item">
+                        <a href="login-register" method="get"><div class="drop5"></div></a>
+                        <p class="textbox5" >{{task_description}}</p>
+                      </div>
+                    {{/if_equal}}
+
+                  {{/each}}
                   
-                  <div class="item">
-                    <a href="login-register" method="get"><div class="drop2"></div></a>
-                    <p class="textbox2" >Exercise for 30 mins</p>
-                  </div>
-
-                  <div class="item">
-                    <a href="login-register" method="get"><div class="drop3"></div></a>
-                    <p class="textbox3" >Meditate for 15 mins</p>
-                  </div>
-
-                  <div class="item">
-                    <a href="login-register" method="get"><div class="drop4"></div></a>
-                    <p class="textbox4" >Do something you find fun</p>
-                  </div>
-
-                  <div class="item">
-                    <a href="login-register" method="get"><div class="drop5"></div></a>
-                  <p class="textbox5" >Take a 30 min nap</p>
-                  </div>
                 
                 </div>
                 
